@@ -1,0 +1,32 @@
+ICON FILES NEEDED
+==================
+
+Place the following icon files in this directory:
+
+📁 Required Files:
+- icon.png (256x256 or 512x512 PNG format) - For Linux and general use
+- icon.ico (Windows ICO format with multiple sizes) - For Windows builds
+- icon.icns (macOS ICNS format) - For macOS builds
+
+💡 Icon Recommendations:
+- Use a robot or trading-themed icon
+- High contrast colors (blue/cyan theme to match the app)
+- Simple, recognizable design
+- Square format works best
+
+🔧 Online Icon Converters:
+- PNG to ICO: https://convertio.co/png-ico/
+- PNG to ICNS: https://cloudconvert.com/png-to-icns
+- Multi-format: https://www.icoconverter.com/
+
+📐 Recommended Sizes:
+- PNG: 512x512 pixels
+- ICO: Multiple sizes (16, 32, 48, 64, 128, 256)
+- ICNS: Multiple sizes included automatically
+
+🎨 Color Scheme:
+- Primary: #00d4ff (cyan)
+- Background: #1a1a2e (dark blue)
+- Accent: #ffffff (white)
+
+Note: The app will work without icons, but they improve the user experience and make the app look more professional when distributed. 

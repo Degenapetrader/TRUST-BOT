@@ -1,0 +1,12 @@
+[
+  {
+    "symbol": "STRATOS",
+    "tokenAddress": "0xd79D6585D00a37D115D8FA4E2762b95AdC369351",
+    "lpAddress": "0x6B6b0e5C8004a639bB9aB61100AAE6B1DaE86fE1"
+  },
+  {
+    "symbol": "IRIS",
+    "tokenAddress": "0xEA87148a703ADc0DE89dB2aC2b6b381093aE8ee0",
+    "lpAddress": "0x6662bcCD7A333768E824B6a47E6765C8626b4353"
+  }
+]

@@ -1,0 +1,192 @@
+[
+  {
+    "symbol": "KEK",
+    "tokenAddress": "GXkoESRmdKJcQAPJrZCce6YR2bJe33QMC7fNVtTjvirt",
+    "lpAddress": "5HaNZtFqGgNJ13kEqxMzXvFZwQ2ZBXHY3r6qxUW1QpVF"
+  },
+  {
+    "symbol": "SAMROC",
+    "tokenAddress": "C67xLSgDDt4MxiDgxZhQzZZmG4Tsndao5VcTQGHsvirt",
+    "lpAddress": "SPpE41AZNABSXocNzhcRr6QqftwCK7wMdQk1uQsjvKg"
+  },
+  {
+    "symbol": "SAMBAS",
+    "tokenAddress": "6S9y6ckWjkjuQjhbA2mD3aT5CEtZZa3YUH1CgkERvirt",
+    "lpAddress": "3QVPkxH9c9u5fNYrwg8fL1juNjo6HmtMJPduhUNtA2R5"
+  },
+  {
+    "symbol": "SAMWIS",
+    "tokenAddress": "CiwfQid38TVCu5yH2qErq37nkRN5Qnst8SzTtybpvirt",
+    "lpAddress": "8UBHj24ZD8jCQ9ovwNT7panejHhLUonTa9m4i2uLYnka"
+  },
+  {
+    "symbol": "SAMSON",
+    "tokenAddress": "3GFQLZGA58f1fbWh76ro14hT7FTXgGUrtdVzmimfvirt",
+    "lpAddress": "9eoPgEQmhUVE6YQb8fP9VUACtwe6dAWjCgW6bEr3P7G"
+  },
+  {
+    "symbol": "VID",
+    "tokenAddress": "FATYxjEcXNYinyoR8SzHBKtzLz8qYRdUaHpxPS7dvirt",
+    "lpAddress": "2YRy8M2MjvkkqYWBEDPPZn8XCdYrf72jSrQDN2vev89E"
+  },
+  {
+    "symbol": "BASKT",
+    "tokenAddress": "67UN8LtCRbAx5DMqLMP5K2UZtHjUN87L1fH59EELvirt",
+    "lpAddress": "DFNEPF9kKvdboq7peMLPE2XzxhRQzU2MG3AYe2Aok4zm"
+  },
+  {
+    "symbol": "FRANX",
+    "tokenAddress": "7tQNo83i64rzaBruPoATfwmvCnh5STttnun9pe5Zvirt",
+    "lpAddress": "3FSwmmymiZB5LSuQDzZ5xhrrRQ2UprPMuNq4E7n47nf2"
+  },
+  {
+    "symbol": "FRANKLINX",
+    "tokenAddress": "3NW255DJh54N64dLN94u3PTvRkcyBK9r865NtpiYvirt",
+    "lpAddress": "JDfZhwGqr3toS1W5rNHLfz184Ac2xXheqvTPsb5Jzet9"
+  },
+  {
+    "symbol": "AITRAVEL",
+    "tokenAddress": "6DpdEMbQ5a2CowagL9qZpA7pP367b9Fv1k2x7FcJvirt",
+    "lpAddress": "GxGjduAwVncnaAJCuWC9H7deHEya7XsKDGP94u6XdLV2"
+  },
+  {
+    "symbol": "TOXI",
+    "tokenAddress": "Cjp1Uq8ZGfM3mdbgUwr5bampf6gbNcBfBv7abPrRvirt",
+    "lpAddress": "A1HY7vT82z4GWCe9RrPgxKcAJJmKcgZrpRyCnQa44XGG"
+  },
+  {
+    "symbol": "BILLY",
+    "tokenAddress": "9Rhbn9G5poLvgnFzuYBtJgbzmiipNra35QpnUek9virt",
+    "lpAddress": "FGwZ7gV1dR8VjgR2hRSaksHq6dc7q9QT7sNzosiUDsT5"
+  },
+  {
+    "symbol": "POLICY",
+    "tokenAddress": "5G2diTGhL1U3b9jVs7XzS4AgbfbgMABB29PDxw8Pvirt",
+    "lpAddress": "5Q3ghTkJyntkhEvgnyRb3UKW5fomMVpyEiba7Bnk3LQE"
+  },
+  {
+    "symbol": "OLIVIA",
+    "tokenAddress": "UJbgfkVexSCKnX2NGkDyFbyp5vjxoTzRToXHvwyvirt",
+    "lpAddress": "6S3zpQ5FQ2oPwiytXt5Fw5a78THGS5M69YXjNxxcJSHU"
+  },
+  {
+    "symbol": "R8",
+    "tokenAddress": "Awrsaa2aDTJydjmH3rFrq83HTr3FiQa1Ht6Htjxsvirt",
+    "lpAddress": "6xWD98hkRS8oD6umr82GAcseBnpyXYGyKrR9Y2gC76tP"
+  },
+  {
+    "symbol": "R6D9",
+    "tokenAddress": "CzbsTtLTwnX81fEvNBz7bDSt8VAw43XAcdgK8Ludvirt",
+    "lpAddress": "7UFW5QtjgEdhFMqhoRR7CpQ1A2YbtafZuHkKevh5R3f6"
+  },
+  {
+    "symbol": "SQUID",
+    "tokenAddress": "AeXZUcb69y4KPVk7jibzUmpNBQkpTr8GuwAeeyyLvirt",
+    "lpAddress": "2eXQThbgH9RT47UMViWLYQpSPXK1cVW8kg5oxFe7VPTZ"
+  },
+  {
+    "symbol": "REXBT",
+    "tokenAddress": "J7cENeeQs1XUgfruGNTEjXAAa54Rut8VYdDuMmmBvirt",
+    "lpAddress": "6rW9gGzMrmqmfHqXjfocyzzA6vKYZq4cMbJiT8L3vjDT"
+  },
+  {
+    "symbol": "EMBODY",
+    "tokenAddress": "FUYWSPA8fzpKLJC4sZwpcTZdqPmMtmMqCWkauYRovirt",
+    "lpAddress": "FXrUFzYGBNiWL6WNhp3rTUXzhFjsuzmqx68PQUCxG2DZ"
+  },
+  {
+    "symbol": "FBAE",
+    "tokenAddress": "6U3vcsk7Q74Cp714LFs7srk6Qcb1wEeSDegLLmpJvirt",
+    "lpAddress": "BFxswrY1Zy2zDnLH7cqsVc1FDQFXjgHQW61pXyxikgDX"
+  },
+  {
+    "symbol": "COLO",
+    "tokenAddress": "9yyBvoj2zj4dcZ5DpMXxzTonZ2zfV2M9MHAPQpGivirt",
+    "lpAddress": "AWMHuTsRueQELxJNmYQAoeJU9GJNuuG4JVckbPAgzUEZ"
+  },
+  {
+    "symbol": "TRAVELAI",
+    "tokenAddress": "BCKLodMWY95SqqM1bdz69KN9L6wgEEc7cw7vK2Jyvirt",
+    "lpAddress": "6wPZBDZzxHJ34c93r3bnY7dBSoXusT5FoJHfuVdf7pog"
+  },
+  {
+    "symbol": "PAI",
+    "tokenAddress": "HpRVpmbpotZT19f6hYrZ16RHS5ALvpWuhmhsatxPvirt",
+    "lpAddress": "J4XhSPoATfwyk2PwnKHffijva1TqbkkEE7Um1DrYNT5o"
+  },
+  {
+    "symbol": "INSAI",
+    "tokenAddress": "4cnSMsX64pEDU2WQXkjfLjrTm7impNEosDMsqcAVvirt",
+    "lpAddress": "ByGzKWXFnj95hJtQPpb81D4oAbMP5Z28FKEcua4P7v7a"
+  },
+  {
+    "symbol": "SYNAPSEAI",
+    "tokenAddress": "HxL4oGmhfj75cPaFWgRuynWEjXmWFQUFfSqksWsKvirt",
+    "lpAddress": "E7AKwuJgG9E4Wp2iJg13k9MraNJJKvJapWNSPnGLxipC"
+  },
+  {
+    "symbol": "XYRA",
+    "tokenAddress": "CJTttRCmShQRjientZnYUcM9z1jRPv2437oS4Ewovirt",
+    "lpAddress": "4cFFVt7PkTTLaT96Tnbqm1HUuFNvhRitBBGMJr8YToL4"
+  },
+  {
+    "symbol": "NYX",
+    "tokenAddress": "EfqR6H3knDCgYq7QLtwjRAC5wPzustQvkzNTAMzUvirt",
+    "lpAddress": "25GzpjRiThAikMPw6p6AhZxYoQbr5T9hmcKunGNgs2cg"
+  },
+  {
+    "symbol": "DEGAIN",
+    "tokenAddress": "DKThJTqXWygyYVpp7DYpW44fqR2c5uQbPiiP6ugJvirt",
+    "lpAddress": "EcB9UBakJgjM1rZuumZLxmPYzRL2no3jHe3Hbtv3SMU4"
+  },
+  {
+    "symbol": "KIRA",
+    "tokenAddress": "EGn9NSCXBBWjN4X29e1VZaVdhU7sdHN4CrBZwcTjvirt",
+    "lpAddress": "AuPZgmo9Tf1FD7dJgzH1Y1v52RweBqE4pyb5BgadepqL"
+  },
+  {
+    "symbol": "TRACY",
+    "tokenAddress": "C1nzFL2DD3Wqc3dzRbsrpb6tiZ6dbYsXubjVtzyHvirt",
+    "lpAddress": "23Y7o8AZPjc1uRkuCR8vTNvFhqkrdF3bqF5PFcNYqh9C"
+  },
+  {
+    "symbol": "FALCON",
+    "tokenAddress": "AeXeSGesMcS6ToosWbG54iycBxZuZ93MCNBWD6LRvirt",
+    "lpAddress": "HeVbQDwjRYCGxc893QzCAWb9pAhVGme4aLmXLmDUt8Hv"
+  },
+  {
+    "symbol": "SAG3",
+    "tokenAddress": "Gx5dX1pM5aCQn8wtXEmEHSUia3W57Jq7qdu7kKsHvirt",
+    "lpAddress": "BYfqWHAdkh3haDpHup3jjWFFzkmY6jMidP6aiYfCohb5"
+  },
+  {
+    "symbol": "STATE",
+    "tokenAddress": "Gcc7QfMgy9rKVdp8wdKqgUvzPWubHzDDfugiTgEvirt",
+    "lpAddress": "7ns3FroHbkNn5LH7gRNyiiHVd8Kd9NgteAB2PuVA1cYZ"
+  },
+  {
+    "symbol": "PAI",
+    "tokenAddress": "H54n4gnvRNPNZCAqwXam6EkLpKLhWT1tEs8wPFCkvirt",
+    "lpAddress": "CjT4ZHwJDFEMSVx4FsKLoaRs7rjGyDwzt4E63mNf4tzt"
+  },
+  {
+    "symbol": "XXXX",
+    "tokenAddress": "zvUm912V7QGHihz2HEuhnK7EU1CMY68qe7ch1U4virt",
+    "lpAddress": "Aoy3MvtKgAHhEi4sHje2tSQpLjrG5WYQ5ftZtcokHMVu"
+  },
+  {
+    "symbol": "BUU",
+    "tokenAddress": "88n8pBT6doB5rHP7WcAaG8TuVY1baWazzxAS7Bm8virt",
+    "lpAddress": "CfscKScJarnPmFokMyK94Do2dpgGLzqrH67bb2vUN1uB"
+  },
+  {
+    "symbol": "CAT",
+    "tokenAddress": "u74UWan2Vrnu1iC8uRKPXGri9fdPcQDDCSLe1rgvirt",
+    "lpAddress": "5HCT8mjzuJoy21xUxRKtUMKNbEb1HFogBqmfVXYb9XCB"
+  },
+  {
+    "symbol": "CUCTST",
+    "tokenAddress": "7eLz7uTp7NX9PuRvEzV3atQTy3H57Bre78kTcufhvirt",
+    "lpAddress": "Fu5MvekJKFGoamEWdM1obGQFnJSV6mvQpKF27hkkuoBS"
+  }
+]

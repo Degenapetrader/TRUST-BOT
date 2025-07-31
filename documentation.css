@@ -1,0 +1,309 @@
+/* Documentation Styles - Tab-based Layout */
+
+/* Container layout */
+.documentation-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background: #1a1a2e;
+    color: #ffffff;
+    position: relative;
+}
+
+.documentation-body {
+    display: flex;
+    flex: 1;
+    padding: 0;
+}
+
+/* Search bar */
+.doc-search-container {
+    padding: 10px;
+    border-bottom: 1px solid #333333;
+    position: relative;
+}
+
+.doc-search-container input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #3498db;
+    font-size: 14px;
+}
+
+.doc-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 10;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.doc-search-results .result-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.doc-search-results .result-item:hover {
+    background-color: #f5f5f5;
+}
+
+.doc-search-results .result-item .match {
+    background-color: #ffeb3b;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+/* Navigation panel */
+/* Navigation bar - horizontally displayed menu */
+.doc-nav {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    margin: 5px 0 10px 0;
+    background-color: #102538;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: #3498db #102538;
+}
+
+/* Navigation buttons */
+.doc-nav-btn, .doc-nav-item {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    background-color: #2a5885;
+    cursor: pointer;
+    border: 1px solid #3498db;
+    white-space: nowrap;
+}
+
+.doc-nav-btn:hover, .doc-nav-item:hover {
+    background-color: #3498db;
+    border-color: #5dade2;
+}
+
+.doc-nav-btn.active {
+    background-color: #3498db;
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transform: translateY(-1px);
+    border-color: #5dade2;
+}
+
+/* Content area */
+/* Content container */
+.doc-content-container {
+    flex: 1;
+    width: 100%;
+    padding: 20px 30px;
+    color: #ffffff;
+    background-color: #1a1a2e;
+    position: relative;
+}
+
+.doc-section {
+    display: none;
+    color: #ffffff;
+}
+
+.doc-section.active {
+    display: block;
+}
+
+/* Documentation title styling */
+.documentation-title {
+    color: #3498db; /* Blue color that should be visible on dark background */
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Markdown content styling */
+.doc-content h1, .doc-section h1, .doc-rendered h1 {
+    font-size: 24px;
+    margin-top: 0;
+    color: #3498db;
+}
+
+.doc-content h2, .doc-section h2, .doc-rendered h2 {
+    font-size: 20px;
+    color: #5dade2;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.doc-content h3, .doc-section h3, .doc-rendered h3 {
+    font-size: 18px;
+    color: #7fb3d5;
+    margin-top: 20px;
+}
+
+.doc-content p, .doc-section p, .doc-rendered p,
+.doc-content li, .doc-section li, .doc-rendered li,
+.doc-content span, .doc-section span, .doc-rendered span {
+    color: #ffffff;
+}
+
+.doc-content code, .doc-section code, .doc-rendered code {
+    background-color: #2c3e50;
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: #ffffff;
+}
+
+/* Ensure links are visible */
+.doc-content a, .doc-section a, .doc-rendered a {
+    color: #5dade2;
+    text-decoration: underline;
+}
+
+/* Ensure code blocks are visible */
+.doc-content pre, .doc-section pre, .doc-rendered pre {
+    background-color: #2c3e50;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    overflow-x: auto;
+}
+
+/* Table styling */
+.doc-content table, .doc-section table, .doc-rendered table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.doc-content th, .doc-section th, .doc-rendered th,
+.doc-content td, .doc-section td, .doc-rendered td {
+    border: 1px solid #444;
+    padding: 8px;
+    text-align: left;
+}
+
+.doc-content th, .doc-section th, .doc-rendered th {
+    background-color: #2c3e50;
+    color: #ffffff;
+}
+
+.doc-content h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.doc-content p {
+    line-height: 1.6;
+    margin: 0 0 16px;
+}
+
+.doc-content ul, .doc-content ol {
+    padding-left: 25px;
+    margin-bottom: 16px;
+}
+
+.doc-content li {
+    margin-bottom: 5px;
+}
+
+.doc-content code {
+    font-family: monospace;
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 90%;
+}
+
+.doc-content pre {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.doc-content pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+.doc-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.doc-content th, .doc-content td {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.doc-content th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.doc-content blockquote {
+    border-left: 4px solid #ffffff;
+    padding: 10px 15px;
+    color: #666;
+    margin: 0 0 16px;
+    background-color: #f9f9f9;
+}
+
+.doc-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.doc-content hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 25px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .documentation-body {
+        flex-direction: column;
+    }
+    
+    .doc-navigation {
+        width: 100%;
+        min-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 10px 0;
+        max-height: 150px;
+    }
+    
+    .doc-nav-btn {
+        padding: 8px 15px;
+    }
+}
