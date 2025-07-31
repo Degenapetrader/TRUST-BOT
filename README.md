@@ -1,17 +1,5 @@
 # 🤖 TRUSTBOT - GUI Trading Bot for Base Network
 
-Priority: ship out the bot with important functions: buy/sell/fsh/farm/jeet first. Perfect them.
-MMbot is pretty complicating, we may save it for next version.
-Bridge/Transfer + others may get hidden at first, then after the first realease, we double check all and push them out later.
-
-WALLETS.JSON IS WHERE USER STORE PRIVATE KEY, WE WILL THINK ABOUT SECURING THAT FILE AFTER ALL BOTS ARE WORKING FINE.
-
-I just updated some rpc call from polling to websocket to save request, so maybe some function not work well. Let help me to test all.
-
-Still need to do the private key encryption. I am thinking to do the metamask/rabby way, meaning the bot encrypt the private key via password, and when tehre is transaction, it decrypt it into RAM, sign transaction and then clear memory?
-
-Bots are working, but I am still thinking about the distribution plan. Open sounrce/close source? 
-
 
 ## 🚀 Overview
 
