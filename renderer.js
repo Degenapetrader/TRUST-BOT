@@ -2017,6 +2017,24 @@ function addConsoleMessage(message, type = 'stdout') {
         }
     }
     
+    // Format JeetBot error messages for main console (trim to essential info with red styling)
+    if (message.includes('🔍 Ticker "') && message.includes('" not found')) {
+        const tickerMatch = message.match(/🔍 Ticker "([^"]+)" not found/);
+        if (tickerMatch) {
+            const ticker = tickerMatch[1];
+            processedMessage = `<span style="color: #f85149; font-weight: 500;">❌ Ticker "${ticker}" not found - check spelling or try contract address</span>`;
+        }
+    } else if (message.includes('🔍 Token contract address "') && message.includes('" is invalid')) {
+        const caMatch = message.match(/🔍 Token contract address "([^"]+)" is invalid/);
+        if (caMatch) {
+            const contractAddress = caMatch[1];
+            const displayCA = contractAddress.length > 20 ? 
+                contractAddress.slice(0, 10) + '...' + contractAddress.slice(-6) : 
+                contractAddress;
+            processedMessage = `<span style="color: #f85149; font-weight: 500;">❌ Contract "${displayCA}" invalid - verify address or use ticker</span>`;
+        }
+    }
+    
     // Clean up farmbot loop messages
     if (message.includes('LOOP') && message.includes('/') && message.includes('WALLET:')) {
         // Extract loop info: "LOOP 1/2 [Loop 1] WALLET: B1 (0x13e46c...) Progress: Loop 1/2 Wallet 1/1 Amount: 0.9 VIRTUAL"
@@ -2297,7 +2315,11 @@ function addConsoleMessage(message, type = 'stdout') {
         // Wallet validation warnings (essential for user feedback)
         message.includes('No wallets configured') ||
         message.includes('Please select at least one wallet') ||
-        message.includes('Please select at least one token')
+        message.includes('Please select at least one token') ||
+        
+        // JeetBot error messages (essential for user feedback)
+        (message.includes('🔍 Ticker "') && message.includes('" not found')) ||
+        (message.includes('🔍 Token contract address "') && message.includes('" is invalid'))
     );
     
     // DEBUG: Check success message filtering

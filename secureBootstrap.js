@@ -30,7 +30,7 @@ function createPasswordWindow() {
     height: 600,
     resizable: false,
     frame: true,
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
@@ -161,6 +161,37 @@ ipcMain.handle('password-accepted', async (event) => {
 });
 
 ipcMain.handle('exit-app', async (event) => {
+  console.log('File > Exit triggered - running cleanup...');
+  
+  try {
+    const { execSync } = require('child_process');
+    const ourPid = process.pid;
+    
+    // Kill any lingering processes directly (simplified approach)
+    if (process.platform === 'win32') {
+      try {
+        console.log('Killing lingering node.exe processes...');
+        execSync(`taskkill /f /im node.exe /fi "PID ne ${ourPid}"`, { stdio: 'ignore' });
+        console.log('✅ Cleaned up node processes');
+      } catch (error) {
+        console.log('ℹ️  No node processes found to clean up');
+      }
+      
+      try {
+        console.log('Killing lingering cmd.exe processes...');
+        execSync(`taskkill /f /im cmd.exe`, { stdio: 'ignore' });
+        console.log('✅ Cleaned up cmd processes');
+      } catch (error) {
+        console.log('ℹ️  No cmd processes found to clean up');
+      }
+    }
+    
+    console.log('🎉 File Exit cleanup completed');
+  } catch (error) {
+    console.error('❌ Error during File Exit cleanup:', error.message);
+  }
+  
+  // Exit after cleanup
   app.exit(0);
 });
 
@@ -263,32 +294,7 @@ app.whenReady().then(async () => {
   // and guide the user accordingly
 });
 
-// Add global cleanup handler for app exit
-app.on('will-quit', () => {
-  try {
-    console.log('Running cleanup tasks before app exit...');
-    // Kill any running child processes
-    const { execSync } = require('child_process');
-    const appName = 'electron';
-    
-    // Don't kill our own PID
-    const ourPid = process.pid;
-    
-    if (process.platform === 'win32') {
-      // On Windows, get a list of electron processes excluding our own
-      try {
-        execSync(`taskkill /F /IM ${appName}.exe /FI "PID ne ${ourPid}"`, { stdio: 'ignore' });
-        console.log('Successfully cleaned up lingering Electron processes');
-      } catch (error) {
-        // This might error if no processes are found, which is fine
-        console.log('No lingering processes found to clean up');
-      }
-    }
-  } catch (err) {
-    // Non-critical error, don't crash if this cleanup fails
-    console.error('Error during cleanup process:', err.message);
-  }
-});
+
 
 // Prevent multiple instances
 const gotTheLock = app.requestSingleInstanceLock();
@@ -302,6 +308,8 @@ if (!gotTheLock) {
   // app.quit();
 } else {
   console.log('Successfully got single instance lock');
+  
+
   app.on('second-instance', (event, commandLine, workingDirectory) => {
     // Someone tried to run a second instance, focus existing window
     if (passwordWindow && !passwordWindow.isDestroyed()) {

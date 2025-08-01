@@ -859,6 +859,13 @@ export class JeetBot {
                          this.config.INPUT_TYPE === 'TICKER' ? this.config.TICKER_SYMBOL :
                          this.config.INPUT_TYPE === 'GENESIS_TICKER' ? `G-${this.config.GENESIS_TICKER_SYMBOL}` :
                          this.config.GENESIS_CONTRACT_ADDRESS;
+        // Output user-friendly error messages for renderer filtering
+        if (this.config.INPUT_TYPE === 'TICKER') {
+          console.log(`🔍 Ticker "${this.config.TICKER_SYMBOL}" not found`);
+        } else if (this.config.INPUT_TYPE === 'TOKEN_CA') {
+          console.log(`🔍 Token contract address "${this.config.DIRECT_TOKEN_CA}" is invalid`);
+        }
+        
         throw new Error(`Failed to resolve token CA from ${this.config.INPUT_TYPE}: ${inputDesc}`);
       }
       
@@ -1086,6 +1093,13 @@ export class JeetBot {
                          this.config.INPUT_TYPE === 'TICKER' ? this.config.TICKER_SYMBOL :
                          this.config.INPUT_TYPE === 'GENESIS_TICKER' ? `G-${this.config.GENESIS_TICKER_SYMBOL}` :
                          this.config.GENESIS_CONTRACT_ADDRESS;
+        // Output user-friendly error messages for renderer filtering
+        if (this.config.INPUT_TYPE === 'TICKER') {
+          console.log(`🔍 Ticker "${this.config.TICKER_SYMBOL}" not found`);
+        } else if (this.config.INPUT_TYPE === 'TOKEN_CA') {
+          console.log(`🔍 Token contract address "${this.config.DIRECT_TOKEN_CA}" is invalid`);
+        }
+        
         throw new Error(`Failed to resolve token CA from ${this.config.INPUT_TYPE}: ${inputDesc}`);
       }
       

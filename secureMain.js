@@ -318,16 +318,10 @@ ipcMain.handle('password-accepted', async (event) => {
   createMainWindow();
 });
 
-ipcMain.handle('exit-app', async (event) => {
-  app.exit(0);
-});
+
 
 // App event handlers
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
+// Note: window-all-closed handler is in main.js with comprehensive cleanup logic
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {

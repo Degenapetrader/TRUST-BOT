@@ -1660,5 +1660,17 @@
     "tokenAddress": "0xA6B41feB7eDb6fB87A893C7245116e0Ec4273975",
     "lpAddress": "0x316a2C963cdd87CEEDB6384735966Df506C76544",
     "mcapInVirtual": 106000
+  },
+  {
+    "symbol": "TENNA",
+    "tokenAddress": "0xC54FFa55a3fD03381aa86cF178B60DfAF827b61c",
+    "lpAddress": "0x2F08ca642b3DdCc16Cf1A7DacAE9180d34b62b3D",
+    "mcapInVirtual": 233617.74516324347
+  },
+  {
+    "symbol": "JACK",
+    "tokenAddress": "0x8f7d0C6AE30C50c6dfC00612eC5Bff2C3685261c",
+    "lpAddress": "0x1f45FAb969a1d3c25C60A0C1A404129784C1c8E5",
+    "mcapInVirtual": 322600.99543724
   }
 ]

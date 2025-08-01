@@ -31,6 +31,9 @@ if (app.isPackaged) {
 // Global process tracking for cleanup
 let childProcesses = [];
 
+// Export childProcesses for access from other modules
+module.exports = { childProcesses };
+
 // Initialize wallets database
 function initializeWalletsDB() {
   if (!fs.existsSync(WALLETS_DB_PATH)) {
@@ -465,6 +468,7 @@ function createWindow() {
     height: 900,
     minWidth: 1200,
     minHeight: 800,
+    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -499,6 +503,67 @@ function createWindow() {
 
   // Handle window closed
   mainWindow.on('closed', () => {
+    console.log('🔍 [MAIN.JS] Main window closed - triggering cleanup...');
+    
+    // Trigger comprehensive cleanup before setting window to null
+    const { execSync } = require('child_process');
+    const ourPid = process.pid;
+    
+    // Close console window if open
+    if (consoleWindow && !consoleWindow.isDestroyed()) {
+      console.log('Closing console window...');
+      consoleWindow.close();
+      consoleWindow = null;
+    }
+    
+    // Kill tracked child processes
+    childProcesses.forEach(process => {
+      try {
+        if (!process.killed) {
+          if (process.platform === 'win32') {
+            try {
+              execSync(`taskkill /pid ${process.pid} /t /f`, { stdio: 'ignore' });
+              console.log(`✅ Killed child process tree: ${process.pid}`);
+            } catch (error) {
+              console.log(`ℹ️  Process ${process.pid} already terminated`);
+            }
+          } else {
+            process.kill('SIGTERM');
+            setTimeout(() => {
+              if (!process.killed) {
+                process.kill('SIGKILL');
+              }
+            }, 1000);
+          }
+        }
+      } catch (error) {
+        console.log(`ℹ️  Error killing process ${process.pid}:`, error.message);
+      }
+    });
+    
+    // Clear the array
+    childProcesses.length = 0;
+    
+    // Kill any lingering processes
+    if (process.platform === 'win32') {
+      try {
+        console.log('Killing lingering node.exe processes...');
+        execSync(`taskkill /f /im node.exe /fi "PID ne ${ourPid}"`, { stdio: 'ignore' });
+        console.log('✅ Cleaned up node processes');
+      } catch (error) {
+        console.log('ℹ️  No node processes found to clean up');
+      }
+      
+      try {
+        console.log('Killing lingering cmd.exe processes...');
+        execSync(`taskkill /f /im cmd.exe`, { stdio: 'ignore' });
+        console.log('✅ Cleaned up cmd processes');
+      } catch (error) {
+        console.log('ℹ️  No cmd processes found to clean up');
+      }
+    }
+    
+    console.log('🎉 Window close cleanup completed');
     mainWindow = null;
   });
 
@@ -703,7 +768,57 @@ app.whenReady().then(() => {
 });
 
 app.on('window-all-closed', () => {
+  console.log('🔍 [MAIN.JS] window-all-closed event triggered');
   if (process.platform !== 'darwin') {
+    console.log('🔍 [MAIN.JS] Platform is not darwin, proceeding with cleanup and quit...');
+    
+    // Force trigger our cleanup handlers before quitting
+    const { execSync } = require('child_process');
+    const ourPid = process.pid;
+    
+    // Close console window if open
+    if (consoleWindow && !consoleWindow.isDestroyed()) {
+      console.log('Closing console window...');
+      consoleWindow.close();
+      consoleWindow = null;
+    }
+    
+    // Kill tracked child processes
+    childProcesses.forEach(process => {
+      try {
+        if (!process.killed) {
+          if (process.platform === 'win32') {
+            try {
+              execSync(`taskkill /pid ${process.pid} /t /f`, { stdio: 'ignore' });
+              console.log(`Terminated process tree with root PID ${process.pid}`);
+            } catch (err) {
+              process.kill();
+              console.log(`Fallback terminated child process with PID ${process.pid}`);
+            }
+          } else {
+            process.kill();
+            console.log(`Terminated child process with PID ${process.pid}`);
+          }
+        }
+      } catch (error) {
+        console.error(`Failed to kill process: ${error.message}`);
+      }
+    });
+    
+    // Clear the array
+    childProcesses = [];
+    
+    // Additional cleanup for any remaining processes
+    if (process.platform === 'win32') {
+      try {
+        console.log('Final cleanup of any remaining processes...');
+        execSync(`taskkill /f /im node.exe /fi "PID ne ${ourPid}"`, { stdio: 'ignore' });
+      } catch (error) {
+        console.log('No additional processes found to terminate');
+      }
+    }
+    
+    console.log('Window close cleanup completed - quitting app');
     app.quit();
   }
 });
@@ -1763,44 +1878,6 @@ ipcMain.handle('saveWalletsConfig', async (event, walletsData) => {
 
 
 
-// Global process tracking for cleanup
-// Add process cleanup handler for application exit
-app.on('will-quit', () => {
-  console.log('Running cleanup tasks before app exit...');
-  console.log(`Cleaning up ${childProcesses.length} tracked child processes...`);
-  
-  // Terminate all child processes we're tracking
-  childProcesses.forEach(process => {
-    try {
-      if (!process.killed) {
-        process.kill();
-        console.log(`Terminated child process with PID ${process.pid}`);
-      }
-    } catch (error) {
-      console.error(`Failed to kill process: ${error.message}`);
-    }
-  });
-  
-  // Clear the array
-  childProcesses = [];
-  
-  // For Windows, additionally ensure no lingering electron processes remain
-  if (process.platform === 'win32') {
-    try {
-      const ourPid = process.pid;
-      console.log(`Cleaning up any lingering electron processes except our own (PID: ${ourPid})`);
-      const { execSync } = require('child_process');
-      // Kill any other electron processes but not our own
-      execSync(`taskkill /f /im electron.exe /fi "PID ne ${ourPid}"`, { stdio: 'ignore' });
-    } catch (error) {
-      // This is expected to fail if no other processes exist
-      console.log('No additional electron processes found to terminate');
-    }
-  }
-  
-  console.log('Cleanup completed successfully');
-});
-
 // Prevent multiple instances
 const gotTheLock = app.requestSingleInstanceLock();
 
@@ -1814,4 +1891,10 @@ if (!gotTheLock) {
       mainWindow.focus();
     }
   });
-} 
+}
+
+// Export variables for access from secureBootstrap.js
+module.exports = {
+  childProcesses,
+  consoleWindow
+};
