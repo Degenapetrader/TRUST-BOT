@@ -7876,9 +7876,13 @@ function handleJeetGenesisChange() {
                 inputType = 'GENESIS';
             } else {
                 inputType = 'TICKER';
+                // Automatically prefix with G- for genesis tickers
+                genesisInput.value = `G-${value}`;
+                console.log(`Automatically prefixed ticker with G-: ${genesisInput.value}`);
+                inputType = 'GENESIS_TICKER'; // Update input type after modification
             }
             
-            console.log(`JeetBot input detected: ${value} (Type: ${inputType})`);
+            console.log(`JeetBot input detected: ${genesisInput.value} (Type: ${inputType})`);
         } else {
             // Add subtle error styling for empty input
             genesisInput.style.borderColor = '#ff6b6b';
