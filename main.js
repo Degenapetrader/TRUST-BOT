@@ -488,6 +488,9 @@ function createWindow() {
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
     
+    // Make main window globally accessible for the auto-updater
+    global.mainWindow = mainWindow;
+    
     // Focus the window
     if (process.platform === 'darwin') {
       app.dock.show();

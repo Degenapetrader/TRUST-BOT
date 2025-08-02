@@ -12,6 +12,8 @@
     "build:mac": "electron-builder --mac && node scripts/post-build.js",
     "build:win": "electron-builder --win && node scripts/post-build.js",
     "build:linux": "electron-builder --linux && node scripts/post-build.js",
+    "build:linux-arm64": "electron-builder --linux --arm64",
+    "build:linux-armv7l": "electron-builder --linux --armv7l",
     "publish": "electron-builder --publish=always",
     "dev": "electron . --dev",
     "bot": "node main-bot.mjs",
@@ -70,6 +72,7 @@
     "alchemy-sdk": "^3.6.0",
     "bs58": "^5.0.0",
     "dotenv": "^16.0.3",
+    "electron-log": "^5.4.2",
     "electron-store": "^8.1.0",
     "electron-updater": "^6.6.2",
     "elliptic": "^6.6.1",
@@ -96,7 +99,7 @@
     "publish": {
       "provider": "github",
       "owner": "Degenapetrader",
-      "repo": "TRUSTBOT",
+      "repo": "TRUST-BOT",
       "private": false,
       "releaseType": "release"
     },
@@ -110,6 +113,7 @@
       "styles.css",
       "documentation.css",
       "hide-bid-mode.css",
+      "app-update.yml",
       "hide-wallet-ui.css",
       "nav-override.css",
       "performance.css",
@@ -216,13 +220,15 @@
         {
           "target": "AppImage",
           "arch": [
-            "x64"
+            "x64",
+            "arm64"
           ]
         },
         {
           "target": "deb",
           "arch": [
-            "x64"
+            "x64",
+            "arm64"
           ]
         }
       ],
