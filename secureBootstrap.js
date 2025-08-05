@@ -2,7 +2,6 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const { SecureAdapter } = require('./src/utils/secureAdapter.cjs');
-const { initAutoUpdater } = require('./src/auto-updater.cjs');
 
 // Global references
 let passwordWindow = null;
@@ -106,12 +105,8 @@ function loadMainProcess(showWalletDialog = false) {
       passwordWindow.close();
     }
     
-    // Initialize auto-updater with the main window
-    // We do this after main.js is loaded to ensure the main window exists
-    if (global.mainWindow) {
-      console.log('Initializing auto-updater...');
-      initAutoUpdater(global.mainWindow);
-    }
+    // Auto-updater is now initialized in main.js after window is ready
+    console.log('✅ Main process loaded, auto-updater will be initialized by main.js');
   } catch (error) {
     console.error('❌ Error loading main process:', error);
     app.exit(1);

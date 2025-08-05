@@ -491,6 +491,45 @@ function createWindow() {
     // Make main window globally accessible for the auto-updater
     global.mainWindow = mainWindow;
     
+    // Check for and clear any update flags from previous update attempts
+    try {
+      const updateFlagPath = path.join(app.getPath('userData'), 'update-in-progress');
+      if (fs.existsSync(updateFlagPath)) {
+        console.log('💾 Found update flag file, this appears to be a restart after update');
+        // Delete the flag file
+        fs.unlinkSync(updateFlagPath);
+        console.log('💾 Cleared update flag file');
+        
+        // Set a flag to indicate this is a fresh restart after update
+        // This will prevent showing update notifications immediately after update
+        const recentUpdateFlagPath = path.join(app.getPath('userData'), 'recent-update');
+        fs.writeFileSync(recentUpdateFlagPath, new Date().toISOString());
+        console.log('💾 Created recent update flag to prevent immediate update checks');
+      }
+    } catch (err) {
+      console.error('❌ Error checking update flag:', err);
+    }
+    
+    // Initialize auto-updater now that window is ready
+    try {
+      const { initAutoUpdater } = require('./src/auto-updater.cjs');
+      console.log('🔄 Initializing auto-updater from main.js...');
+      initAutoUpdater(mainWindow);
+      
+      // Add keyboard shortcut for manual update check (Cmd+U on Mac, Ctrl+U on others)
+      const { globalShortcut } = require('electron');
+      const shortcut = process.platform === 'darwin' ? 'CommandOrControl+U' : 'Ctrl+U';
+      
+      globalShortcut.register(shortcut, () => {
+        console.log('🔄 Manual update check triggered via keyboard shortcut');
+        mainWindow.webContents.send('trigger-manual-update-check');
+      });
+      
+      console.log(`🔄 Registered ${shortcut} for manual update check`);
+    } catch (error) {
+      console.error('❌ Failed to initialize auto-updater:', error);
+    }
+    
     // Focus the window
     if (process.platform === 'darwin') {
       app.dock.show();
@@ -1822,6 +1861,22 @@ ipcMain.handle('get-env-config', async (event) => {
     return { success: true, config: defaultConfig };
   } catch (error) {
     throw error;
+  }
+});
+
+// Get App Version Handler
+ipcMain.handle('get-app-version', async (event) => {
+  try {
+    // Read package.json directly from filesystem to avoid Node.js caching
+    const fs = require('fs');
+    const path = require('path');
+    const packagePath = path.join(__dirname, 'package.json');
+    const packageData = fs.readFileSync(packagePath, 'utf8');
+    const packageJson = JSON.parse(packageData);
+    return packageJson.version;
+  } catch (error) {
+    console.error('Failed to get app version:', error);
+    return '1.2.8'; // Updated fallback version
   }
 });
 

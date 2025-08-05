@@ -96,12 +96,14 @@
     "directories": {
       "output": "dist"
     },
+    "generateUpdatesFilesForAllChannels": true,
     "publish": {
       "provider": "github",
       "owner": "Degenapetrader",
       "repo": "TRUST-BOT",
       "private": false,
-      "releaseType": "release"
+      "releaseType": "release",
+      "publishAutoUpdate": true
     },
     "files": [
       "main.js",
@@ -168,7 +170,6 @@
         }
       ],
       "icon": "assets/icon.ico",
-      "publisherName": "TRUST Me Bros",
       "requestedExecutionLevel": "asInvoker"
     },
     "nsis": {

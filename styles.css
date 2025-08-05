@@ -765,6 +765,23 @@ body {
     font-weight: 600;
 }
 
+/* Version Display - Minimalist */
+.version-display {
+    margin-top: auto; /* Push to the bottom of the sidebar */
+    padding: 15px 30px; /* Align with other sidebar items */
+    text-align: left;
+}
+
+.version-text {
+    color: #8a99b8; /* Muted color for the whole text */
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+#app-version {
+    font-weight: 600;
+}
+
 /* Bot Action Button Standardization */
 .bot-action-container {
     margin: 20px 0;

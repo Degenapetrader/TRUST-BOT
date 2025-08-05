@@ -1,5 +1,19 @@
 const { ipcRenderer } = require('electron');
 
+// Import update notification manager
+const updateNotificationManager = require('./src/update-notification.cjs');
+
+// Add manual update check handler
+ipcRenderer.on('trigger-manual-update-check', async () => {
+  console.log('🔄 Manual update check triggered from main process');
+  try {
+    const result = await ipcRenderer.invoke('force-update-check');
+    console.log('✅ Manual update check result:', result);
+  } catch (error) {
+    console.error('❌ Manual update check failed:', error);
+  }
+});
+
 // Import documentation module
 try {
     const documentation = require('./documentation.js');
@@ -184,6 +198,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Validate and migrate RPC configuration first
     await validateAndMigrateRpcConfig();
     
+    // Load and display app version
+    try {
+        const version = await ipcRenderer.invoke('get-app-version');
+        const versionElement = document.getElementById('app-version');
+        if (versionElement && version) {
+            versionElement.textContent = version;
+        }
+    } catch (error) {
+        console.error('Failed to load app version:', error);
+    }
+    
     // Then proceed with normal startup
     preloadBidTokenDatabase();
 });
@@ -346,6 +371,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize token selection system
     initializeTokenSelection();
+    
+    // Initialize documentation
+    initDocumentation();
+    
+    // Initialize update notification manager
+    updateNotificationManager.init();
     
     // Initialize gas price updates
     initializeDynamicGasDisplay();
@@ -7892,3 +7923,76 @@ function handleJeetGenesisChange() {
         console.error('Error in handleJeetGenesisChange:', error);
     }
 }
+
+// ========== UPDATE DEBUGGING FUNCTIONS ==========
+// These functions can be called from the browser console to test updates
+
+// Function to manually trigger update check
+window.testUpdateCheck = async function() {
+    console.log('🔄 Testing manual update check...');
+    try {
+        const result = await ipcRenderer.invoke('check-for-updates');
+        console.log('✅ Update check result:', result);
+        return result;
+    } catch (error) {
+        console.error('❌ Update check failed:', error);
+        return error;
+    }
+};
+
+// Function to force update check (bypasses all restrictions)
+window.forceUpdateCheck = async function() {
+    console.log('🔄 Forcing update check (bypassing all restrictions)...');
+    try {
+        const result = await ipcRenderer.invoke('force-update-check');
+        console.log('✅ Force update check result:', result);
+        return result;
+    } catch (error) {
+        console.error('❌ Force update check failed:', error);
+        return error;
+    }
+};
+
+// Function to clear all update flags
+window.clearUpdateFlags = async function() {
+    console.log('🧽 Clearing all update flags...');
+    try {
+        const result = await ipcRenderer.invoke('clear-update-flags');
+        console.log('✅ Clear flags result:', result);
+        return result;
+    } catch (error) {
+        console.error('❌ Clear flags failed:', error);
+        return error;
+    }
+};
+
+// Function to get current update status
+window.getUpdateStatus = async function() {
+    console.log('📊 Getting current update status...');
+    try {
+        const result = await ipcRenderer.invoke('get-update-status');
+        console.log('✅ Update status:', result);
+        return result;
+    } catch (error) {
+        console.error('❌ Get update status failed:', error);
+        return error;
+    }
+};
+
+// Function to show update notification manually (for testing UI)
+window.testUpdateNotification = function() {
+    console.log('🔔 Testing update notification UI...');
+    const mockUpdateInfo = {
+        version: '1.0.6',
+        releaseDate: new Date().toISOString(),
+        releaseNotes: 'Test update notification'
+    };
+    updateNotificationManager.showUpdateNotification(null, mockUpdateInfo);
+};
+
+console.log('🔧 Update debugging functions loaded. Available commands:');
+console.log('  - testUpdateCheck() - Test normal update check');
+console.log('  - forceUpdateCheck() - Force update check (bypasses restrictions)');
+console.log('  - clearUpdateFlags() - Clear all update flags');
+console.log('  - getUpdateStatus() - Get current update status');
+console.log('  - testUpdateNotification() - Test update notification UI');
