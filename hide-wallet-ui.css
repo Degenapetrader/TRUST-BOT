@@ -1,0 +1,112 @@
+/* Hide wallet UI elements in modal dialogs while preserving functionality */
+
+/* Hide Wallet UI in Main Configuration Modal */
+/* Target specific wallet section with more reliable selectors */
+#config-modal .form-section:nth-of-type(4),
+#config-modal #additional-wallets,
+#config-modal #add-wallet-btn {
+    display: none !important;
+}
+
+/* Hide B1 private key input and all related elements */
+#config-modal label[for='config-b1'],
+#config-modal #config-b1,
+#config-modal #config-b1-status,
+#config-modal #config-b1-address,
+#config-modal label[for='config-b1'] + input,
+#config-modal label[for='config-b1'] + input + div,
+#config-modal label[for='config-b1'] + input + div + div,
+#config-modal label[for='config-b1'] ~ small {
+    display: none !important;
+}
+
+/* Add spacer to maintain layout */
+#config-modal .form-section:nth-of-type(3) {
+    margin-bottom: 30px;
+}
+
+/* ADD WALLET MODAL UI IS NOW VISIBLE - Commented out to show wallet UI */
+/*
+#add-wallet-modal .modal-header h3,
+#add-wallet-modal .form-group label,
+#add-wallet-modal .form-group input,
+#add-wallet-modal .form-group small,
+#add-wallet-modal .toggle-visibility,
+#add-wallet-modal #wallet-address-preview,
+#add-wallet-modal .preview-label,
+#add-wallet-modal #derived-address {
+    display: none !important;
+}
+*/
+
+/* Removed the empty space replacement for Add Wallet modal header */
+/*
+#add-wallet-modal .modal-header::before {
+    content: "";
+    display: block;
+    height: 20px;
+}
+*/
+
+/* EDIT WALLET MODAL UI IS NOW VISIBLE */
+/*
+#edit-wallet-modal .modal-header h3,
+#edit-wallet-modal .form-group label,
+#edit-wallet-modal .form-group input,
+#edit-wallet-modal .form-group small,
+#edit-wallet-modal .toggle-label,
+#edit-wallet-modal .toggle-switch {
+    display: none !important;
+}
+
+/* Edit Wallet modal header is now visible */
+/*
+#edit-wallet-modal .modal-header::before {
+    content: "";
+    display: block;
+    height: 20px;
+}
+*/
+
+/* Form sections in wallet modals are now visible */
+/*
+#add-wallet-modal .form-section,
+#edit-wallet-modal .form-section {
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+*/
+
+/* Keep buttons with normal styling */
+#add-wallet-modal .form-actions,
+#edit-wallet-modal .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px;
+    gap: 10px;
+}
+
+/* Hide the delete wallet confirmation modal content */
+#delete-wallet-modal .modal-body p {
+    display: none !important;
+}
+
+/* Master password modal is now visible - critical for security */
+/*
+#master-password-modal .form-group label,
+#master-password-modal .form-group input,
+#create-master-password-modal .form-group label,
+#create-master-password-modal .form-group input {
+    display: none !important;
+}
+*/
+
+/* Replace with minimal empty containers to keep functionality */
+#master-password-modal .form-group::after,
+#create-master-password-modal .form-group::after {
+    content: "";
+    display: block;
+    height: 20px;
+}

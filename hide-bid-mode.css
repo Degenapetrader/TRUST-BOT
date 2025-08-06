@@ -1,0 +1,26 @@
+/* 
+ * CSS to hide BID mode UI elements
+ * This file simply hides the UI elements without affecting underlying functionality
+ */
+
+/* Hide BID mode toggle button and BID tokens navigation button */
+.bid-mode-section,
+#bid-tokens-nav-btn,
+.bid-mode-allowed button[data-bot="bid-tokens"],
+#bid-ticker-selection,
+.bid-ticker-panel,
+.bid-mode-button {
+    display: none !important;
+}
+
+/* Neutralize bid-mode-active class to prevent visual side effects */
+.sidebar.bid-mode-active {
+    /* Override any visual changes when BID mode is active without affecting functionality */
+    background-color: inherit !important;
+    border-color: inherit !important;
+}
+
+/* Hide the default welcome form to prevent it from flashing before the wallet/token page loads */
+#default-form {
+    display: none !important;
+}

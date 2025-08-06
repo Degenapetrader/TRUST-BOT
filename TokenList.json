@@ -1,0 +1,236 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-06-21T03:46:58.734Z",
+  "tokens": {
+    "USDC_0x833589fcd6edb6e08f4c7c32d4f71b54bda02913": {
+      "ticker": "USDC",
+      "contractAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+      "poolAddress": "0x82b5486AE10201990030F60B1Ef65f51EaF7d290",
+      "dateAdded": "2025-06-19T05:10:04.121Z",
+      "lastUpdated": "2025-06-19T05:10:04.121Z",
+      "hasPool": true,
+      "name": "USDC",
+      "decimals": 6
+    },
+    "WETH_0x4200000000000000000000000000000000000006": {
+      "ticker": "WETH",
+      "contractAddress": "0x4200000000000000000000000000000000000006",
+      "poolAddress": "0xE31c372a7Af875b3B5E0F3713B17ef51556da667",
+      "dateAdded": "2025-06-19T05:10:53.709Z",
+      "lastUpdated": "2025-06-19T05:10:53.710Z",
+      "hasPool": true,
+      "name": "L2 Standard Bridged WETH  Base ",
+      "decimals": 18
+    },
+    "TRUST_0xc841b4ead3f70be99472ffdb88e5c3c7af6a481a": {
+      "ticker": "TRUST",
+      "contractAddress": "0xc841b4ead3f70be99472ffdb88e5c3c7af6a481a",
+      "poolAddress": "0xd8c97c1202a2Dd1A0174a8F35dbCcb403Ccbb3F3",
+      "dateAdded": "2025-06-19T05:14:30.351Z",
+      "lastUpdated": "2025-06-19T05:14:30.351Z",
+      "hasPool": true,
+      "name": " TRUST ME BROs by Virtuals",
+      "decimals": 18
+    },
+    "DEGEN_0x4ed4e862860bed51a9570b96d89af5e1b0efefed": {
+      "ticker": "DEGEN",
+      "contractAddress": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+      "poolAddress": "",
+      "dateAdded": "2025-06-19T05:49:41.260Z",
+      "lastUpdated": "2025-06-19T05:49:41.261Z",
+      "hasPool": false,
+      "name": "Degen",
+      "decimals": 18,
+      "coinGeckoId": "degen-base",
+      "image": "https://coin-images.coingecko.com/coins/images/34515/large/android-chrome-512x512.png?1706198225",
+      "marketCap": 84340731,
+      "currentPrice": 0.00353015,
+      "volume24h": 10994895,
+      "description": "DEGEN is a reward token for Farcaster users, born from meme culture.",
+      "website": "https://www.degen.tips/",
+      "categories": [
+        "Smart Contract Platform",
+        "Meme",
+        "Base Ecosystem",
+        "Layer 3 (L3)",
+        "Base Meme",
+        "Farcaster Ecosystem",
+        "Binance Alpha Spotlight"
+      ],
+      "source": "coingecko_search"
+    },
+    "PEPE_0x52b492a33e447cdb854c7fc19f1e57e8bfa1777d": {
+      "ticker": "PEPE",
+      "contractAddress": "0x52b492a33e447cdb854c7fc19f1e57e8bfa1777d",
+      "poolAddress": "",
+      "dateAdded": "2025-06-19T05:51:26.293Z",
+      "lastUpdated": "2025-06-19T05:51:26.293Z",
+      "hasPool": false,
+      "name": "Based Pepe",
+      "decimals": 18,
+      "coinGeckoId": "based-pepe",
+      "image": "https://coin-images.coingecko.com/coins/images/39763/large/based_pepe_transparent.png?1724010222",
+      "marketCap": 14914291,
+      "currentPrice": 3.5452e-8,
+      "volume24h": 582243,
+      "description": "Based Pepe ($PEPE) is a BASE token focused around the iconic Pepe the Frog meme.",
+      "website": "https://basedpepe.vip/",
+      "categories": [
+        "Meme",
+        "Base Ecosystem",
+        "Frog-Themed",
+        "Base Meme",
+        "The Boy’s Club"
+      ],
+      "source": "coingecko_search"
+    },
+    "PEPE_0x80f45eacf6537498ecc660e4e4a2d2f99e195cf4": {
+      "ticker": "PEPE",
+      "contractAddress": "0x80f45eacf6537498ecc660e4e4a2d2f99e195cf4",
+      "poolAddress": "",
+      "dateAdded": "2025-06-19T05:51:26.415Z",
+      "lastUpdated": "2025-06-19T05:51:26.415Z",
+      "hasPool": false,
+      "name": "Pepe on Base",
+      "decimals": 18,
+      "image": "https://assets.coingecko.com/coins/images/36639/thumb/Pepe_on_Base.png?1712030799",
+      "source": "base_token_list"
+    },
+    "PEPE_0x698dc45e4f10966f6d1d98e3bfd7071d8144c233": {
+      "ticker": "PEPE",
+      "contractAddress": "0x698dc45e4f10966f6d1d98e3bfd7071d8144c233",
+      "poolAddress": "",
+      "dateAdded": "2025-06-19T05:51:26.436Z",
+      "lastUpdated": "2025-06-19T05:51:26.436Z",
+      "hasPool": false,
+      "name": "PEPE 0x69 ON BASE",
+      "decimals": 9,
+      "image": "https://assets.coingecko.com/coins/images/37400/thumb/lOGO.jpg?1714352456",
+      "source": "base_token_list"
+    },
+    "AI_0x938171227ece879267122a36847b219cbd3b9d47": {
+      "ticker": "AI",
+      "contractAddress": "0x938171227ece879267122a36847b219cbd3b9d47",
+      "poolAddress": "",
+      "dateAdded": "2025-06-19T06:04:49.960Z",
+      "lastUpdated": "2025-06-19T06:04:49.961Z",
+      "hasPool": false,
+      "name": "AI Protocol",
+      "decimals": 18
+    },
+    "AI_0x2598c30330d5771ae9f983979209486ae26de875": {
+      "ticker": "AI",
+      "contractAddress": "0x2598c30330d5771ae9f983979209486ae26de875",
+      "poolAddress": "",
+      "dateAdded": "2025-06-19T06:04:50.046Z",
+      "lastUpdated": "2025-06-19T06:04:50.046Z",
+      "hasPool": false,
+      "name": "Any Inu",
+      "decimals": 18
+    },
+    "SOLACE_0x7d6fcb3327d7e17095fa8b0e3513ac7a3564f5e1": {
+      "ticker": "SOLACE",
+      "contractAddress": "0x7d6fcb3327d7e17095fa8b0e3513ac7a3564f5e1",
+      "poolAddress": "0x912567c105A172777e56411DD0AA4Acc10e628a9",
+      "dateAdded": "2025-06-19T06:05:56.093Z",
+      "lastUpdated": "2025-06-19T06:05:56.093Z",
+      "hasPool": true,
+      "name": "Solace",
+      "decimals": 18
+    },
+    "SHIB_0x9c402e3b0d123323f0fced781e8184cdf54f7a0d": {
+      "ticker": "SHIB",
+      "contractAddress": "0x9c402e3b0d123323f0fced781e8184cdf54f7a0d",
+      "poolAddress": "",
+      "dateAdded": "2025-06-19T06:10:02.385Z",
+      "lastUpdated": "2025-06-19T06:10:02.385Z",
+      "hasPool": false,
+      "name": "Shiba Inu",
+      "decimals": 18
+    },
+    "DAI_0x50c5725949a6f0c72e6c4a641f24049a917db0cb": {
+      "ticker": "DAI",
+      "contractAddress": "0x50c5725949a6f0c72e6c4a641f24049a917db0cb",
+      "poolAddress": "",
+      "dateAdded": "2025-06-19T06:14:52.915Z",
+      "lastUpdated": "2025-06-19T06:14:52.915Z",
+      "hasPool": false,
+      "name": "Dai Stablecoin",
+      "decimals": 18
+    },
+    "ROOM_0x6555255b8ded3c538cb398d9e36769f45d7d3ea7": {
+      "ticker": "ROOM",
+      "contractAddress": "0x6555255b8ded3c538cb398d9e36769f45d7d3ea7",
+      "poolAddress": "0xB4c4e80abE1C807B8f30ac72c9420dD6acEcE8d5",
+      "dateAdded": "2025-06-19T06:15:49.074Z",
+      "lastUpdated": "2025-06-19T06:15:49.074Z",
+      "hasPool": true,
+      "name": "Backroom by Virtuals",
+      "decimals": 18
+    },
+    "GAME_0x8e0e798966382e53bfb145d474254cbe065c17dc": {
+      "ticker": "GAME",
+      "contractAddress": "0x8e0e798966382e53bfb145d474254cbe065c17dc",
+      "poolAddress": "",
+      "dateAdded": "2025-06-21T03:39:55.400Z",
+      "lastUpdated": "2025-06-21T03:39:55.400Z",
+      "hasPool": false,
+      "name": "Game of Memes  ETH ",
+      "decimals": 18
+    },
+    "ACOLYT_0x79dacb99a8698052a9898e81fdf883c29efb93cb": {
+      "ticker": "ACOLYT",
+      "contractAddress": "0x79dacb99a8698052a9898e81fdf883c29efb93cb",
+      "poolAddress": "0xfb2be279dCAFE6b5364e4C49A0A39aedf9c38ac7",
+      "dateAdded": "2025-06-21T03:39:55.627Z",
+      "lastUpdated": "2025-06-21T03:39:55.628Z",
+      "hasPool": true,
+      "name": "Acolyt",
+      "decimals": 18
+    },
+    "AIXCB_0x76c71f1703fbf19ffdcf3051e1e684cb9934510f": {
+      "ticker": "AIXCB",
+      "contractAddress": "0x76c71f1703fbf19ffdcf3051e1e684cb9934510f",
+      "poolAddress": "0x849736a0bd70ce72A0802A09FCE8DA9e2718583F",
+      "dateAdded": "2025-06-21T03:39:55.649Z",
+      "lastUpdated": "2025-06-21T03:39:55.651Z",
+      "hasPool": true,
+      "name": "aixCB by Virtuals",
+      "decimals": 18
+    },
+    "GAME_0x1c4cca7c5db003824208adda61bd749e55f463a3": {
+      "ticker": "GAME",
+      "contractAddress": "0x1c4cca7c5db003824208adda61bd749e55f463a3",
+      "poolAddress": "0xD418dfE7670c21F682E041F34250c114DB5D7789",
+      "dateAdded": "2025-06-21T03:39:55.663Z",
+      "lastUpdated": "2025-06-21T03:39:55.663Z",
+      "hasPool": true,
+      "name": "GAME by Virtuals",
+      "decimals": 18
+    },
+    "AIXBT_0x4f9fd6be4a90f2620860d680c0d4d5fb53d1a825": {
+      "ticker": "AIXBT",
+      "contractAddress": "0x4f9fd6be4a90f2620860d680c0d4d5fb53d1a825",
+      "poolAddress": "0x7464850CC1cFb54A2223229b77B1BCA2f888D946",
+      "dateAdded": "2025-06-21T03:39:55.684Z",
+      "lastUpdated": "2025-06-21T03:39:55.684Z",
+      "hasPool": true,
+      "name": "aixbt by Virtuals",
+      "decimals": 18
+    },
+    "VADER_0x731814e491571a2e9ee3c5b1f7f3b962ee8f4870": {
+      "ticker": "VADER",
+      "contractAddress": "0x731814e491571a2e9ee3c5b1f7f3b962ee8f4870",
+      "poolAddress": "0xA1ddDB82501E8fe2d92Ad0E8Ba331313f501de72",
+      "dateAdded": "2025-06-21T03:46:58.734Z",
+      "lastUpdated": "2025-06-21T03:46:58.734Z",
+      "hasPool": true,
+      "name": "VaderAI by Virtuals",
+      "decimals": 18
+    }
+  },
+  "stats": {
+    "totalTokens": 19,
+    "tokensWithPools": 10
+  }
+}
