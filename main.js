@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const path = require('path');
-const { spawn } = require('child_process');
+const { spawn, execSync } = require('child_process');
 const fs = require('fs');
 const { WalletEncryption } = require('./src/utils/walletEncryption.cjs');
 const { registerTokenHandlers } = require('./token-handlers');
@@ -15,6 +15,21 @@ try {
   console.error('❌ Failed to load botLauncher module:', error.message);
   // Fallback to null - we'll use npm scripts instead
   botLauncher = null;
+}
+
+// 🎯 CENTRALIZED TRUSTBOT CLEANUP FUNCTION
+// Final step to kill lingering TRUSTBOT.exe processes across all exit paths
+function performFinalTrustbotCleanup() {
+  if (process.platform === 'win32') {
+    try {
+      const ourPid = process.pid;
+      console.log('🎯 [FINAL-CLEANUP] Performing final TRUSTBOT.exe cleanup...');
+      execSync(`taskkill /f /im TRUSTBOT.exe /fi "PID ne ${ourPid}"`, { stdio: 'ignore' });
+      console.log('✅ [FINAL-CLEANUP] All other TRUSTBOT processes terminated');
+    } catch (error) {
+      console.log('ℹ️  [FINAL-CLEANUP] No other TRUSTBOT processes found to clean up');
+    }
+  }
 }
 
 // JSON Database for wallets and config
@@ -543,69 +558,108 @@ function createWindow() {
     return { action: 'deny' };
   });
 
-  // Handle window closed
+  // Handle window closed - COMPREHENSIVE CLEANUP from trace documentation
   mainWindow.on('closed', () => {
-    console.log('🔍 [MAIN.JS] Main window closed - triggering cleanup...');
+    console.log('🔍 [MAIN.JS] Main window closed - comprehensive cleanup sequence...');
     
-    // Trigger comprehensive cleanup before setting window to null
-    const { execSync } = require('child_process');
-    const ourPid = process.pid;
-    
-    // Close console window if open
-    if (consoleWindow && !consoleWindow.isDestroyed()) {
-      console.log('Closing console window...');
-      consoleWindow.close();
-      consoleWindow = null;
-    }
-    
-    // Kill tracked child processes
-    childProcesses.forEach(process => {
+    try {
+      const { execSync } = require('child_process');
+      const ourPid = process.pid;
+      
+      // 🎯 CRITICAL FIX: Close placeholder window from secureBootstrap.js
+      // This is the root cause of lingering processes in EXE build
       try {
-        if (!process.killed) {
-          if (process.platform === 'win32') {
-            try {
-              execSync(`taskkill /pid ${process.pid} /t /f`, { stdio: 'ignore' });
-              console.log(`✅ Killed child process tree: ${process.pid}`);
-            } catch (error) {
-              console.log(`ℹ️  Process ${process.pid} already terminated`);
-            }
-          } else {
-            process.kill('SIGTERM');
-            setTimeout(() => {
-              if (!process.killed) {
-                process.kill('SIGKILL');
-              }
-            }, 1000);
-          }
+        // Access the placeholder window from global scope or require secureBootstrap
+        if (global.placeholderWindow && !global.placeholderWindow.isDestroyed()) {
+          console.log('🔧 [MAIN.JS] Closing placeholder window from secureBootstrap.js...');
+          global.placeholderWindow.close();
+          global.placeholderWindow = null;
+          console.log('✅ [MAIN.JS] Placeholder window closed successfully');
+        } else {
+          console.log('ℹ️  [MAIN.JS] No placeholder window found or already destroyed');
         }
       } catch (error) {
-        console.log(`ℹ️  Error killing process ${process.pid}:`, error.message);
-      }
-    });
-    
-    // Clear the array
-    childProcesses.length = 0;
-    
-    // Kill any lingering processes
-    if (process.platform === 'win32') {
-      try {
-        console.log('Killing lingering node.exe processes...');
-        execSync(`taskkill /f /im node.exe /fi "PID ne ${ourPid}"`, { stdio: 'ignore' });
-        console.log('✅ Cleaned up node processes');
-      } catch (error) {
-        console.log('ℹ️  No node processes found to clean up');
+        console.log('⚠️  [MAIN.JS] Error closing placeholder window:', error.message);
       }
       
-      try {
-        console.log('Killing lingering cmd.exe processes...');
-        execSync(`taskkill /f /im cmd.exe`, { stdio: 'ignore' });
-        console.log('✅ Cleaned up cmd processes');
-      } catch (error) {
-        console.log('ℹ️  No cmd processes found to clean up');
+      // Close console window if open
+      if (consoleWindow && !consoleWindow.isDestroyed()) {
+        console.log('🔧 [MAIN.JS] Closing console window...');
+        consoleWindow.close();
+        consoleWindow = null;
+        console.log('✅ [MAIN.JS] Console window closed successfully');
+      } else {
+        console.log('ℹ️  [MAIN.JS] No console window to close');
       }
+      
+      // Kill tracked child processes
+      console.log(`🔧 [MAIN.JS] Cleaning up ${childProcesses.length} tracked child processes...`);
+      childProcesses.forEach(process => {
+        try {
+          if (!process.killed) {
+            if (process.platform === 'win32') {
+              try {
+                execSync(`taskkill /pid ${process.pid} /t /f`, { stdio: 'ignore' });
+                console.log(`✅ [MAIN.JS] Killed child process tree: ${process.pid}`);
+              } catch (error) {
+                console.log(`ℹ️  [MAIN.JS] Process ${process.pid} already terminated`);
+              }
+            } else {
+              process.kill('SIGTERM');
+              setTimeout(() => {
+                if (!process.killed) {
+                  process.kill('SIGKILL');
+                }
+              }, 1000);
+            }
+          }
+        } catch (error) {
+          console.log(`ℹ️  [MAIN.JS] Error killing process ${process.pid}:`, error.message);
+        }
+      });
+      
+      // Clear the array
+      childProcesses.length = 0;
+      console.log('✅ [MAIN.JS] Child processes array cleared');
+      
+      // Kill any lingering processes
+      if (process.platform === 'win32') {
+        // 🎯 CRITICAL: Kill other TRUSTBOT.exe processes to prevent background lingering
+        // This prevents the 3 background TRUSTBOT processes shown in Task Manager
+        // Excludes current PID to avoid self-termination, safe for update installer
+        try {
+          console.log('🔧 [MAIN.JS] Killing other TRUSTBOT.exe processes...');
+          execSync(`taskkill /f /im TRUSTBOT.exe /fi "PID ne ${ourPid}"`, { stdio: 'ignore' });
+          console.log('✅ [MAIN.JS] Cleaned up other TRUSTBOT processes');
+        } catch (error) {
+          console.log('ℹ️  [MAIN.JS] No other TRUSTBOT processes found to clean up');
+        }
+        
+        try {
+          console.log('🔧 [MAIN.JS] Killing lingering node.exe processes...');
+          execSync(`taskkill /f /im node.exe /fi "PID ne ${ourPid}"`, { stdio: 'ignore' });
+          console.log('✅ [MAIN.JS] Cleaned up node processes');
+        } catch (error) {
+          console.log('ℹ️  [MAIN.JS] No node processes found to clean up');
+        }
+        
+        try {
+          console.log('🔧 [MAIN.JS] Killing lingering cmd.exe processes...');
+          execSync(`taskkill /f /im cmd.exe`, { stdio: 'ignore' });
+          console.log('✅ [MAIN.JS] Cleaned up cmd processes');
+        } catch (error) {
+          console.log('ℹ️  [MAIN.JS] No cmd processes found to clean up');
+        }
+      }
+      
+      console.log('🎉 [MAIN.JS] Window close cleanup completed');
+    } catch (error) {
+      console.error('❌ [MAIN.JS] Error during window close cleanup:', error.message);
     }
     
-    console.log('🎉 Window close cleanup completed');
+    // 🎯 FINAL STEP: Centralized TRUSTBOT cleanup
+    performFinalTrustbotCleanup();
+    
     mainWindow = null;
   });
 
@@ -1951,8 +2005,76 @@ if (!gotTheLock) {
   });
 }
 
+// COMPREHENSIVE WINDOW-ALL-CLOSED HANDLER - Ported from old branch
+app.on('window-all-closed', () => {
+  console.log('🔍 [MAIN.JS] window-all-closed event triggered');
+  if (process.platform !== 'darwin') {
+    console.log('🔍 [MAIN.JS] Platform is not darwin, proceeding with cleanup and quit...');
+    
+    // Force trigger our cleanup handlers before quitting
+    try {
+      const { execSync } = require('child_process');
+      const ourPid = process.pid;
+      
+      // Close console window if open
+      if (consoleWindow && !consoleWindow.isDestroyed()) {
+        console.log('🔧 [MAIN.JS] Closing console window...');
+        consoleWindow.close();
+        consoleWindow = null;
+        console.log('✅ [MAIN.JS] Console window closed successfully');
+      } else {
+        console.log('ℹ️  [MAIN.JS] No console window to close');
+      }
+      
+      // Kill tracked child processes
+      console.log(`🔧 [MAIN.JS] Cleaning up ${childProcesses.length} child processes...`);
+      childProcesses.forEach(process => {
+        try {
+          if (!process.killed) {
+            if (process.platform === 'win32') {
+              try {
+                execSync(`taskkill /pid ${process.pid} /t /f`, { stdio: 'ignore' });
+                console.log(`✅ [MAIN.JS] Terminated process tree with root PID ${process.pid}`);
+              } catch (err) {
+                process.kill();
+                console.log(`✅ [MAIN.JS] Fallback terminated child process with PID ${process.pid}`);
+              }
+            } else {
+              process.kill();
+              console.log(`✅ [MAIN.JS] Terminated child process with PID ${process.pid}`);
+            }
+          }
+        } catch (error) {
+          console.error(`❌ [MAIN.JS] Failed to kill process: ${error.message}`);
+        }
+      });
+      
+      // Clear the array
+      childProcesses.length = 0;
+      
+      // Additional cleanup for any remaining processes
+      if (process.platform === 'win32') {
+        try {
+          console.log('🔧 [MAIN.JS] Final cleanup of any remaining processes...');
+          execSync(`taskkill /f /im node.exe /fi "PID ne ${ourPid}"`, { stdio: 'ignore' });
+          console.log('✅ [MAIN.JS] Additional node processes cleaned up');
+        } catch (error) {
+          console.log('ℹ️  [MAIN.JS] No additional processes found to terminate');
+        }
+      }
+      
+      console.log('🎉 [MAIN.JS] Window close cleanup completed - quitting app');
+    } catch (error) {
+      console.error('❌ [MAIN.JS] Error during window-all-closed cleanup:', error.message);
+    }
+    
+    app.quit();
+  }
+});
+
 // Export variables for access from secureBootstrap.js
 module.exports = {
   childProcesses,
-  consoleWindow
+  consoleWindow,
+  performFinalTrustbotCleanup
 };

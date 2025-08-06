@@ -71,7 +71,12 @@ function createPlaceholderWindow() {
     icon: path.join(__dirname, 'assets', 'icon.ico'), // Application icon
     webPreferences: { nodeIntegration: true }
   });
+  
+  // 🎯 CRITICAL: Make placeholder window globally accessible for cleanup (COMPLIANCE WITH TRACE)
+  global.placeholderWindow = placeholderWindow;
+  
   console.log('Created hidden placeholder window to prevent app from exiting');
+  console.log('✅ [SECURE-BOOTSTRAP] Placeholder window exposed globally for cleanup access');
 }
 
 function loadMainProcess(showWalletDialog = false) {
@@ -163,16 +168,80 @@ ipcMain.handle('password-accepted', async (event) => {
 });
 
 ipcMain.handle('exit-app', async (event) => {
-  console.log('File > Exit triggered - running cleanup...');
+  console.log('🔍 [SECURE-BOOTSTRAP] File > Exit triggered - comprehensive cleanup...');
   
   try {
     const { execSync } = require('child_process');
     const ourPid = process.pid;
     
-    // Kill any lingering processes directly (simplified approach)
+    // 🎯 CRITICAL: Close placeholder window if it exists (COMPLIANCE WITH TRACE)
+    try {
+      if (global.placeholderWindow && !global.placeholderWindow.isDestroyed()) {
+        console.log('🔧 [SECURE-BOOTSTRAP] Closing placeholder window...');
+        global.placeholderWindow.close();
+        global.placeholderWindow = null;
+        console.log('✅ [SECURE-BOOTSTRAP] Placeholder window closed');
+      } else {
+        console.log('ℹ️  [SECURE-BOOTSTRAP] No placeholder window found or already destroyed');
+      }
+    } catch (error) {
+      console.log('⚠️  [SECURE-BOOTSTRAP] Error closing placeholder window:', error.message);
+    }
+    
+    // Close console window if accessible
+    try {
+      const { consoleWindow } = require('./main.js');
+      if (consoleWindow && !consoleWindow.isDestroyed()) {
+        console.log('🔧 [SECURE-BOOTSTRAP] Closing console window...');
+        consoleWindow.close();
+        console.log('✅ [SECURE-BOOTSTRAP] Console window closed');
+      }
+    } catch (error) {
+      console.log('ℹ️  [SECURE-BOOTSTRAP] Console window cleanup skipped:', error.message);
+    }
+    
+    // Kill tracked child processes
+    try {
+      const { childProcesses } = require('./main.js');
+      if (childProcesses && childProcesses.length > 0) {
+        console.log(`🔧 [SECURE-BOOTSTRAP] Cleaning up ${childProcesses.length} child processes...`);
+        
+        childProcesses.forEach(process => {
+          try {
+            if (!process.killed) {
+              if (process.platform === 'win32') {
+                try {
+                  execSync(`taskkill /pid ${process.pid} /t /f`, { stdio: 'ignore' });
+                  console.log(`✅ Killed child process tree: ${process.pid}`);
+                } catch (error) {
+                  console.log(`ℹ️  Process ${process.pid} already terminated`);
+                }
+              } else {
+                process.kill('SIGTERM');
+                setTimeout(() => {
+                  if (!process.killed) {
+                    process.kill('SIGKILL');
+                  }
+                }, 1000);
+              }
+            }
+          } catch (error) {
+            console.log(`ℹ️  Error killing process ${process.pid}:`, error.message);
+          }
+        });
+        
+        // Clear the array
+        childProcesses.length = 0;
+        console.log('✅ [SECURE-BOOTSTRAP] Child processes cleanup completed');
+      }
+    } catch (error) {
+      console.log('ℹ️  [SECURE-BOOTSTRAP] Child processes cleanup skipped:', error.message);
+    }
+    
+    // Kill any lingering processes (comprehensive approach)
     if (process.platform === 'win32') {
       try {
-        console.log('Killing lingering node.exe processes...');
+        console.log('🔧 [SECURE-BOOTSTRAP] Killing lingering node.exe processes...');
         execSync(`taskkill /f /im node.exe /fi "PID ne ${ourPid}"`, { stdio: 'ignore' });
         console.log('✅ Cleaned up node processes');
       } catch (error) {
@@ -180,21 +249,74 @@ ipcMain.handle('exit-app', async (event) => {
       }
       
       try {
-        console.log('Killing lingering cmd.exe processes...');
+        console.log('🔧 [SECURE-BOOTSTRAP] Killing lingering cmd.exe processes...');
         execSync(`taskkill /f /im cmd.exe`, { stdio: 'ignore' });
         console.log('✅ Cleaned up cmd processes');
       } catch (error) {
         console.log('ℹ️  No cmd processes found to clean up');
       }
+      
+      // Additional cleanup for npm processes
+      try {
+        console.log('🔧 [SECURE-BOOTSTRAP] Killing lingering npm processes...');
+        execSync(`taskkill /f /im npm.exe`, { stdio: 'ignore' });
+        console.log('✅ Cleaned up npm processes');
+      } catch (error) {
+        console.log('ℹ️  No npm processes found to clean up');
+      }
     }
     
-    console.log('🎉 File Exit cleanup completed');
+    console.log('🎉 [SECURE-BOOTSTRAP] File Exit comprehensive cleanup completed');
   } catch (error) {
-    console.error('❌ Error during File Exit cleanup:', error.message);
+    console.error('❌ [SECURE-BOOTSTRAP] Error during File Exit cleanup:', error.message);
+  }
+  
+  // 🎯 FINAL STEP: Centralized TRUSTBOT cleanup
+  try {
+    const { performFinalTrustbotCleanup } = require('./main.js');
+    performFinalTrustbotCleanup();
+  } catch (error) {
+    console.log('ℹ️  [SECURE-BOOTSTRAP] Final cleanup function not available:', error.message);
   }
   
   // Exit after cleanup
+  console.log('🚪 [SECURE-BOOTSTRAP] Exiting application...');
   app.exit(0);
+});
+
+// Reset account handler with clean restart logic
+ipcMain.handle('reset-account', async (event, { restart = false } = {}) => {
+  console.log('🔄 [SECURE-BOOTSTRAP] Account reset requested with restart:', restart);
+  
+  try {
+    if (restart) {
+      // Show confirmation dialog
+      const { dialog } = require('electron');
+      
+      const result = await dialog.showMessageBox(passwordWindow, {
+        type: 'info',
+        title: 'Account Reset Complete',
+        message: 'Your account has been reset successfully.',
+        detail: 'The application will automatically restart to complete the reset process.',
+        buttons: ['OK'],
+        defaultId: 0
+      });
+      
+      console.log('🔄 [SECURE-BOOTSTRAP] User confirmed restart, relaunching app...');
+      
+      // Use Electron's built-in relaunch method for clean restart
+      app.relaunch();
+      
+      // Exit current instance to complete the restart
+      console.log('🚪 [SECURE-BOOTSTRAP] Exiting for restart...');
+      app.exit(0);
+    }
+    
+    return { success: true, message: 'Account reset completed' };
+  } catch (error) {
+    console.error('❌ [SECURE-BOOTSTRAP] Error during account reset:', error.message);
+    return { success: false, error: error.message };
+  }
 });
 
 // Handle successful password validation
@@ -215,49 +337,7 @@ ipcMain.handle('password-validated', async (event, { isFirstTimeSetup } = {}) =>
   }
 });
 
-// Handle reset account (forgot password)
-ipcMain.handle('reset-account', async (event, { restart = false }) => {
-  try {
-    console.log('Resetting account...');
-    
-    // Reset secure config
-    secureAdapter.resetSecureConfig();
-    
-    console.log('Account reset successful');
-    
-    if (restart) {
-      // Show a brief dialog informing the user about auto-restart
-      const { dialog } = require('electron');
-      
-      // Show confirmation dialog
-      dialog.showMessageBox(passwordWindow, {
-        type: 'info',
-        title: 'Account Reset Complete',
-        message: 'Your account has been reset successfully.',
-        detail: 'The application will automatically restart to complete the reset process.',
-        buttons: ['OK'],
-        defaultId: 0
-      }).then(() => {
-        console.log('Initiating automatic app restart...');
-        
-        // Use Electron's built-in relaunch method for clean restart
-        // This spawns a completely new app instance with fresh state
-        app.relaunch();
-        
-        // Exit current instance to complete the restart
-        app.exit(0);
-      });
-    }
-    
-    return { success: true };
-  } catch (error) {
-    console.error('Error resetting account:', error);
-    return {
-      success: false,
-      error: error.message || 'Failed to reset account'
-    };
-  }
-});
+
 
 // Handle skip password authentication
 ipcMain.handle('skip-password-auth', async (event) => {
@@ -320,3 +400,29 @@ if (!gotTheLock) {
     }
   });
 }
+
+// NUCLEAR CLEANUP SYSTEM - Emergency process termination for secureBootstrap
+// Nuclear cleanup function removed to prevent interference with update installer process
+// The aggressive process termination was killing the electron.exe update installer
+// Relying on other cleanup handlers for graceful shutdown
+
+// Nuclear cleanup removed - using graceful shutdown for update compatibility
+app.on('before-quit', (event) => {
+  console.log('🔍 [SECURE-BOOTSTRAP] before-quit event triggered - graceful shutdown...');
+  // Allow normal quit process for update installer compatibility
+});
+
+app.on('window-all-closed', () => {
+  console.log('🔍 [SECURE-BOOTSTRAP] window-all-closed event triggered - graceful shutdown...');
+  // Nuclear cleanup removed for update installer compatibility
+  
+  if (process.platform !== 'darwin') {
+    console.log('🔍 [SECURE-BOOTSTRAP] Platform is not darwin, quitting app...');
+    app.quit();
+  }
+});
+
+app.on('will-quit', (event) => {
+  console.log('🔍 [SECURE-BOOTSTRAP] will-quit event triggered - graceful shutdown...');
+  // Nuclear cleanup removed for update installer compatibility
+});
