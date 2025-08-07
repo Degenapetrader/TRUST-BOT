@@ -29,7 +29,7 @@ function createPasswordWindow() {
     height: 600,
     resizable: false,
     frame: true,
-    autoHideMenuBar: false,
+    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
@@ -302,7 +302,11 @@ ipcMain.handle('reset-account', async (event, { restart = false } = {}) => {
         defaultId: 0
       });
       
-      console.log('🔄 [SECURE-BOOTSTRAP] User confirmed restart, relaunching app...');
+      console.log('🔄 [SECURE-BOOTSTRAP] User confirmed restart, clearing config and relaunching app...');
+      
+      // Clear the password/encryption data before restart
+      secureAdapter.resetSecureConfig();
+      console.log('✅ [SECURE-BOOTSTRAP] Config reset complete, relaunching app...');
       
       // Use Electron's built-in relaunch method for clean restart
       app.relaunch();

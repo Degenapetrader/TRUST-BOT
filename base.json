@@ -1678,5 +1678,11 @@
     "tokenAddress": "0x74bF9813655d427BFEA800F8Af0e52A59FF24223",
     "lpAddress": "0x9AD68d5DB6241C51F816C0a0BB6c7A8A1cF7E859",
     "mcapInVirtual": 241124.21852405052
+  },
+  {
+    "symbol": "RING",
+    "tokenAddress": "0xdddF73c5535EEC1D6Aa7f41880cbE69A64066eb1",
+    "lpAddress": "0x72847B97Deb4DA5A08aCEFE0f01524B9786017d5",
+    "mcapInVirtual": 7226000
   }
 ]
