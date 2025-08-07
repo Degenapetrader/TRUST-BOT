@@ -7929,10 +7929,10 @@ function handleJeetGenesisChange() {
                 inputType = 'GENESIS';
             } else {
                 inputType = 'TICKER';
-                // Automatically prefix with G- for genesis tickers
-                genesisInput.value = `G-${value}`;
-                console.log(`Automatically prefixed ticker with G-: ${genesisInput.value}`);
-                inputType = 'GENESIS_TICKER'; // Update input type after modification
+                // Detect as ticker but don't modify the UI input value
+                // The G- prefix will be added in the backend when processing
+                console.log(`Detected ticker that will be processed as G-${value} in backend`);
+                inputType = 'GENESIS_TICKER'; // Mark as genesis ticker for processing
             }
             
             console.log(`JeetBot input detected: ${genesisInput.value} (Type: ${inputType})`);
