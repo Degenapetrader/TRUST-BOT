@@ -100,19 +100,14 @@ async function loadTokens(contentDiv, searchInput, sortBy) {
             }));
             console.log('BID mode active - loaded bid.json tokens:', tokens.length);
         } else {
-            // Load BASE and ETH tokens
-            const [baseResponse, ethResponse] = await Promise.all([
-                fetch('base.json'),
-                fetch('eth.json')
-            ]);
+            // Load only BASE tokens (ETH tokens temporarily disabled)
+            const baseResponse = await fetch('base.json');
             
             if (!baseResponse.ok) throw new Error('Failed to load BASE tokens');
-            if (!ethResponse.ok) throw new Error('Failed to load ETH tokens');
             
             const baseData = await baseResponse.json();
-            const ethData = await ethResponse.json();
             
-            // Combine and format tokens
+            // Format BASE tokens
             const baseTokens = baseData.map(token => ({
                 symbol: token.symbol,
                 name: token.name || token.tokenName || token.symbol,
@@ -121,6 +116,10 @@ async function loadTokens(contentDiv, searchInput, sortBy) {
                 marketcap: token.mcapInVirtual || 0
             }));
             
+            /* ETH tokens temporarily disabled as they're not supported yet
+            const ethResponse = await fetch('eth.json');
+            if (!ethResponse.ok) throw new Error('Failed to load ETH tokens');
+            const ethData = await ethResponse.json();
             const ethTokens = ethData.map(token => ({
                 symbol: token.symbol,
                 name: token.name || token.tokenName || token.symbol,
@@ -128,9 +127,11 @@ async function loadTokens(contentDiv, searchInput, sortBy) {
                 blockchain: 'ETH',
                 marketcap: token.mcapInVirtual || 0
             }));
-            
             tokens = [...baseTokens, ...ethTokens];
-            console.log('Virtual mode active - loaded base.json and eth.json tokens:', tokens.length);
+            */
+            
+            tokens = baseTokens;
+            console.log('Virtual mode active - loaded base.json tokens only:', tokens.length);
         }
         
         // Sort tokens by market cap by default
