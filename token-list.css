@@ -184,7 +184,7 @@ body.bid-mode-active #bid-ticker-selection {
 
 .token-list {
     list-style: none;
-    padding: 0;
+    padding: 0 0 20px 0; /* Added bottom padding to ensure last item is fully visible */
     margin: 0;
     overflow-y: auto;
     max-height: none;

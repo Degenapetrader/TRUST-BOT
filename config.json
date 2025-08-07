@@ -3,11 +3,62 @@
     "theme": "dark",
     "showNotifications": true,
     "autoUpdateTokens": true,
-    "logLevel": "info"
+    "logLevel": "info",
+    "rpcUrl": "https://base-rpc.publicnode.com",
+    "rpcUrlQuickNode": "",
+    "rpcUrlInfura": "",
+    "wsUrl": "",
+    "wsUrlQuickNode": "",
+    "wsUrlInfura": "",
+    "dynamicRpcs": [
+      {
+        "name": "R1",
+        "rpcUrl": "https://base.public.blockpi.network/v1/rpc/public",
+        "wsUrl": "",
+        "enabled": true
+      },
+      {
+        "name": "R2",
+        "rpcUrl": "https://api.zan.top/base-mainnet",
+        "wsUrl": "",
+        "enabled": true
+      },
+      {
+        "name": "R3",
+        "rpcUrl": "https://base-pokt.nodies.app",
+        "wsUrl": "",
+        "enabled": true
+      }
+    ],
+    "chainId": 8453,
+    "virtualTokenAddress": "0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b",
+    "genesisContract": "0x220eF297145431d871D65C03C4B65BE38243cE2C",
+    "uniswapRouter": "0x4752ba5DBc23f44D87826276BF6Fd6b1C372aD24",
+    "solanaRpcUrl": "https://api.mainnet-beta.solana.com",
+    "solanaVirtualTokenMint": "3iQL8BFS2vE7mww4ehAqQHAsbmRNCrPxizWAT2Zfyr9y",
+    "stargateBaseRouter": "0xa5a1afbff720f79f1f7833aafbdcee87770bbc93",
+    "stargateSolanaRouter": "68CFnYVZYu4Q4AACuKZenwruvXd5dDj8UoXyyxQmm9We",
+    "layerzeroSolanaEndpoint": "76y77prsiCMvXMjuoZ5VRrhG5qYBrUMYTE5WgHqgjEn6",
+    "transferIntervalSeconds": 300,
+    "pollIntervalMs": 10,
+    "useWebSocketDetection": true,
+    "parallelDetection": true,
+    "slippageBasisPoints": 1000,
+    "detectedTokens": {
+      "enabled": [],
+      "watchList": []
+    }
   },
   "security": {
-    "isEncrypted": false,
-    "encryptedTest": null,
+    "isEncrypted": true,
+    "encryptedTest": {
+      "version": 1,
+      "method": "aes-256-gcm",
+      "salt": "0985150019bf9e1127cea915b610d562",
+      "iv": "12714e4631767001493ebfdb06fbd84a",
+      "data": "bf43ddf7445ee2370c46c6e29cd7e8c0cbeabb2145f893e8c7dfcf383c236d3088ce3b4bff6cada37de7407454882bed140aeec25e511269c51baba31194e25288acc5cc032fa1fc472847d995ad8ee649c182c75dedbdd7a97940ca42f492420ef6ebfc9dcf0c30b9",
+      "authTag": "3546c3a2644e54a04120b7fbfc0fb7d8"
+    },
     "lastAccess": "2025-08-07T00:29:57.331Z"
   },
   "wallets": [],

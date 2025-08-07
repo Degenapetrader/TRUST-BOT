@@ -2988,6 +2988,11 @@ function updateBuyAmount() {
         }
         // Reset the dropdown to show "Presets" again
         document.getElementById('buy-amount-preset').value = '';
+        
+        // Update the custom dropdown display if it exists
+        if (window.setCustomDropdownValue) {
+            window.setCustomDropdownValue('buy-amount-preset', '');
+        }
     }
 }
 
@@ -3003,6 +3008,11 @@ function updateSellAmount() {
         }
         // Reset the dropdown to show "Presets" again
         document.getElementById('sell-amount-preset').value = '';
+        
+        // Update the custom dropdown display if it exists
+        if (window.setCustomDropdownValue) {
+            window.setCustomDropdownValue('sell-amount-preset', '');
+        }
     }
 }
 
@@ -6303,6 +6313,18 @@ function updateGasPresetOptions(baseGasPrice, priorityFee, totalGasPrice) {
                 optionElement.setAttribute('data-dynamic', 'true');
                 select.appendChild(optionElement);
             });
+            
+            // Update the custom dropdown if it exists
+            if (window.initCustomDropdowns) {
+                // Re-initialize the custom dropdown to reflect the new options
+                const customDropdown = document.querySelector(`.custom-dropdown[data-for="${selectId}"]`);
+                if (customDropdown) {
+                    // Remove the old custom dropdown
+                    customDropdown.remove();
+                    // Create a new one with updated options
+                    window.createCustomDropdown(select);
+                }
+            }
         }
     });
 }
