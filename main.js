@@ -33,15 +33,26 @@ function performFinalTrustbotCleanup() {
 }
 
 // JSON Database for wallets and config
-// In packaged apps, use the unpacked directory for writable files
-let WALLETS_DB_PATH;
-if (app.isPackaged) {
-  // In packaged apps, use the unpacked directory where files are writable
-  WALLETS_DB_PATH = path.join(process.resourcesPath, 'app.asar.unpacked', 'wallets.json');
-} else {
-  // In development, use the current directory
-  WALLETS_DB_PATH = path.join(__dirname, 'wallets.json');
+// Consistent path logic for both dev and packaged apps
+// Use userData directory for persistent storage across updates
+function getWalletsPath() {
+  if (app.isPackaged) {
+    return path.join(app.getPath('userData'), 'wallets.json');
+  } else {
+    return path.join(__dirname, 'wallets.json');
+  }
 }
+
+function getConfigPath() {
+  if (app.isPackaged) {
+    return path.join(app.getPath('userData'), 'config.json');
+  } else {
+    return path.join(__dirname, 'config.json');
+  }
+}
+
+const WALLETS_DB_PATH = getWalletsPath();
+const CONFIG_PATH = getConfigPath();
 
 // Global process tracking for cleanup
 let childProcesses = [];
@@ -52,16 +63,32 @@ module.exports = { childProcesses };
 // Initialize wallets database
 function initializeWalletsDB() {
   if (!fs.existsSync(WALLETS_DB_PATH)) {
+    // Try to copy from wallets.example.json first
+    const walletsExamplePath = app.isPackaged 
+      ? path.join(process.resourcesPath, 'app.asar.unpacked', 'wallets.example.json')
+      : path.join(__dirname, 'wallets.example.json');
+    
+    if (fs.existsSync(walletsExamplePath)) {
+      try {
+        fs.copyFileSync(walletsExamplePath, WALLETS_DB_PATH);
+        console.log('✅ Created wallets.json from wallets.example.json');
+        return;
+      } catch (error) {
+        console.warn('⚠️ Failed to copy wallets.example.json, creating default:', error.message);
+      }
+    }
+    
+    // Fallback to creating default data programmatically
     const defaultData = {
       config: {
-        rpcUrl: "https://base-mainnet.g.alchemy.com/v2/your-api-key-here",
+        rpcUrl: "https://base-rpc.publicnode.com",
         chainId: 8453,
         virtualTokenAddress: "0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b"
       },
       wallets: []
     };
     fs.writeFileSync(WALLETS_DB_PATH, JSON.stringify(defaultData, null, 2));
-    console.log('Created wallets.json database');
+    console.log('✅ Created wallets.json with default data');
   }
 }
 

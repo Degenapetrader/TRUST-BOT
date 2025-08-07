@@ -25,7 +25,26 @@ export class SecureConfigManager {
   initialize() {
     try {
       if (!fs.existsSync(this.configPath)) {
-        // Create default configuration
+        // Try to copy from config.example.json first
+        // .example files are always in app bundle, user files are in userData
+        const { app } = require('electron');
+        const configExamplePath = app.isPackaged 
+          ? path.join(process.resourcesPath, 'app.asar.unpacked', 'config.example.json')
+          : path.join(path.dirname(this.configPath), 'config.example.json');
+        
+        if (fs.existsSync(configExamplePath)) {
+          try {
+            fs.copyFileSync(configExamplePath, this.configPath);
+            console.log('✅ [SECURE-CONFIG] Created config.json from config.example.json');
+            this.loadConfig();
+            this.isInitialized = true;
+            return true;
+          } catch (error) {
+            console.warn('⚠️ [SECURE-CONFIG] Failed to copy config.example.json, creating default:', error.message);
+          }
+        }
+        
+        // Fallback to creating default configuration programmatically
         const defaultConfig = {
           settings: {
             theme: 'dark',
@@ -43,6 +62,7 @@ export class SecureConfigManager {
         
         this.config = defaultConfig;
         this.saveConfig();
+        console.log('✅ [SECURE-CONFIG] Created config.json with default data');
       } else {
         // Load existing configuration
         this.loadConfig();

@@ -46,9 +46,5 @@
     }
   },
   "wallets": [],
-  "bridging": {
-    "solanaSourcePrivateKey": "",
-    "baseSourcePrivateKey": "",
-    "solWallet1Address": ""
-  }
+  "bridging": {}
 }

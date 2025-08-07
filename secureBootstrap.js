@@ -8,9 +8,73 @@ let passwordWindow = null;
 let secureAdapter = null;
 let mainProcessLoaded = false;
 
-// Constants
-const WALLETS_DB_PATH = path.join(__dirname, 'wallets.json');
-const CONFIG_PATH = path.join(__dirname, 'config.json');
+// Constants - Consistent path logic for both dev and packaged apps
+// Use userData directory for persistent storage across updates
+function getConfigPath() {
+  if (app.isPackaged) {
+    return path.join(app.getPath('userData'), 'config.json');
+  } else {
+    return path.join(__dirname, 'config.json');
+  }
+}
+
+function getWalletsPath() {
+  if (app.isPackaged) {
+    return path.join(app.getPath('userData'), 'wallets.json');
+  } else {
+    return path.join(__dirname, 'wallets.json');
+  }
+}
+
+const WALLETS_DB_PATH = getWalletsPath();
+const CONFIG_PATH = getConfigPath();
+
+/**
+ * Ensure config and wallets files exist by copying from .example files if needed
+ */
+function ensureConfigFilesExist() {
+  try {
+    // Ensure userData directory exists
+    if (app.isPackaged) {
+      const userDataDir = app.getPath('userData');
+      if (!fs.existsSync(userDataDir)) {
+        fs.mkdirSync(userDataDir, { recursive: true });
+      }
+    }
+    
+    // Handle config.json - user file in userData, .example in app bundle
+    const configPath = getConfigPath();  // Now points to userData
+    const configExamplePath = app.isPackaged 
+      ? path.join(process.resourcesPath, 'app.asar.unpacked', 'config.example.json')
+      : path.join(__dirname, 'config.example.json');
+    
+    if (!fs.existsSync(configPath)) {
+      if (fs.existsSync(configExamplePath)) {
+        fs.copyFileSync(configExamplePath, configPath);
+        console.log('✅ [SECURE-BOOTSTRAP] Created config.json in userData from config.example.json');
+      } else {
+        console.warn('⚠️ [SECURE-BOOTSTRAP] config.example.json not found, will create default config');
+      }
+    }
+    
+    // Handle wallets.json - user file in userData, .example in app bundle
+    const walletsPath = getWalletsPath();  // Now points to userData
+    const walletsExamplePath = app.isPackaged 
+      ? path.join(process.resourcesPath, 'app.asar.unpacked', 'wallets.example.json')
+      : path.join(__dirname, 'wallets.example.json');
+    
+    if (!fs.existsSync(walletsPath)) {
+      if (fs.existsSync(walletsExamplePath)) {
+        fs.copyFileSync(walletsExamplePath, walletsPath);
+        console.log('✅ [SECURE-BOOTSTRAP] Created wallets.json in userData from wallets.example.json');
+      } else {
+        console.warn('⚠️ [SECURE-BOOTSTRAP] wallets.example.json not found, will create default wallets');
+      }
+    }
+  } catch (error) {
+    console.error('❌ [SECURE-BOOTSTRAP] Error ensuring config files exist:', error);
+  }
+}
 
 /**
  * Initialize the security adapter
@@ -370,6 +434,9 @@ global.secureAdapter = secureAdapter;
 
 // App startup
 app.whenReady().then(async () => {
+  // Ensure config files exist before any initialization
+  ensureConfigFilesExist();
+  
   // Initialize secure adapter
   initializeSecurityAdapter();
   

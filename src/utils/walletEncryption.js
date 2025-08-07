@@ -12,8 +12,18 @@ import walletLogger from './walletLogger.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Path to the config file with encryption parameters
-const CONFIG_PATH = path.join(__dirname, '..', '..', 'config.json');
+// Path to the config file with encryption parameters - consistent with other modules
+// Use userData directory for persistent storage across updates
+function getConfigPath() {
+  const { app } = require('electron');
+  if (app.isPackaged) {
+    return path.join(app.getPath('userData'), 'config.json');
+  } else {
+    return path.join(__dirname, '..', '..', 'config.json');
+  }
+}
+
+const CONFIG_PATH = getConfigPath();
 
 /**
  * WalletEncryption utility for encrypting and decrypting wallet private keys
