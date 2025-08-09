@@ -106,8 +106,6 @@ export class FSHModeHandler {
     
     const significantTokens = [];
     let belowMinimumCount = 0;
-    let fallbackCount = 0;
-    let errorCount = 0;
     
     // Process in batches to avoid rate limits
     for (let i = 0; i < nonZeroTokens.length; i += 30) {
@@ -115,13 +113,10 @@ export class FSHModeHandler {
       const metadataPromises = batch.map(async (tokenBalance) => {
         try {
           const metadata = await this.alchemy.core.getTokenMetadata(tokenBalance.contractAddress);
-          
-          // Use fallback values instead of excluding tokens with missing metadata
-          const decimals = metadata.decimals || 18; // Default to 18 decimals
-          const symbol = metadata.symbol || `TOKEN_${tokenBalance.contractAddress.slice(0,8)}`;
-          const name = metadata.name || symbol;
+          if (!metadata.decimals || !metadata.symbol) return null;
           
           const balance = BigInt(tokenBalance.tokenBalance);
+          const decimals = metadata.decimals;
           const formattedBalance = parseFloat(ethers.formatUnits(balance, decimals));
           
           if (formattedBalance >= this.MINIMUM_BALANCE) {
@@ -131,54 +126,23 @@ export class FSHModeHandler {
             
             return {
               address: tokenBalance.contractAddress,
-              symbol: symbol,
-              name: name,
+              symbol: metadata.symbol,
+              name: metadata.name || metadata.symbol,
               decimals: decimals,
               balance: sellBalance,
-              formattedBalance: sellFormattedBalance,
-              metadataFallback: !metadata.decimals || !metadata.symbol
+              formattedBalance: sellFormattedBalance
             };
           } else {
             // Track tokens below minimum balance
             return {
               address: tokenBalance.contractAddress,
-              symbol: symbol,
+              symbol: metadata.symbol,
               formattedBalance: formattedBalance,
-              belowMinimum: true,
-              metadataFallback: !metadata.decimals || !metadata.symbol
+              belowMinimum: true
             };
           }
         } catch (error) {
-          // Handle errors gracefully with fallbacks instead of excluding token
-          log(`⚠️ Metadata fetch failed for ${tokenBalance.contractAddress.slice(0,8)}, using fallbacks`);
-          
-          const balance = BigInt(tokenBalance.tokenBalance);
-          const decimals = 18; // Default decimals
-          const symbol = `TOKEN_${tokenBalance.contractAddress.slice(0,8)}`;
-          const formattedBalance = parseFloat(ethers.formatUnits(balance, decimals));
-          
-          if (formattedBalance >= this.MINIMUM_BALANCE) {
-            const sellBalance = (balance * 9999n) / 10000n;
-            const sellFormattedBalance = parseFloat(ethers.formatUnits(sellBalance, decimals));
-            
-            return {
-              address: tokenBalance.contractAddress,
-              symbol: symbol,
-              name: 'Unknown Token',
-              decimals: decimals,
-              balance: sellBalance,
-              formattedBalance: sellFormattedBalance,
-              metadataFallback: true
-            };
-          } else {
-            return {
-              address: tokenBalance.contractAddress,
-              symbol: symbol,
-              formattedBalance: formattedBalance,
-              belowMinimum: true,
-              metadataFallback: true
-            };
-          }
+          return null;
         }
       });
       
@@ -187,19 +151,10 @@ export class FSHModeHandler {
         if (result.status === 'fulfilled' && result.value) {
           if (result.value.belowMinimum) {
             belowMinimumCount++;
-            if (result.value.metadataFallback) fallbackCount++;
-            const fallbackIndicator = result.value.metadataFallback ? ' (fallback metadata)' : '';
-            log(`   🔍 ${result.value.symbol}: ${result.value.formattedBalance.toFixed(6)} tokens (below minimum ${this.MINIMUM_BALANCE})${fallbackIndicator}`);
+            log(`   🔍 ${result.value.symbol}: ${result.value.formattedBalance.toFixed(6)} tokens (below minimum ${this.MINIMUM_BALANCE})`);
           } else {
             significantTokens.push(result.value);
-            if (result.value.metadataFallback) {
-              fallbackCount++;
-              log(`   ✅ ${result.value.symbol}: ${result.value.formattedBalance.toFixed(2)} tokens (using fallback metadata)`);
-            }
           }
-        } else if (result.status === 'rejected') {
-          errorCount++;
-          log(`   ❌ Token processing failed: ${result.reason?.message || 'Unknown error'}`);
         }
       });
       
@@ -211,8 +166,6 @@ export class FSHModeHandler {
     log(`📊 Balance analysis complete:`);
     log(`   → ${significantTokens.length} tokens meet minimum balance requirement (>=${this.MINIMUM_BALANCE})`);
     log(`   → ${belowMinimumCount} tokens below minimum balance (skipped)`);
-    log(`   → ${fallbackCount} tokens used fallback metadata`);
-    log(`   → ${errorCount} tokens failed processing`);
     
     return significantTokens;
   }
@@ -238,7 +191,6 @@ export class FSHModeHandler {
       let belowMinimumCount = 0;
       let excludedCount = 0;
       let errorCount = 0;
-      let fallbackCount = 0;
       
       // Check known tokens in batches
       for (let i = 0; i < knownTokens.length; i += this.POOL_BATCH_SIZE) {
@@ -273,80 +225,31 @@ export class FSHModeHandler {
               return { balance, decimals };
             });
             
-            // Use fallback values if metadata is missing
-            const decimals = result.decimals || 18;
-            const symbol = tokenData.symbol || `TOKEN_${tokenAddress.slice(0,8)}`;
-            const formattedBalance = parseFloat(ethers.formatUnits(result.balance, decimals));
+            const formattedBalance = parseFloat(ethers.formatUnits(result.balance, result.decimals));
             
             if (formattedBalance >= this.MINIMUM_BALANCE) {
               // Use 99.99% of balance to avoid transaction reverts
               const sellBalance = (result.balance * 9999n) / 10000n;
-              const sellFormattedBalance = parseFloat(ethers.formatUnits(sellBalance, decimals));
+              const sellFormattedBalance = parseFloat(ethers.formatUnits(sellBalance, result.decimals));
               
               return {
                 address: tokenAddress,
-                symbol: symbol,
-                name: symbol || 'Unknown Token',
-                decimals: decimals,
+                symbol: tokenData.symbol,
+                name: tokenData.symbol || 'Unknown Token',
+                decimals: result.decimals,
                 balance: sellBalance,
-                formattedBalance: sellFormattedBalance,
-                metadataFallback: !tokenData.symbol || !result.decimals
+                formattedBalance: sellFormattedBalance
               };
             } else {
               return { 
                 belowMinimum: true, 
-                symbol: symbol, 
+                symbol: tokenData.symbol, 
                 formattedBalance: formattedBalance,
-                address: tokenAddress,
-                metadataFallback: !tokenData.symbol || !result.decimals
+                address: tokenAddress
               };
             }
           } catch (error) {
-            // Handle errors gracefully with fallbacks instead of excluding token
-            log(`⚠️ RPC token check failed for ${tokenAddress.slice(0,8)}, using fallbacks`);
-            
-            // Try to get balance with minimal contract call
-            try {
-              const result = await executeRpcWithFallback(async (provider) => {
-                const tokenContract = new ethers.Contract(
-                  tokenAddress,
-                  ['function balanceOf(address) view returns (uint256)'],
-                  provider
-                );
-                return await tokenContract.balanceOf(walletAddress);
-              });
-              
-              const decimals = 18; // Default decimals
-              const symbol = tokenData.symbol || `TOKEN_${tokenAddress.slice(0,8)}`;
-              const formattedBalance = parseFloat(ethers.formatUnits(result, decimals));
-              
-              if (formattedBalance >= this.MINIMUM_BALANCE) {
-                const sellBalance = (result * 9999n) / 10000n;
-                const sellFormattedBalance = parseFloat(ethers.formatUnits(sellBalance, decimals));
-                
-                return {
-                  address: tokenAddress,
-                  symbol: symbol,
-                  name: 'Unknown Token',
-                  decimals: decimals,
-                  balance: sellBalance,
-                  formattedBalance: sellFormattedBalance,
-                  metadataFallback: true
-                };
-              } else {
-                return {
-                  belowMinimum: true,
-                  symbol: symbol,
-                  formattedBalance: formattedBalance,
-                  address: tokenAddress,
-                  metadataFallback: true
-                };
-              }
-            } catch (balanceError) {
-              // If even balance check fails, return null to exclude this token
-              log(`❌ Complete failure for token ${tokenAddress.slice(0,8)}: ${balanceError.message}`);
-              return null;
-            }
+            return null;
           }
         });
         
@@ -358,19 +261,12 @@ export class FSHModeHandler {
               log(`   🚫 ${result.value.symbol || 'Unknown'}: ${result.value.reason}`);
             } else if (result.value.belowMinimum) {
               belowMinimumCount++;
-              if (result.value.metadataFallback) fallbackCount++;
-              const fallbackIndicator = result.value.metadataFallback ? ' (fallback metadata)' : '';
-              log(`   🔍 ${result.value.symbol}: ${result.value.formattedBalance.toFixed(6)} tokens (below minimum ${this.MINIMUM_BALANCE})${fallbackIndicator}`);
+              log(`   🔍 ${result.value.symbol}: ${result.value.formattedBalance.toFixed(6)} tokens (below minimum ${this.MINIMUM_BALANCE})`);
             } else {
               significantTokens.push(result.value);
-              if (result.value.metadataFallback) {
-                fallbackCount++;
-                log(`   ✅ ${result.value.symbol}: ${result.value.formattedBalance.toFixed(2)} tokens (using fallback metadata)`);
-              }
             }
           } else if (result.status === 'rejected') {
             errorCount++;
-            log(`   ❌ RPC token check failed: ${result.reason?.message || 'Unknown error'}`);
           }
         });
         
@@ -383,7 +279,6 @@ export class FSHModeHandler {
       log(`   → ${significantTokens.length} tokens meet minimum balance requirement (>=${this.MINIMUM_BALANCE})`);
       log(`   → ${belowMinimumCount} tokens below minimum balance (skipped)`);
       log(`   → ${excludedCount} tokens excluded by rules`);
-      log(`   → ${fallbackCount} tokens used fallback metadata`);
       log(`   → ${errorCount} tokens failed to check`);
       
       return significantTokens;
@@ -619,15 +514,6 @@ export class FSHModeHandler {
             const skipReason = pairInfo.skipReason || 'no V2 pool';
             log(`       🔄 TRUSTSWAP fallback - ${skipReason}`);
             log(`       → Will use TRUSTSWAP contract for selling`);
-            
-            // Add TRUSTSWAP fallback tokens to selling list
-            tokensWithPools.push({
-              ...token,
-              pairInfo: pairInfo,
-              walletIndex: walletIndex,
-              useTrustSwapFallback: true,
-              preferredCurrency: 'VIRTUAL' // FSH only sells for VIRTUAL
-            });
           } else if (token.formattedBalance >= this.MINIMUM_BALANCE) {
             tokensWithPools.push({
               ...token,
@@ -726,12 +612,7 @@ export class FSHModeHandler {
     
     if (totalTokensToSell === 0) {
       log("\n❌ No tokens found to sell across all wallets");
-      return { 
-        success: true, 
-        walletsToSell: [], 
-        totalTokensToSell: 0,
-        results: [] 
-      };
+      return { success: true, results: [] };
     }
     
     log(`\n📊 Found ${totalTokensToSell} tokens to sell across ${walletsToSell.length} wallets`);
