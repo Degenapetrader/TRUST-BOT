@@ -626,7 +626,7 @@ export class FSHModeHandler {
               pairInfo: pairInfo,
               walletIndex: walletIndex,
               useTrustSwapFallback: true,
-              preferredCurrency: 'ETH' // TRUSTSWAP sells to ETH
+              preferredCurrency: 'VIRTUAL' // FSH only sells for VIRTUAL
             });
           } else if (token.formattedBalance >= this.MINIMUM_BALANCE) {
             tokensWithPools.push({
