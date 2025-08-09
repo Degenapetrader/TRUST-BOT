@@ -15,11 +15,12 @@ const __dirname = path.dirname(__filename);
 // Path to the config file with encryption parameters - consistent with other modules
 // Use userData directory for persistent storage across updates
 function getConfigPath() {
-  const { app } = require('electron');
-  if (app.isPackaged) {
-    return path.join(app.getPath('userData'), 'config.json');
-  } else {
-    return path.join(__dirname, '..', '..', 'config.json');
+  try {
+    // For non-electron environments, use current working directory
+    return path.join(process.cwd(), 'config.json');
+  } catch (error) {
+    // Fallback
+    return path.join(process.cwd(), 'config.json');
   }
 }
 
