@@ -350,7 +350,7 @@ export function getAlchemyConfig() {
 }
 
 // Enhanced RPC call with provider fallbacks
-export async function executeRpcWithFallback(rpcCall, maxRetries = 3, timeout = 10000) {
+export async function executeRpcWithFallback(rpcCall, maxRetries = 2, timeout = 5000) {
   const availableProviders = getAllProviders();
   let lastError = null;
   
@@ -404,7 +404,7 @@ export async function executeRpcWithFallback(rpcCall, maxRetries = 3, timeout = 
 }
 
 // Enhanced transaction broadcasting with RANDOM provider selection and fallback rotation
-export async function executeTransactionWithReplacementFee(transactionFunction, maxRetries = 50, maxProviderRetries = 2) {
+export async function executeTransactionWithReplacementFee(transactionFunction, maxRetries = 16, maxProviderRetries = 2) {
   const allProviders = getAllProviders();
   let lastError = null;
   
