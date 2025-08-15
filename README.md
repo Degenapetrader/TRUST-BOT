@@ -91,7 +91,7 @@ Core Trading Flow:
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd trustbot
+cd trust-bot
 
 # Install dependencies
 npm install
@@ -103,8 +103,8 @@ npm install
 npm start
 ```
 
-### Configuration
-Edit `wallets.json` to configure:
+### RPC Configuration
+Edit `wallets.json` to configure RPCS:
 
 ```json
 {
@@ -116,15 +116,7 @@ Edit `wallets.json` to configure:
     "wsUrlInfura": "YOUR_INFURA_WEBSOCKET",
     "virtualTokenAddress": "0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b",
     "chainId": 8453
-  },
-  "wallets": [
-    {
-      "id": 1,
-      "name": "B1",
-      "privateKey": "YOUR_PRIVATE_KEY",
-      "enabled": true
-    }
-  ]
+  }
 }
 ```
 
@@ -159,7 +151,7 @@ Edit `wallets.json` to configure:
 
 ### Project Structure
 ```
-trustbot/
+trust-bot/
 ├── main.js              # Electron main process
 ├── renderer.js           # GUI frontend logic
 ├── wallets.json          # Configuration file
