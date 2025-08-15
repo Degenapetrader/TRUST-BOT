@@ -1,6 +1,6 @@
 {
   "config": {
-    "rpcUrl": "",
+    "rpcUrl": "https://base-rpc.publicnode.com/",
     "rpcUrlQuickNode": "",
     "rpcUrlInfura": "",
     "wsUrl": "",
@@ -9,19 +9,19 @@
     "dynamicRpcs": [
       {
         "name": "R1",
-        "rpcUrl": "",
+        "rpcUrl": "https://base-pokt.nodies.app/",
         "wsUrl": "",
         "enabled": true
       },
       {
         "name": "R2",
-        "rpcUrl": "",
+        "rpcUrl": "https://base.public.blockpi.network/v1/rpc/public",
         "wsUrl": "",
         "enabled": true
       },
       {
         "name": "R3",
-        "rpcUrl": "",
+        "rpcUrl": "https://base.api.onfinality.io/public",
         "wsUrl": "",
         "enabled": true
       }
