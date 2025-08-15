@@ -4,15 +4,43 @@ console.log('🔍 Header Balance Script: Loading...');
 // Simple initialization without classes to avoid potential issues
 let balanceUpdateInterval = null;
 let isUpdating = false;
+let currentWalletAddress = null;
 
 // Initialize when DOM is ready
 function initHeaderBalance() {
     console.log('🚀 Header Balance: DOM ready, initializing...');
     
+    // Listen for wallet changes from main process
+    const { ipcRenderer } = require('electron');
+    ipcRenderer.on('wallet-update', (event, data) => {
+        console.log('🔄 Header Balance: Wallet update received:', data);
+        handleWalletUpdate();
+    });
+    
     // Start real balance updates immediately
     setTimeout(() => {
         startRealBalanceUpdates();
     }, 1000);
+}
+
+// Handle wallet updates (new wallet added, wallet removed, etc.)
+function handleWalletUpdate() {
+    console.log('🔄 Header Balance: Handling wallet update...');
+    
+    // Clear current interval
+    if (balanceUpdateInterval) {
+        clearInterval(balanceUpdateInterval);
+        balanceUpdateInterval = null;
+    }
+    
+    // Reset state
+    isUpdating = false;
+    currentWalletAddress = null;
+    
+    // Restart balance updates with new wallet config
+    setTimeout(() => {
+        startRealBalanceUpdates();
+    }, 500);
 }
 
 function updateBalanceDisplay(ethBalance, virtualBalance, walletName = null) {
@@ -67,6 +95,28 @@ function showErrorState() {
     }
 }
 
+function showNoWalletState() {
+    const ethElement = document.getElementById('eth-balance');
+    const virtualElement = document.getElementById('virtual-balance');
+    const walletNameElement = document.getElementById('wallet-name');
+    
+    if (ethElement) {
+        ethElement.textContent = '0.000';
+        ethElement.className = 'balance-value';
+    }
+    
+    if (virtualElement) {
+        virtualElement.textContent = '0.000';
+        virtualElement.className = 'balance-value';
+    }
+    
+    if (walletNameElement) {
+        walletNameElement.textContent = 'N/A';
+    }
+    
+    console.log('📊 Header Balance: Showing no wallet state - N/A | ETH: 0.000 | VIRTUAL: 0.000');
+}
+
 async function startRealBalanceUpdates() {
     console.log('🔍 Header Balance: Starting real balance updates...');
     
@@ -76,11 +126,11 @@ async function startRealBalanceUpdates() {
         
         // Get wallet config
         const config = await ipcRenderer.invoke('get-wallets-config');
-        console.log('🔍 Header Balance: Config received');
+        console.log(' Header Balance: Config received');
         
-        if (!config || !config.config || !config.wallets || config.wallets.length === 0) {
-            console.warn('⚠️ Header Balance: No wallets configured');
-            showErrorState();
+        if (!config || !config.wallets || config.wallets.length === 0) {
+            console.log(' Header Balance: No wallets configured, showing default state');
+            showNoWalletState();
             return;
         }
         
@@ -89,12 +139,12 @@ async function startRealBalanceUpdates() {
         const walletName = firstWallet.name || 'Wallet';
         
         if (!walletAddress) {
-            console.warn('⚠️ Header Balance: No wallet address found');
-            showErrorState();
+            console.warn(' Header Balance: No wallet address found');
+            showNoWalletState();
             return;
         }
         
-        console.log('✅ Header Balance: Using wallet:', walletName, 'at address:', walletAddress);
+        console.log(' Header Balance: Using wallet:', walletName, 'at address:', walletAddress);
         
         // Initialize provider
         const rpcUrl = Buffer.from(config.config.rpcUrl, 'base64').toString('utf8');

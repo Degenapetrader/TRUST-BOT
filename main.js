@@ -1095,6 +1095,15 @@ ipcMain.handle('add-wallet', async (event, walletData) => {
     }
     
     if (saveResult) {
+      // Emit wallet update event to all renderer processes
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.webContents.send('wallet-update', { 
+          type: 'wallet-added', 
+          wallet: newWallet 
+        });
+        console.log('📡 Emitted wallet-update event for new wallet:', newWallet.name);
+      }
+      
       return { 
         success: true, 
         wallet: newWallet,
@@ -1175,10 +1184,19 @@ ipcMain.handle('update-wallet', async (event, walletData) => {
     }
     
     if (saveResult) {
+      // Emit wallet update event to all renderer processes
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.webContents.send('wallet-update', { 
+          type: 'wallet-updated', 
+          wallet: dbData.wallets[walletIndex] 
+        });
+        console.log('📡 Emitted wallet-update event for updated wallet:', dbData.wallets[walletIndex].name);
+      }
+      
       return { 
         success: true, 
         wallet: dbData.wallets[walletIndex],
-        encryptedStorage: encryptedUpdateResult.success 
+        encryptedStorage: encryptedSaveResult.success 
       };
     } else {
       throw new Error('Failed to save wallet');
@@ -1222,6 +1240,15 @@ ipcMain.handle('delete-wallet', async (event, walletId) => {
     }
     
     if (saveResult) {
+      // Emit wallet update event to all renderer processes
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.webContents.send('wallet-update', { 
+          type: 'wallet-deleted', 
+          walletId: walletId 
+        });
+        console.log('📡 Emitted wallet-update event for deleted wallet:', walletId);
+      }
+      
       return { 
         success: true,
         encryptedStorage: encryptedDeleteResult.success 
