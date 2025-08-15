@@ -1,0 +1,264 @@
+{
+  "name": "trustbot",
+  "version": "1.0.0",
+  "description": "Desktop Trading Bot Interface for Virtuals Token Trading on Base Blockchain",
+  "license": "AGPL-3.0",
+  "main": "secureBootstrap.js",
+  "scripts": {
+    "start": "electron .",
+    "clean-start": "taskkill /f /im electron.exe >nul 2>&1 || true && electron .",
+
+    "build": "electron-builder --mac --win --linux && node scripts/post-build.js",
+    "dist": "electron-builder --publish=never",
+    "build:mac": "electron-builder --mac && node scripts/post-build.js",
+    "build:win": "electron-builder --win && node scripts/post-build.js",
+    "build:linux": "electron-builder --linux && node scripts/post-build.js",
+    "build:linux-arm64": "electron-builder --linux --arm64",
+    "build:linux-armv7l": "electron-builder --linux --armv7l",
+    "publish": "electron-builder --publish=always",
+    "dev": "electron . --dev",
+    "bot": "node main-bot.mjs",
+    "buybot": "node buybot.mjs",
+    "sellbot": "node sellbot.mjs",
+    "farmbot": "node farmbot.mjs",
+    "jeetbot": "node jeetbot.mjs",
+    "mmbot": "node mmbot.mjs",
+    "ticker:search": "node ticker-search.mjs",
+    "ticker:fetchAll": "node ticker-fetchAll.mjs",
+    "ticker:updateNew": "node ticker-updateNew.mjs",
+    "ticker:runAll": "node ticker-runAll.mjs",
+    "ticker:dedupe": "node ticker-dedupe.mjs",
+    "ticker:dedupe:fast": "node ticker-dedupe-fast.mjs",
+    "ticker:financial": "node ticker-financial.mjs",
+    "transferbot": "node transferbot.mjs",
+    "stargate": "node stargate.mjs",
+    "contactbot": "node contactbot.mjs",
+    "detect": "node src/tokenDetector.js",
+    "detect:quick": "node src/tokenDetector.js --quick",
+    "farmbot-accurate": "node farmbot.mjs --accurate",
+    "token-list": "node src/tokenListDB.js",
+    "sell-all": "node sellbot.mjs fsh",
+    "find-pool": "node find-pool.mjs",
+    "genesis:search": "node GenesisSearch.js",
+    "genesis:unlock": "node GenesisSearch.js",
+    "genesis:ticker": "node GenesisSearch.js"
+  },
+  "keywords": [
+    "trading",
+    "bot",
+    "virtual",
+    "desktop",
+    "electron",
+    "base",
+    "uniswap"
+  ],
+  "author": {
+    "name": "Degen Ape Trader",
+    "email": "degenapetrader@gmail.com",
+    "company": "TRUST Me Bros"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "electron-icon-maker": "^0.0.5",
+    "glob": "^10.3.10",
+    "rimraf": "^5.0.5"
+  },
+  "dependencies": {
+    "@bwarelabs/blast-sdk-js": "^1.0.17",
+    "@solana/spl-token": "^0.1.8",
+    "@solana/web3.js": "^1.98.2",
+    "@uniswap/sdk": "^3.0.3",
+    "@uniswap/v2-core": "^1.0.1",
+    "alchemy-sdk": "^3.6.0",
+    "bs58": "^5.0.0",
+    "dotenv": "^16.0.3",
+    "electron-log": "^5.4.2",
+    "electron-store": "^8.1.0",
+    "electron-updater": "^6.6.2",
+    "elliptic": "^6.6.1",
+    "ethers": "^6.15.0",
+    "exceljs": "^4.4.0",
+    "keccak256": "^1.0.6",
+    "lru-cache": "^7.18.3",
+    "node-fetch": "^3.3.2",
+    "uuid": "^8.3.2"
+  },
+  "overrides": {
+    "ws": "^8.14.2",
+    "tar": "^6.2.1",
+    "tough-cookie": "^4.1.3",
+    "request": "npm:@cypress/request@latest"
+  },
+  "build": {
+    "appId": "com.trustbot.desktop",
+    "productName": "TRUSTBOT",
+    "icon": "assets/icon.ico",
+    "directories": {
+      "output": "dist"
+    },
+    "generateUpdatesFilesForAllChannels": false,
+    "publish": {
+      "provider": "github",
+      "owner": "Degenapetrader",
+      "repo": "TRUST-BOT",
+      "private": false,
+      "releaseType": "release",
+      "publishAutoUpdate": true
+    },
+    "files": [
+      "main.js",
+      "secureBootstrap.js",
+      "secureMain.js",
+      "renderer.js",
+      "index.html",
+      "password-prompt.html",
+      "styles.css",
+      "documentation.css",
+      "hide-bid-mode.css",
+      "app-update.yml",
+      "hide-wallet-ui.css",
+      "nav-override.css",
+      "performance.css",
+      "token-list.css",
+      "wallet-token-styles.css",
+      "custom-dropdown.css",
+      "GenesisBid.js",
+      "GenesisSearch.js",
+      "bid-token-selection.js",
+      "config-tabs.js",
+      "documentation.js",
+      "sidebar-toggle.js",
+      "token-handlers.js",
+      "token-list.js",
+      "token-persistence.js",
+      "token-selection.js",
+      "tx-console-enhancer.js",
+      "wallet-width-fix.js",
+      "custom-dropdown.js",
+      "assets/**/*",
+      "src/**/*",
+      "bots/**/*",
+      "*.js",
+      "*.mjs",
+      "config.example.json",
+      "wallets.example.json",
+      "Contacts.json",
+      "TokenList.json",
+      "base.json",
+      "bid.json",
+      "detected-tokens.json",
+      "eth.json",
+      "sol.json",
+      "*.md",
+      "*.yml",
+      "!config.json",
+      "!wallets.json"
+    ],
+    "asarUnpack": [
+      "main.js",
+      "secureBootstrap.js",
+      "secureMain.js",
+      "renderer.js",
+      "*.mjs",
+      "*.cjs",
+      "*.js",
+      "*.css",
+      "config.example.json",
+      "wallets.example.json",
+      "Contacts.json",
+      "TokenList.json",
+      "base.json",
+      "bid.json",
+      "detected-tokens.json",
+      "eth.json",
+      "sol.json",
+      "src/**/*",
+      "bots/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "publisherName": null,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "TRUSTBOT",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "menuCategory": "Trading",
+      "artifactName": "TRUSTBOT-Setup-${version}.${ext}",
+      "displayLanguageSelector": false,
+      "multiLanguageInstaller": false,
+      "packElevateHelper": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "include": "installer-script.nsh",
+      "warningsAsErrors": false,
+      "unicode": true
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.finance",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "category": "Office"
+    }
+  }
+}

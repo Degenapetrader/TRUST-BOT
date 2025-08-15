@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUSTBOT</title>
+    <link rel="stylesheet" href="styles.css?v=1.0.0">
+    <link rel="stylesheet" href="wallet-token-styles.css?v=1.0.0">
+    <link rel="stylesheet" href="performance.css?v=1.0.0">
+    <link rel="stylesheet" href="hide-wallet-ui.css?v=1.0.0">
+    <link rel="stylesheet" href="hide-bid-mode.css?v=1.0.0">
+    <link rel="stylesheet" href="documentation.css?v=1.0.0">
+    <link rel="stylesheet" href="token-list.css?v=1.0.0">
+    <link rel="stylesheet" href="nav-override.css?v=1.0.0">
+    <link rel="stylesheet" href="custom-dropdown.css?v=1.0.0">
+    <link rel="stylesheet" href="assets/css/update-notification.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="wallet-width-fix.js"></script>
+    <!-- Transaction Console Enhancer - Improves display of transaction details -->
+    <script defer src="tx-console-enhancer.js"></script>
+    <!-- Custom Dropdown Component -->
+    <script defer src="custom-dropdown.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="assets/icon.png" alt="TrustBot Icon" class="bot-icon">
+                    <div class="logo-text">
+                        <h1>TRUSTBOT</h1>
+                        <span class="version">Enhanced Trading Bot</span>
+                    </div>
+                </div>
+                <div class="selected-wallets-display" id="header-wallets-display">
+                    <!-- Selected wallets will be displayed here -->
+                </div>
+                <div class="selected-tokens-display" id="selected-tokens-display">
+                    <!-- Selected tokens will be displayed here -->
+                </div>
+                <div class="header-controls" style="right: 5px;">
+                    <button class="btn btn-outline" onclick="showConfig()">Settings</button>
+                    <button id="stop-bot" class="btn btn-danger" disabled>Stop Bot</button>
+                    <span class="help-link" onclick="window.open('https://trustmebros.gitbook.io/docs/', '_blank')" title="TRUSTBOT Documentation" style="color: var(--primary-cyan); font-size: 24px; font-weight: 800; cursor: pointer; margin-left: 6px; user-select: none; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">?</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <span id="toggle-left-sidebar" class="sidebar-toggle" title="Toggle Sidebar"><<</span>
+                <!-- BID-MODE Toggle Button -->
+                <div class="bid-mode-section">
+                    <button id="bid-mode-toggle" class="bid-mode-btn" onclick="toggleBidMode()">
+                        <span class="bid-mode-icon">🎯</span>
+                        <div class="bid-mode-content">
+                            <span class="bid-mode-title">CREATOR.BID</span>
+                            <span class="bid-mode-subtitle">LAUNCHPAD V2</span>
+                        </div>
+                        <span class="bid-mode-status" id="bid-mode-status">OFF</span>
+                    </button>
+                    <div class="bid-mode-info" id="bid-mode-info" style="display: none;">
+                        <p>🔹 Uses ETH currency instead of VIRTUAL</p>
+                        <p>🔹 Uses bid.json database</p>
+                        <p>🔹 3% tax on sells</p>
+                        <p>🔹 Available: BuyBot, SellBot, FSH, FarmBot</p>
+                    </div>
+                </div>
+                
+                <nav class="bot-nav">
+                    <!-- Compact continuous menu - no group separations -->
+                    
+                    <!-- Basic Trading Bots -->
+                    <button class="nav-btn bid-mode-allowed" data-bot="buybot">
+                        <img src="assets/green.png" alt="BuyBot Icon" class="icon">
+                        <span class="emoji-fallback">🟢</span>
+                        <span class="text">Buy</span>
+                    </button>
+                    <button class="nav-btn bid-mode-allowed" data-bot="sellbot">
+                        <img src="assets/red.png" alt="SellBot Icon" class="icon">
+                        <span class="emoji-fallback">🔴</span>
+                        <span class="text">Sell</span>
+                    </button>
+                    <button class="nav-btn bid-mode-allowed" data-bot="sellbot-fsh">
+                        <img src="assets/fsh.png" alt="FSH Icon" class="icon">
+                        <span class="emoji-fallback">💥</span>
+                        <span class="text">FSH</span>
+                    </button>
+                    
+                    <!-- Advanced Trading Bots -->
+                    <button class="nav-btn bid-mode-allowed" data-bot="farmbot">
+                        <img src="assets/farm.png" alt="FarmBot Icon" class="icon">
+                        <span class="emoji-fallback">🚜</span>
+                        <span class="text">Farming Bot</span>
+                    </button>
+                    <button class="nav-btn" data-bot="mmbot">
+                        <img src="assets/mm.png" alt="MM Icon" class="icon">
+                        <span class="emoji-fallback">📊</span>
+                        <span class="text">Market Maker Bot</span>
+                    </button>
+                    
+                    <!-- Special Tools -->
+                    <button class="nav-btn" data-bot="jeetbot">
+                        <img src="assets/jeet.png" alt="JeetBot Icon" class="icon">
+                        <span class="emoji-fallback">🚀</span>
+                        <span class="text">JeetBot</span>
+                    </button>
+                    
+                    <!-- Ticker Tools -->
+                    <button class="nav-btn" data-bot="detect">
+                        <img src="assets/detector.png" alt="Token Detector Icon" class="icon">
+                        <span class="emoji-fallback">🔍</span>
+                        <span class="text">Token Detector</span>
+                    </button>
+                    <button class="nav-btn" data-bot="ticker-search">
+                        <img src="assets/search.png" alt="Search Token Icon" class="icon">
+                        <span class="emoji-fallback">🔎</span>
+                        <span class="text">Search Token</span>
+                    </button>
+                    <button class="nav-btn" data-bot="ticker-fetch">
+                        <img src="assets/fetch.png" alt="Fetch Data Icon" class="icon">
+                        <span class="emoji-fallback">📥</span>
+                        <span class="text">Fetch All Data</span>
+                    </button>
+                    <button class="nav-btn" data-bot="ticker-export">
+                        <img src="assets/xls.png" alt="Export Excel Icon" class="icon">
+                        <span class="emoji-fallback">📤</span>
+                        <span class="text">Export Excel</span>
+                    </button>
+                    <button class="nav-btn" data-bot="ticker-runall">
+                        <span class="emoji-icon">🔄</span>
+                        <span class="text">Fetch + Export</span>
+                    </button>
+                    
+                    <!-- More Tools -->
+                    <button class="nav-btn" data-bot="transferbot" style="display: none;">
+                        <img src="assets/send.png" alt="Send Icon" class="icon">
+                        <span class="emoji-fallback">💲</span>
+                        <span class="text">Transfer</span>
+                    </button>
+                    <button class="nav-btn" data-bot="wallettoken">
+                        <img src="assets/wallet.png" alt="Wallet Icon" class="icon">
+                        <span class="emoji-fallback">💼</span>
+                        <span class="text">Wallet & Token Selection</span>
+                    </button>
+                    <div class="bid-mode-allowed">
+                        <button class="nav-btn bid-mode-allowed" data-bot="bid-tokens" id="bid-tokens-nav-btn">
+                            <img src="assets/token.png" alt="BID Tokens Icon" class="icon">
+                            <span class="emoji-fallback">🪙</span>
+                            <span class="text">BID Tokens & Wallets</span>
+                        </button>
+                    </div>
+                    <button class="nav-btn" data-bot="contactbot" style="display: none;">
+                        <img src="assets/contacts.png" alt="Contacts Icon" class="icon">
+                        <span class="emoji-fallback">📞</span>
+                        <span class="text">Contacts</span>
+                    </button>
+                    <button class="nav-btn" data-bot="documentation">
+                        <span class="emoji-icon">📚</span>
+                        <span class="text">User Guide</span>
+                    </button>
+                </nav>
+
+                <!-- Status Panel -->
+                <div class="status-panel">
+                    <h4><img src="assets/status.png" alt="System Status Icon" class="category-icon3"> System
+                        Status</h4>
+                    <div class="status-item">
+                        <span>Connection:</span>
+                        <span id="connection-status" class="status-indicator">Online</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Active Bot:</span>
+                        <span id="active-bot" class="status-indicator">None</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Wallets:</span>
+                        <span id="wallet-count" class="status-indicator">Loading...</span>
+                    </div>
+                    <div class="status-item">
+                        <span>Gas Price:</span>
+                        <span id="gas-price-status" class="status-indicator">Loading...</span>
+                    </div>
+                </div>
+                
+                <!-- Version Display -->
+                <div class="version-display">
+                    <span class="version-text">TRUSTBOT Version: v<span id="app-version">1.0.0</span></span>
+                </div>
+            </aside>
+
+            <!-- Bot Configuration Panel -->
+            <section class="bot-config">
+                <div class="config-header">
+                    <h2 id="bot-title"></h2>
+                    <p id="bot-description"></p>
+                </div>
+
+                <!-- Bot Configuration Forms -->
+                <div id="bot-forms" class="bot-forms">
+                    <!-- Wallet & Token Selection Form -->
+                    <div id="wallettoken-form" class="bot-form">
+                        <!-- Regular form content continues below -->
+                        <!-- Wallet Selection Panel -->
+                        <div class="wallet-selection-panel">
+                            <div class="wallet-header">
+                                <h3><img src="assets/wallet.png" alt="Wallet Icon" class="section-icon">Wallet Selection
+                                </h3>
+                                <div class="wallet-controls">
+                                    <button class="btn btn-primary btn-small" onclick="addNewWallet()"><i class="fas fa-plus"></i> Add Wallet</button>
+                                    <button class="btn btn-danger btn-small" onclick="deleteSelectedWallets()"><i class="fas fa-trash"></i> Delete Selected</button>
+                                    <button class="btn btn-small" onclick="selectAllWallets()">Select All</button>
+                                    <button class="btn btn-small" onclick="clearAllWallets()">Clear All</button>
+                                </div>
+                            </div>
+                            <div class="wallet-management">
+                                <div class="wallet-grid" id="wallet-grid">
+                                    <!-- Wallets will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <div class="wallet-summary">
+                                <span id="selected-wallet-count">0 wallets selected</span>
+                                <span id="wallet-parallel-info" style="display: none;">• All selected wallets run in parallel</span>
+                            </div>
+                        </div>
+
+                        <!-- Ticker Selection Panel - Mergebot Integration -->
+                        <div class="ticker-selection-panel">
+                            <div class="ticker-header">
+                                <h3><img src="assets/token.png" alt="Token Selection Icon" class="section-icon"> Token
+                                    Selection</h3>
+                                <div class="ticker-count-badge"><span class="token-count">0</span> tokens selected</div>
+                            </div>
+
+                            <!-- Token Selection Container -->
+                            <div id="token-selection-container">
+                                <!-- Normal Token Selection Panel (DEFAULT) -->
+                                <div id="normal-ticker-selection">
+                                    <div class="token-search-container">
+                                        <div class="search-input-group">
+                                            <input type="text" id="token-search" placeholder="Search for tokens..." class="form-input">
+                                            <button class="search-dropdown-btn" id="token-search-dropdown-btn" type="button">
+                                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                                    <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div id="token-search-dropdown" class="dropdown-menu"></div>
+                                    </div>
+                                    
+                                    <div class="token-filter-tabs">
+                                        <button class="token-filter-tab active" data-filter="all">All</button>
+                                        <button class="token-filter-tab" data-filter="selected">Selected</button>
+                                        <button class="token-filter-tab" data-filter="pool">Has Pool</button>
+                                    </div>
+                                    
+                                    <div id="token-list" class="token-list-container"></div>
+                                    
+                                    <div id="token-messages"></div>
+                                    
+                                    <div class="token-actions">
+                                        <button class="btn btn-secondary btn-clear-all">Clear All</button>
+                                        <button class="btn btn-primary" id="btn-add-token">Add Custom Token</button>
+                                    </div>
+                                </div>
+                                
+                                <!-- BID-MODE Token Selection Panel (Initially Hidden) -->
+                                <div id="bid-ticker-selection" style="display: none;">
+                                    <div class="ticker-header">
+                                        <h3><img src="assets/token.png" alt="Token Selection Icon" class="section-icon"> BID-MODE Token Selection</h3>
+                                        <div class="ticker-count-badge"><span class="bid-token-count">0</span> tokens selected</div>
+                                    </div>
+                                    
+                                    <div class="token-search-container">
+                                        <input type="text" id="bid-token-search" placeholder="Search for tokens..." class="form-input">
+                                        <div id="bid-token-search-dropdown" class="dropdown-menu"></div>
+                                    </div>
+                                    
+                                    <div class="token-filter-tabs">
+                                        <button class="token-filter-tab bid-token-filter-tab active" data-filter="all">All</button>
+                                        <button class="token-filter-tab bid-token-filter-tab" data-filter="selected">Selected</button>
+                                        <button class="token-filter-tab bid-token-filter-tab" data-filter="pool">Has Pool</button>
+                                    </div>
+                                    
+                                    <div id="bid-token-list" class="token-list-container"></div>
+                                    
+                                    <div id="bid-token-messages"></div>
+                                    
+                                    <div class="token-actions">
+                                        <button class="btn btn-danger btn-clear-all" onclick="window.BidTokenSelectionUI.clearAllBidTickers()">Clear All</button>
+                                        <button class="btn btn-primary" id="btn-add-bid-token">Add Custom Token</button>
+                                        <button class="btn btn-secondary btn-select-all" onclick="window.BidTokenSelectionUI.selectAllBidTickers()">Select All</button>
+                                    </div>
+                                    
+                                    <div class="ticker-summary">
+                                        <span id="selected-bid-ticker-count"><span class="bid-token-count">0</span> tokens selected</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ticker-summary">
+                                <span id="selected-ticker-count"><span class="token-count">0</span> tokens selected</span>
+                                <span id="parallel-info" style="display: none;">• Parallel execution enabled</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Default State -->
+                    <div id="default-form" class="bot-form active">
+                        <div class="welcome-content">
+                            <div class="welcome-icon"><img src="assets/icon.png" alt="Trust Icon"></div>
+                            <h2>TRUSTBOT</h2>
+                            <h3>Your personal Virtuals Eco Trading Bot</h3>
+                            <p>Select a bot from the sidebar to configure and start trading.</p>
+                            <div class="quick-actions">
+                                <h4><img src="assets/down.png" alt="Down Arrow Icon" class="action-icon">
+                                    More Info
+                                    <img src="assets/down.png" alt="Down Arrow Icon" class="action-icon">
+                                </h4>
+                                <button class="btn btn-outline" onclick="showQuickGuide()">Quick Guide</button>
+                                <button class="btn btn-outline" onclick="openDocs()">Documentation</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- BID Tokens Form -->
+                    <div id="bid-tokens-form" class="bot-form">
+                        <div class="form-header">
+                            <h2>🎯 BID Tokens</h2>
+                            <p>Select tokens from the bid.json database for ETH trading mode</p>
+                        </div>
+                        
+                        <!-- BID Token Selection Panel -->
+                        <div class="bid-token-selection-panel">
+                            <div class="bid-token-search">
+                                <div class="form-group">
+                                    <label for="bid-token-field-input">Search BID Tokens:</label>
+                                    <div class="search-container">
+                                        <input type="text" id="bid-token-field-input" placeholder="Enter token symbol or address" class="form-input" 
+                                               oninput="handleBidTokenSearch()" onkeydown="if(event.key === 'Enter') handleBidTokenSearchEnter()">
+                                        <button id="bid-add-btn" class="btn btn-primary">Add</button>
+                                    </div>
+                                    <div id="bid-search-results" class="dropdown-menu" style="display: none;"></div>
+                                    <div id="bid-search-status" class="search-status" style="display: none;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- BID Token Selection Grid -->
+                            <div class="bid-token-grid-container">
+                                <h3>Selected BID Tokens:</h3>
+                                <div id="bid-ticker-grid" class="bid-ticker-grid">
+                                    <!-- BID tokens will be added here dynamically -->
+                                </div>
+                                
+                                <div class="token-controls">
+                                    <button class="btn btn-secondary" onclick="selectAllBidTickers()">Select All</button>
+                                    <button class="btn btn-secondary" onclick="clearAllBidTickers()">Clear All</button>
+                                </div>
+                                
+                                <div class="bid-ticker-summary">
+                                    <span id="selected-bid-ticker-count">0 tokens selected</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Wallet Selection for BID Mode -->
+                        <div class="wallet-selection-panel">
+                            <h3>Wallet Selection for BID-MODE:</h3>
+                            <p class="info-text">The same wallets from the main Wallet & Token Selection are used for BID-MODE</p>
+                        </div>
+                    </div>
+
+                    <!-- BID Tokens & Wallets Form -->
+                    <div id="bid-tokens-form" class="bot-form">
+                        <div class="ticker-selection-panel">
+                            <div class="ticker-header">
+                                <h3><img src="assets/token.png" alt="BID Token Icon" class="section-icon"> BID Token Selection</h3>
+                                <div class="ticker-count-badge"><span id="bid-token-count">0</span> tokens selected</div>
+                            </div>
+                            
+                            <!-- BID Token Search Interface -->
+                            <div class="bid-token-search">
+                                <div class="form-group">
+                                    <label for="bid-token-field-input">Search BID Tokens:</label>
+                                    <div class="search-container">
+                                        <input type="text" id="bid-token-field-input" placeholder="Enter token symbol or address" class="form-input" 
+                                               oninput="handleBidTokenSearch()" onkeydown="if(event.key === 'Enter') addBidTokenFromSearch()">
+                                        <button id="bid-add-btn" class="btn btn-primary" onclick="addBidTokenFromSearch()">Add</button>
+                                    </div>
+                                    <div id="bid-search-results" class="dropdown-menu" style="display: none;"></div>
+                                    <div id="bid-search-status" class="search-status" style="display: none;"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- BID Token Selection Grid -->
+                            <div class="bid-token-grid-container">
+                                <h3>Selected BID Tokens:</h3>
+                                <div id="bid-ticker-grid" class="bid-ticker-grid">
+                                    <!-- BID tokens will be added here dynamically -->
+                                </div>
+                                
+                                <div class="token-controls">
+                                    <button class="btn btn-secondary" onclick="selectAllBidTickers()">Select All</button>
+                                    <button class="btn btn-secondary" onclick="clearAllBidTickers()">Clear All</button>
+                                </div>
+                                
+                                <div class="bid-ticker-summary">
+                                    <span id="selected-bid-ticker-count">0 tokens selected</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Wallet Selection for BID Mode -->
+                        <div class="wallet-selection-panel">
+                            <div class="wallet-header">
+                                <h3><img src="assets/wallet.png" alt="Wallet Icon" class="section-icon"> BID Mode Wallets</h3>
+                            </div>
+                            <p class="info-text">The same wallets from the main Wallet & Token Selection are used for BID-MODE</p>
+                            <div class="bid-mode-notice">
+                                <h4>🎯 BID-MODE Information:</h4>
+                                <ul>
+                                    <li>Using ETH trading mode</li>
+                                    <li>Token data loaded from bid.json database</li>
+                                    <li>Available for BuyBot, SellBot, FSH, and FarmBot</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BuyBot Form -->
+                    <div id="buybot-form" class="bot-form">
+                        <!-- Form Group Row -->
+                        <div class="form-group-row">
+                            <div class="form-group1">
+                                <label>Buy Method</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="radio" id="buy-type-normal" name="buy-type" checked
+                                            onchange="handleBuyTypeChange('normal')">
+                                        <span>Normal</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="radio" id="buy-type-twap" name="buy-type"
+                                            onchange="handleBuyTypeChange('twap')">
+                                        <span>TWAP</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group1">
+                                <label id="buy-currency-label">Buy with</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="radio" id="buy-currency-virtual" name="buy-currency" checked
+                                            onchange="handleBuyCurrencyChange('virtual')">
+                                        <span>VIRTUAL</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="radio" id="buy-currency-eth" name="buy-currency"
+                                            onchange="handleBuyCurrencyChange('eth')">
+                                        <span>ETH</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Form Group -->
+                        <div class="form-group2">
+                            <label for="buy-amount">Amount</label>
+                            <div class="amount-input-group">
+                                <input type="text" id="buy-amount" placeholder="Enter VIRTUAL amount"
+                                    class="form-input">
+                                <select id="buy-amount-preset" class="form-select preset-select"
+                                    onchange="updateBuyAmount()">
+                                    <option value="">Presets</option>
+                                    <option value="10">10 VIRTUAL</option>
+                                    <option value="25">25 VIRTUAL</option>
+                                    <option value="50">50 VIRTUAL</option>
+                                    <option value="100">100 VIRTUAL</option>
+                                    <option value="MAX">MAX (99.99% VIRTUAL)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- TWAP Group -->
+                        <div id="twap-options" class="form-section" style="display: none;">
+                            <h5>🕒 TWAP Settings</h5>
+                            <div class="form-group">
+                                <label for="twap-duration">Duration</label>
+                                <select id="twap-duration" class="form-select">
+                                    <option value="300">5 minutes</option>
+                                    <option value="600">10 minutes</option>
+                                    <option value="1800">30 minutes</option>
+                                    <option value="3600">1 hour</option>
+                                    <option value="custom">Custom (minutes)</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="custom-duration" style="display: none;">
+                                <label for="twap-custom-duration">Custom Duration (minutes):</label>
+                                <input type="number" id="twap-custom-duration" min="1" max="1440" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="twap-intervals">Number of Orders:</label>
+                                <select id="twap-intervals" class="form-select">
+                                    <option value="5">5 orders</option>
+                                    <option value="10" selected>10 orders</option>
+                                    <option value="20">20 orders</option>
+                                    <option value="50">50 orders</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Gas Settings for BuyBot -->
+                        <div id="gas-settings" class="form-section" style="display: none;">
+                            <h5>⛽ Gas Settings</h5>
+                            <div class="form-group">
+                                <label for="gas-price">Gas Price (gwei)</label>
+                                <div class="amount-input-group">
+                                    <input type="text" id="gas-price" placeholder="0.02" class="form-input"
+                                        value="0.02">
+                                    <select id="gas-price-preset" class="form-select preset-select"
+                                        onchange="updateGasPrice()">
+                                        <option value="">Presets</option>
+                                        <option value="0.01">0.01 gwei (Low)</option>
+                                        <option value="0.02">0.02 gwei (Default)</option>
+                                        <option value="0.03">0.03 gwei (Medium)</option>
+                                        <option value="0.05">0.05 gwei (High)</option>
+                                        <option value="0.1">0.1 gwei (Max)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="gas-limit">Gas Limit:</label>
+                                <div class="amount-input-group">
+                                    <input type="text" id="gas-limit" placeholder="500000" class="form-input"
+                                        value="500000">
+                                    <select id="gas-limit-preset" class="form-select preset-select"
+                                        onchange="updateGasLimit()">
+                                        <option value="">Presets</option>
+                                        <option value="500000">500,000 (Default)</option>
+                                        <option value="600000">600,000 (Safe)</option>
+                                        <option value="800000">800,000 (High)</option>
+                                        <option value="1000000">1,000,000 (Max)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('buybot')">
+                                🟢 Start BuyBot
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- SellBot Form -->
+                    <div id="sellbot-form" class="bot-form">
+                        <div class="form-group-row">
+                            <div class="form-group1">
+                                <label>Sell Type</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="radio" id="sell-type-normal" checked
+                                            onchange="handleSellTypeChange('normal')">
+                                        <span>Normal</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="radio" id="sell-type-twap" onchange="handleSellTypeChange('twap')">
+                                        <span>TWAP</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group1">
+                                <label id="sell-currency-label">Sell tokens For</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="radio" id="sell-currency-virtual" checked
+                                            onchange="handleSellCurrencyChange('virtual')">
+                                        <span>VIRTUAL</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="radio" id="sell-currency-eth"
+                                            onchange="handleSellCurrencyChange('eth')">
+                                        <span>ETH</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group2">
+                            <label for="sell-amount">Amount</label>
+                            <div class="amount-input-group">
+                                <input type="text" id="sell-amount" placeholder="Enter amount or percentage (25%)"
+                                    class="form-input">
+                                <select id="sell-amount-preset" class="form-select preset-select"
+                                    onchange="updateSellAmount()">
+                                    <option value="">Presets</option>
+                                    <option value="25%">25%</option>
+                                    <option value="50%">50%</option>
+                                    <option value="75%">75%</option>
+                                    <option value="100%">100%</option>
+                                    <option value="1000">1000</option>
+                                    <option value="5000">5000</option>
+                                    <option value="MAX">MAX (99.99% tokens)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="sell-twap-options" class="form-section" style="display: none;">
+                            <h5>🕒 TWAP Settings</h5>
+                            <div class="form-group">
+                                <label for="sell-twap-duration">Duration:</label>
+                                <select id="sell-twap-duration" class="form-select">
+                                    <option value="300">5 minutes</option>
+                                    <option value="600">10 minutes</option>
+                                    <option value="1800">30 minutes</option>
+                                    <option value="3600">1 hour</option>
+                                    <option value="custom">Custom (minutes)</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="sell-twap-custom-duration" style="display: none;">
+                                <label for="sell-twap-custom-duration-input">Custom Duration (minutes):</label>
+                                <input type="number" id="sell-twap-custom-duration-input" min="1" max="1440"
+                                    class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="sell-twap-intervals">Number of Orders:</label>
+                                <select id="sell-twap-intervals" class="form-select">
+                                    <option value="5">5 orders</option>
+                                    <option value="10" selected>10 orders</option>
+                                    <option value="20">20 orders</option>
+                                    <option value="50">50 orders</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('sellbot')">
+                                🔴 Start SellBot
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- FSH Form -->
+                    <div id="sellbot-fsh-form" class="bot-form">
+                        <div class="fsh-info">
+                            <h1><span class="fsh-title"><img src="assets/fsh.png" alt="FSH Icon" class="section-icon">
+                                    FSH</span></h1>
+                            <p>Execute FSH operation for detected tokens</p>
+                        </div>
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="confirmFSH()">
+                                💥 Start FSH
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- FarmBot Form -->
+                    <div id="farmbot-form" class="bot-form">
+                        <!-- FarmBot Info Blocks -->
+                        
+                        
+                        <div class="form-group1">
+                            <label for="farm-amount">Amount</label>
+                            <input type="text" id="farm-amount" placeholder="100 or auto" class="form-input">
+                            <small>Enter VIRTUAL amount or "auto"</small>
+                        </div>
+                        <div class="form-group1">
+                            <label for="farm-loops">Loops (optional)</label>
+                            <input type="number" id="farm-loops" placeholder="Leave empty for infinite"
+                                class="form-input">
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 6px; padding: 4px 8px; background: var(--primary-cyan-alpha-10); border-radius: 4px; border-left: 2px solid var(--primary-cyan); margin-bottom: 8px;">
+                            <span style="color: var(--primary-cyan-light); font-size: 10px; font-weight: 500;">Automatically buys and sells tokens across multiple wallets to generate trading volume</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 6px; padding: 4px 8px; background: var(--primary-cyan-alpha-10); border-radius: 4px; border-left: 2px solid var(--primary-cyan); margin-bottom: 16px;">
+                            <span style="color: var(--primary-cyan); font-size: 11px;">⚠</span>
+                            <span style="color: var(--primary-cyan-light); font-size: 10px; font-weight: 500;">Requires both tokens (e.g., $TRUST + $VIRTUAL) in wallets</span>
+                        </div>
+                        
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('farmbot')">
+                                🚜 Start FarmBot (All Wallets)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- MM Bot Form -->
+                    <div id="mmbot-form" class="bot-form">
+                        <div class="form-section">
+                            <h5>🔄 Number of Loops</h5>
+                            <div class="form-group">
+                                <label for="mm-loops">Number of Loops (L-):</label>
+                                <div class="amount-input-group">
+                                    <input type="number" id="mm-loops" placeholder="Leave empty for infinite"
+                                        class="form-input" min="1" max="999">
+                                    <select id="mm-loops-preset" class="form-select preset-select"
+                                        onchange="updateMMLoops()">
+                                        <option value="">Presets</option>
+                                        <option value="1">1 loop (L-1)</option>
+                                        <option value="2">2 loops (L-2)</option>
+                                        <option value="5">5 loops (L-5)</option>
+                                        <option value="10">10 loops (L-10)</option>
+                                        <option value="20">20 loops (L-20)</option>
+                                    </select>
+                                </div>
+                                <small><strong>Default is 0 (infinity):</strong> Bot keeps buying/selling until balance
+                                    runs out or user stops manually.</small>
+                                <small><strong>For buy/sell combos:</strong> Pick a number >0. Bot will never do 2 buys
+                                    or 2 sells in a row.</small>
+                                <small><strong>Example:</strong> If you enter 2, bot will do 2 buy/sell combos then stop
+                                    automatically.</small>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5>💰 Trading Amounts</h5>
+                            <div class="form-group-row">
+                                <div class="form-group">
+                                    <label for="mm-virtual-amount">VIRTUAL Amount (V-):</label>
+                                    <div class="amount-input-group">
+                                        <input type="text" id="mm-virtual-amount" placeholder="Enter V-amount"
+                                            class="form-input">
+                                        <select id="mm-virtual-preset" class="form-select preset-select"
+                                            onchange="updateMMVirtualAmount()">
+                                            <option value="">Presets</option>
+                                            <option value="0.5%">0.5% (V-0.5%)</option>
+                                            <option value="1%">1% (V-1%)</option>
+                                            <option value="2%">2% (V-2%)</option>
+                                            <option value="5%">5% (V-5%)</option>
+                                            <option value="10">10 VIRTUAL (V-10)</option>
+                                            <option value="25">25 VIRTUAL (V-25)</option>
+                                            <option value="50">50 VIRTUAL (V-50)</option>
+                                            <option value="100">100 VIRTUAL (V-100)</option>
+                                        </select>
+                                    </div>
+                                    <small>V-1% = 1% of VIRTUAL balance, V-100 = 100 VIRTUAL tokens</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mm-token-amount">TOKEN Amount (T-):</label>
+                                    <div class="amount-input-group">
+                                        <input type="text" id="mm-token-amount" placeholder="Enter T-amount"
+                                            class="form-input">
+                                        <select id="mm-token-preset" class="form-select preset-select"
+                                            onchange="updateMMTokenAmount()">
+                                            <option value="">Presets</option>
+                                            <option value="1%">1% (T-1%)</option>
+                                            <option value="2%">2% (T-2%)</option>
+                                            <option value="5%">5% (T-5%)</option>
+                                            <option value="10%">10% (T-10%)</option>
+                                            <option value="50">50 tokens (T-50)</option>
+                                            <option value="100">100 tokens (T-100)</option>
+                                            <option value="500">500 tokens (T-500)</option>
+                                            <option value="1000">1000 tokens (T-1000)</option>
+                                        </select>
+                                    </div>
+                                    <small>T-2% = 2% of token balance, T-100 = 100 tokens</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5>📊 Trading Ranges</h5>
+                            <div class="form-group-row">
+                                <div class="form-group">
+                                    <label for="mm-lower-range">Lower Range (RL-):</label>
+                                    <div class="amount-input-group">
+                                        <input type="text" id="mm-lower-range" placeholder="Enter RL-range"
+                                            class="form-input">
+                                        <select id="mm-lower-preset" class="form-select preset-select"
+                                            onchange="updateMMLowerRange()">
+                                            <option value="">Presets</option>
+                                            <option value="1%">1% (RL-1%)</option>
+                                            <option value="2%">2% (RL-2%)</option>
+                                            <option value="3%">3% (RL-3%)</option>
+                                            <option value="5%">5% (RL-5%)</option>
+                                            <option value="10%">10% (RL-10%)</option>
+                                        </select>
+                                    </div>
+                                    <small>RL-3% = Buy when price drops 3% below base</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mm-higher-range">Higher Range (RH-):</label>
+                                    <div class="amount-input-group">
+                                        <input type="text" id="mm-higher-range" placeholder="Enter RH-range"
+                                            class="form-input">
+                                        <select id="mm-higher-preset" class="form-select preset-select"
+                                            onchange="updateMMHigherRange()">
+                                            <option value="">Presets</option>
+                                            <option value="1%">1% (RH-1%)</option>
+                                            <option value="2%">2% (RH-2%)</option>
+                                            <option value="3%">3% (RH-3%)</option>
+                                            <option value="5%">5% (RH-5%)</option>
+                                            <option value="10%">10% (RH-10%)</option>
+                                        </select>
+                                    </div>
+                                    <small>RH-3% = Sell when price rises 3% above base</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h5>⏰ Timing Settings</h5>
+                            <div class="form-group">
+                                <label for="mm-interval">Check Interval (I-):</label>
+                                <div class="amount-input-group">
+                                    <input type="text" id="mm-interval" placeholder="Enter minutes" class="form-input">
+                                    <select id="mm-interval-preset" class="form-select preset-select"
+                                        onchange="updateMMInterval()">
+                                        <option value="">Presets</option>
+                                        <option value="0.5">30 seconds (I-0.5)</option>
+                                        <option value="1">1 minute (I-1)</option>
+                                        <option value="2">2 minutes (I-2)</option>
+                                        <option value="5">5 minutes (I-5)</option>
+                                        <option value="10">10 minutes (I-10)</option>
+                                    </select>
+                                </div>
+                                <small>I-1 = Check every 1 minute, I-0.5 = Check every 30 seconds</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" id="mm-mode-chase" onchange="handleMMChaseToggle()">
+                                    <span>🎯 CHASE Mode</span>
+                                </label>
+                                <small>Dynamically updates base price at every interval for aggressive trading</small>
+                            </div>
+                        </div>
+
+                        <div id="mm-gas-settings" class="form-section" style="display: none;">
+                            <h5>⛽ Gas Settings</h5>
+                            <div class="form-group">
+                                <label for="mm-gas-price">Gas Price (gwei):</label>
+                                <div class="amount-input-group">
+                                    <input type="text" id="mm-gas-price" placeholder="0.02" class="form-input"
+                                        value="0.02">
+                                    <select id="mm-gas-price-preset" class="form-select preset-select"
+                                        onchange="updateMMGasPrice()">
+                                        <option value="">Presets</option>
+                                        <option value="0.01">0.01 gwei (Low)</option>
+                                        <option value="0.02">0.02 gwei (Default)</option>
+                                        <option value="0.03">0.03 gwei (Medium)</option>
+                                        <option value="0.05">0.05 gwei (High)</option>
+                                        <option value="0.1">0.1 gwei (Max)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('mmbot')">
+                                📊 Start Market Making Bot
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- JeetBot Form -->
+                    <div id="jeetbot-form" class="bot-form">
+                        <div class="form-group1">
+                            <label for="jeet-genesis">Genesis Ticker or Contract Address</label>
+                            <input type="text" id="jeet-genesis" placeholder="TICKER or 0x..." class="form-input"
+                                onchange="handleJeetGenesisChange()">
+                            <small>🔍 Enter Genesis Ticker (e.g., TICKER) or Genesis Contract Address (0x...). Bot will
+                                automatically detect the type.</small>
+                        </div>
+
+                        <div class="form-group1">
+                            <label>Trading Mode</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" id="jeet-mode-basic" checked
+                                        onchange="handleJeetModeChange('basic')">
+                                    <span>JEET</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" id="jeet-mode-rebuy-old" onchange="handleJeetModeChange('rebuy')">
+                                    <span>JEET and REBUY</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" id="jeet-mode-rebuy-new" onchange="handleJeetModeChange('rebuy-new')">
+                                    <span>REBUY</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="jeet-mode-explanation" class="form-group">
+                            <div id="jeet-basic-explanation" class="mode-explanation"
+                                style="display: flex; align-items: center; gap: 6px; padding: 4px 8px; background: var(--primary-cyan-alpha-10); border-radius: 4px; border-left: 2px solid var(--primary-cyan); margin-bottom: 16px;">
+                                <span style="color: var(--primary-cyan-light); font-size: 10px; font-weight: 500;">JEET Mode: Automatically detects and sells tokens from Genesis contract when they appear in your wallet. Pure sell-only strategy.</span>
+                            </div>
+                            <div id="jeet-rebuy-explanation" class="mode-explanation"
+                                style="display: flex; align-items: center; gap: 6px; padding: 4px 8px; background: var(--primary-cyan-alpha-10); border-radius: 4px; border-left: 2px solid var(--primary-cyan); margin-bottom: 16px; display: none;">
+                                <span style="color: var(--primary-cyan-light); font-size: 10px; font-weight: 500;">JEET and REBUY Mode: Sells detected tokens, then automatically rebuys at a specified percentage using VIRTUAL balance. Combines selling with strategic rebuying.</span>
+                            </div>
+                            <div id="jeet-rebuy-new-explanation" class="mode-explanation"
+                                style="background: rgba(0, 255, 255, 0.1); border: 1px solid #00ffff; border-radius: 6px; padding: 12px; display: none;">
+                                <p style="margin: 0; color: #00ffff; font-size: 14px;">
+                                    <strong>REBUY Mode:</strong> Pure rebuy strategy - monitors token price and buys
+                                    at target price using VIRTUAL balance. No selling, only strategic buying.
+                                </p>
+                            </div>
+                        </div>
+                        <div id="jeet-rebuy-options" class="form-section" style="display: none;">
+                            <h5>🔄 REBUY Settings</h5>
+                            <div class="form-group">
+                                <label>REBUY Percentage:</label>
+                                <div class="checkbox-group"
+                                    style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 8px;">
+                                    <label class="checkbox-option">
+                                        <input type="radio" name="jeet-rebuy-percentage-option" value="30%" checked
+                                            onchange="updateJeetRebuyPercentage()">
+                                        <span>30%</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="radio" name="jeet-rebuy-percentage-option" value="50%"
+                                            onchange="updateJeetRebuyPercentage()">
+                                        <span>50%</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="radio" name="jeet-rebuy-percentage-option" value="70%"
+                                            onchange="updateJeetRebuyPercentage()">
+                                        <span>70%</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="radio" name="jeet-rebuy-percentage-option" value="custom"
+                                            onchange="updateJeetRebuyPercentage()">
+                                        <span>Custom</span>
+                                    </label>
+                                </div>
+                                <input type="text" id="jeet-rebuy-percentage" placeholder="Enter custom percentage"
+                                    style="display: none;" class="form-input" pattern="^\d+%$"
+                                    title="Enter percentage with % symbol (e.g., 35%)">
+                                <small>🎯 Percentage of price decrease until rebuy</small>
+                            </div>
+                            <div class="form-group">
+                                <label>REBUY Interval:</label>
+                                <div class="checkbox-group"
+                                    style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 8px;">
+                                    <label class="checkbox-option">
+                                        <input type="radio" name="jeet-rebuy-interval-option" value="2" checked
+                                            onchange="updateJeetRebuyInterval()">
+                                        <span>2s</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="radio" name="jeet-rebuy-interval-option" value="1"
+                                            onchange="updateJeetRebuyInterval()">
+                                        <span>1s</span>
+                                    </label>
+                                    <label class="checkbox-option">
+                                        <input type="radio" name="jeet-rebuy-interval-option" value="0.5"
+                                            onchange="updateJeetRebuyInterval()">
+                                        <span>0.5s</span>
+                                    </label>
+                                </div>
+                                <small>⏰ Price check interval for REBUY monitoring</small>
+                            </div>
+                        </div>
+                        <div id="jeet-rebuy-new-options" class="form-section" style="display: none;">
+                            <h5>🎯 REBUY Settings (New REBUY Mode)</h5>
+                            <div class="form-group">
+                                <label for="jeet-rebuy-price">Target Price (VIRTUAL per token):</label>
+                                <input type="number" id="jeet-rebuy-price" placeholder="0.0022" step="0.000001" min="0.000001" class="form-input">
+                                <small>🎯 Price at which to buy the token (e.g., 0.0022 VIRTUAL per token)</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="jeet-rebuy-amount">VIRTUAL Amount per Wallet:</label>
+                                <input type="number" id="jeet-rebuy-amount" placeholder="98" step="0.01" min="0.01" class="form-input">
+                                <small>💰 Amount of VIRTUAL to spend per wallet when target price is reached</small>
+                            </div>
+                        </div>
+                        <div class="form-group2">
+                            <label for="jeet-delay">Start Delay (minutes)</label>
+                            <input type="number" id="jeet-delay" placeholder="0" min="0" max="1440" class="form-input">
+                            <small>⏰ Delay before starting the bot (D-X format)</small>
+                        </div>
+                        <!-- <div class="form-group">
+                            <label>Gas Price (gwei):</label>
+                            <div class="checkbox-group" style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 8px;">
+                                <label class="checkbox-option">
+                                    <input type="radio" name="jeet-gas-option" value="0.02" onchange="updateJeetGasPrice()">
+                                    <span>0.02</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="radio" name="jeet-gas-option" value="0.06" checked onchange="updateJeetGasPrice()">
+                                    <span>0.06</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="radio" name="jeet-gas-option" value="0.12" onchange="updateJeetGasPrice()">
+                                    <span>0.12</span>
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="radio" name="jeet-gas-option" value="custom" onchange="updateJeetGasPrice()">
+                                    <span>Custom</span>
+                                </label>
+                            </div>
+                            <input type="number" id="jeet-custom-gas" placeholder="Enter custom gas price" step="0.001" min="0.001" style="display: none;" class="form-input">
+                        </div> -->
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('jeetbot')">
+                                🚀 Start JeetBot
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- TransferBot Form -->
+                    <div id="transferbot-form" class="bot-form">
+                        <div class="form-group1">
+                            <label for="transfer-token">Token</label>
+                            <input type="text" id="transfer-token" placeholder="TRUST or 0x..." class="form-input">
+                            <small>Enter token symbol (TRUST, VIRTUAL) or contract address</small>
+                        </div>
+                        <div class="form-group1">
+                            <label for="transfer-amount">Amount</label>
+                            <input type="text" id="transfer-amount" placeholder="100 or 50%" class="form-input">
+                            <small>Fixed amount (100) or percentage (50%, 25%, 100%)</small>
+                        </div>
+                        <div class="form-group1">
+                            <label for="transfer-receiver">Receiver</label>
+                            <input type="text" id="transfer-receiver" placeholder="B2 or 0x... or contact name"
+                                class="form-input">
+                            <small>Wallet (B2), address (0x...), contact name, or ALL</small>
+                        </div>
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('transferbot')">
+                                💲 Start Transfer
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stargate Bridge Form -->
+                    <div id="stargate-form" class="bot-form">
+                        <div class="form-group">
+                            <label for="bridge-mode">Bridge Mode:</label>
+                            <select id="bridge-mode" class="form-select">
+                                <option value="">Forward (Solana → Base)</option>
+                                <option value="reverse-transfer">Reverse (Base → Solana)</option>
+                                <option value="balance">Check Solana Balance</option>
+                                <option value="reverse-balance">Check Base Balance</option>
+                                <option value="continuous">Continuous Bridge</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bridge-amount-min">Min Amount (optional):</label>
+                            <input type="text" id="bridge-amount-min" placeholder="1200" class="form-input">
+                            <small>Minimum VIRTUAL amount to transfer</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="bridge-amount-max">Max Amount (optional):</label>
+                            <input type="text" id="bridge-amount-max" placeholder="1250" class="form-input">
+                            <small>Maximum VIRTUAL amount to transfer</small>
+                        </div>
+                        <button class="btn btn-primary" onclick="runBot('stargate')">
+                            🌉 Start Bridge
+                        </button>
+                    </div>
+
+                    <!-- ContactBot Form -->
+                    <div id="contactbot-form" class="bot-form">
+                        <div class="form-group">
+                            <label for="contact-command">Command:</label>
+                            <select id="contact-command" class="form-select" onchange="handleContactCommand()">
+                                <option value="">Show Help</option>
+                                <option value="list">List All Contacts</option>
+                                <option value="add">Add New Contact</option>
+                                <option value="remove">Remove Contact</option>
+                                <option value="search">Search Contacts</option>
+                                <option value="export">Export to CSV</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="contact-name-group" style="display: none;">
+                            <label for="contact-name">Contact Name:</label>
+                            <input type="text" id="contact-name" placeholder="alice" class="form-input">
+                        </div>
+                        <div class="form-group" id="contact-address-group" style="display: none;">
+                            <label for="contact-address">Address:</label>
+                            <input type="text" id="contact-address" placeholder="0x..." class="form-input">
+                        </div>
+                        <div class="form-group" id="contact-description-group" style="display: none;">
+                            <label for="contact-description">Description (optional):</label>
+                            <input type="text" id="contact-description" placeholder="Main wallet" class="form-input">
+                        </div>
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('contactbot')">
+                                📞 Execute Command
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Token Detector Form -->
+                    <div id="detect-form" class="bot-form">
+                        <div class="form-group">
+                            <label for="detect-mode">Detection Mode:</label>
+                            <select id="detect-mode" class="form-select">
+                                <option value="">Full Detection</option>
+                                <option value="quick">Quick Summary</option>
+                            </select>
+                            <small>Full: Scan all wallets + pool analysis | Quick: Summary of configured tokens</small>
+                        </div>
+                        <div class="detector-info">
+                            <h4>🔍 What Token Detector Does:</h4>
+                            <ul>
+                                <li>📊 Scans ALL your wallets for tokens with balance >100 units</li>
+                                <li>🏊 Checks for Uniswap V2 pools vs VIRTUAL token</li>
+                                <li>💰 Calculates USD values and portfolio worth</li>
+                                <li>📋 Provides .env configuration for new tokens</li>
+                                <li>💾 Saves results to detected-tokens.json database</li>
+                            </ul>
+                        </div>
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('detect')">
+                                🔍 Start Detection
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ticker Search Form -->
+                    <div id="ticker-search-form" class="bot-form">
+                        <div class="form-group">
+                            <label for="search-symbol">Token Symbol:</label>
+                            <input type="text" id="search-symbol" placeholder="VIRTUAL, TRUST, VADER..."
+                                class="form-input">
+                            <small>Search for token information across all chains and update local database</small>
+                        </div>
+                        <div class="ticker-search-info">
+                            <h4>🔍 Ticker Search Features:</h4>
+                            <ul>
+                                <li>🌐 Searches across multiple chains (Base, ETH, Solana)</li>
+                                <li>💾 Updates base.json, eth.json, sol.json databases</li>
+                                <li>🔄 Provides fallback for trading bots when tokens not found</li>
+                                <li>📊 Shows pool addresses and trading information</li>
+                            </ul>
+                        </div>
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('ticker-search')">
+                                🔎 Search Token
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ticker Fetch Form -->
+                    <div id="ticker-fetch-form" class="bot-form">
+                        <div class="ticker-fetch-info">
+                            <h4>📥 Fetch All Token Data</h4>
+                            <p>Download complete token database from Virtuals.io API</p>
+                            <ul>
+                                <li>🔄 Full database sync from Virtuals.io API</li>
+                                <li>💾 Updates base.json, eth.json, sol.json files</li>
+                                <li>📊 Includes all tokens, pools, and trading data</li>
+                                <li>⏱️ May take several minutes to complete</li>
+                            </ul>
+                        </div>
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('ticker-fetch')">
+                                📥 Fetch All Data
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ticker Export Form -->
+                    <div id="ticker-export-form" class="bot-form">
+                        <div class="ticker-export-info">
+                            <h4>📤 Export Token Database</h4>
+                            <p>Export current token database to Excel format</p>
+                            <ul>
+                                <li>📊 Creates Excel file with all token data</li>
+                                <li>📈 Includes prices, market caps, and trading info</li>
+                                <li>💾 Exports from base.json, eth.json, sol.json</li>
+                                <li>📁 Saves to current directory</li>
+                            </ul>
+                        </div>
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('ticker-export')">
+                                📤 Export to Excel
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ticker Run All Form -->
+                    <div id="ticker-runall-form" class="bot-form">
+                        <div class="ticker-runall-info">
+                            <h4>🔄 Fetch All + Export</h4>
+                            <p>Complete token database refresh and Excel export</p>
+                            <ul>
+                                <li>📥 First: Downloads latest data from Virtuals.io API</li>
+                                <li>💾 Updates all local database files</li>
+                                <li>📤 Then: Exports everything to Excel format</li>
+                                <li>⏱️ Complete process may take 5-10 minutes</li>
+                            </ul>
+                        </div>
+                        <div class="bot-action-container">
+                            <button class="btn btn-primary bot-action-btn" onclick="runBot('ticker-runall')">
+                                🔄 Fetch All + Export
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Documentation Form (User Guide) -->
+                    <div id="documentation-form" class="bot-form">
+                        <!-- The documentation container will be created dynamically by JavaScript -->
+                        <div id="documentation-container-root">
+                            <div class="doc-loading">Loading documentation...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Output Console -->
+            <section class="console-section">
+                <div class="console-header">
+                    <h3>Console Output</h3>
+                    <div class="console-controls">
+                        <button class="btn btn-small" onclick="toggleLogView()">Detailed View</button>
+                        <button class="btn btn-small" onclick="clearConsole()">Clear</button>
+                        <button class="btn btn-small" onclick="saveOutput()">Save</button>
+                    </div>
+                </div>
+                <div id="console" class="console">
+                    <div class="console-welcome">
+                        <p>Console ready. Run a bot to see output here...</p>
+                    </div>
+                </div>
+                <div id="console-detailed" class="console console-detailed" style="display: none;">
+                    <div class="console-welcome">
+                        <p>Detailed console ready. Full logs will appear here...</p>
+                    </div>
+                </div>
+                
+                <!-- Token List Component -->
+                <section class="token-list-container" id="token-list-container">
+                    <!-- Token list content will be dynamically generated -->
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="balance-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>💰 Wallet Balances</h3>
+                <button class="modal-close" onclick="closeModal('balance-modal')">&times;</button>
+            </div>
+            <div id="balance-content" class="modal-body">
+                Loading balances...
+            </div>
+        </div>
+    </div>
+
+    <div id="config-modal" class="modal">
+        <div class="modal-content config-modal-content">
+            <div class="modal-header">
+                <h3>⚙️ Bot Configuration</h3>
+                <button class="modal-close" onclick="closeModal('config-modal')">&times;</button>
+            </div>
+            <div class="config-modal-body">
+                <!-- Sidebar Navigation -->
+                <div class="config-sidebar">
+                    <button class="config-tab active" data-tab="network">
+                        <span class="config-tab-icon">🔗</span>
+                        Network
+                    </button>
+                    <button class="config-tab" data-tab="rpc">
+                        <span class="config-tab-icon">🌐</span>
+                        RPC Providers
+                    </button>
+                    <!-- <button class="config-tab" data-tab="trading">
+                        <span class="config-tab-icon">🎯</span>
+                        Trading Config
+                    </button> -->
+                    <button class="config-tab" data-tab="wallets">
+                        <span class="config-tab-icon">🔐</span>
+                        Wallets
+                    </button>
+                    <!-- <button class="config-tab" data-tab="advanced">
+                        <span class="config-tab-icon">📊</span>
+                        Advanced
+                    </button> -->
+                </div>
+
+                <!-- Content Area -->
+                <div class="config-content">
+                    <form id="config-form" onsubmit="event.preventDefault(); saveConfig();">
+                        <!-- Network Settings Tab -->
+                        <div class="tab-content active" id="network-tab">
+                            <h3 class="tab-title">Network Settings</h3>
+                            <div class="form-section">
+                                <div class="form-group">
+                                    <label for="config-chain-id">Chain ID:</label>
+                                    <input type="text" id="config-chain-id" value="8453" readonly class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-virtual-address">VIRTUAL Token Address:</label>
+                                    <input type="text" id="config-virtual-address"
+                                        value="0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b" readonly class="form-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RPC Providers Tab -->
+                        <div class="tab-content" id="rpc-tab">
+                            <h3 class="tab-title">RPC Providers</h3>
+                            <div class="form-section">
+                                <h4>🔵 Primary Providers</h4>
+                                <div class="form-group">
+                                    <label for="config-rpc-url">Alchemy HTTP RPC:</label>
+                                    <input type="text" id="config-rpc-url"
+                                        placeholder="https://base-mainnet.g.alchemy.com/v2/your-api-key" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-ws-url">Alchemy WebSocket URL:</label>
+                                    <input type="text" id="config-ws-url"
+                                        placeholder="wss://base-mainnet.g.alchemy.com/v2/your-api-key" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-rpc-url-quicknode">⚡ QuickNode HTTP RPC:</label>
+                                    <input type="text" id="config-rpc-url-quicknode"
+                                        placeholder="https://your-endpoint.quiknode.pro/your-api-key/" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-ws-url-quicknode">⚡ QuickNode WebSocket URL:</label>
+                                    <input type="text" id="config-ws-url-quicknode"
+                                        placeholder="wss://your-endpoint.quiknode.pro/your-api-key/" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-rpc-url-infura">🟠 Infura HTTP RPC:</label>
+                                    <input type="text" id="config-rpc-url-infura"
+                                        placeholder="https://base-mainnet.infura.io/v3/your-project-id" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-ws-url-infura">🟠 Infura WebSocket URL:</label>
+                                    <input type="text" id="config-ws-url-infura"
+                                        placeholder="wss://base-mainnet.infura.io/ws/v3/your-project-id" class="form-input">
+                                </div>
+                                <small>💡 Configure multiple providers for automatic failover and load balancing. At least one HTTP RPC is required.</small>
+                            </div>
+                            <div class="form-section">
+                                <h4>🔗 Dynamic RPC Providers</h4>
+                                <div id="dynamic-rpcs-container">
+                                    <!-- Dynamic RPC entries will be populated here -->
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-outline" onclick="addDynamicRpc()">+ Add RPC Provider</button>
+                                    <small>📈 Add additional RPC providers for enhanced redundancy and load distribution</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trading Config Tab -->
+                        <!-- <div class="tab-content" id="trading-tab">
+                            <h3 class="tab-title">Trading Configuration</h3>
+                            <div class="form-section">
+                                <h4>🎯 Contract Settings</h4>
+                                <div class="form-group">
+                                    <label for="config-genesis-contract">Genesis Contract Address:</label>
+                                    <input type="text" id="config-genesis-contract" placeholder="0x..." class="form-input">
+                                    <small>For JeetBot contract detection</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-uniswap-router">Uniswap Router Address:</label>
+                                    <input type="text" id="config-uniswap-router"
+                                        value="0x4752ba5DBc23f44D87826276BF6Fd6b1C372aD24" class="form-input">
+                                    <small>Base Uniswap V2 Router</small>
+                                </div>
+                            </div>
+                            <div class="form-section">
+                                <h4>📊 Trading Parameters</h4>
+                                <div class="form-group">
+                                    <label for="config-slippage-basis-points">Slippage (Basis Points):</label>
+                                    <input type="number" id="config-slippage-basis-points" value="1000" min="100" max="5000" class="form-input">
+                                    <small>1000 = 10%, 500 = 5%, 1500 = 15%</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-num-loops">Number of Loops:</label>
+                                    <input type="number" id="config-num-loops" value="999999" min="1" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-amount-min">Min VIRTUAL Amount (% of balance):</label>
+                                    <input type="number" id="config-amount-min" value="0.1" min="0.01" max="100" step="0.01" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-amount-max">Max VIRTUAL Amount (% of balance):</label>
+                                    <input type="number" id="config-amount-max" value="1.0" min="0.01" max="100" step="0.01" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-slippage">Max Slippage (%):</label>
+                                    <input type="number" id="config-slippage" value="10" min="0.1" max="50" step="0.1" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-delay-min">Min Delay (seconds):</label>
+                                    <input type="number" id="config-delay-min" value="1" min="1" max="3600" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-delay-max">Max Delay (seconds):</label>
+                                    <input type="number" id="config-delay-max" value="90" min="1" max="3600" class="form-input">
+                                </div>
+                            </div>
+                            <div class="form-section">
+                                <h4>🌉 Stargate Bridge Settings</h4>
+                                <div class="form-group">
+                                    <label for="config-solana-rpc-url">Solana RPC URL:</label>
+                                    <input type="text" id="config-solana-rpc-url"
+                                        placeholder="https://api.mainnet-beta.solana.com" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-solana-virtual-token-mint">Solana VIRTUAL Token Mint:</label>
+                                    <input type="text" id="config-solana-virtual-token-mint"
+                                        placeholder="VIRTUAL token mint address" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-stargate-base-router">Stargate Base Router:</label>
+                                    <input type="text" id="config-stargate-base-router" placeholder="Stargate router on Base" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-stargate-solana-router">Stargate Solana Router:</label>
+                                    <input type="text" id="config-stargate-solana-router"
+                                        placeholder="Stargate router on Solana" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-min-virtual-transfer">Min VIRTUAL Transfer:</label>
+                                    <input type="number" id="config-min-virtual-transfer" placeholder="1200" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-max-virtual-transfer">Max VIRTUAL Transfer:</label>
+                                    <input type="number" id="config-max-virtual-transfer" placeholder="1250" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-transfer-interval-seconds">Transfer Interval (seconds):</label>
+                                    <input type="number" id="config-transfer-interval-seconds" value="300" min="60" class="form-input">
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- Wallets Tab -->
+                        <div class="tab-content" id="wallets-tab">
+                            <h3 class="tab-title">Wallet Management</h3>
+                            <div class="wallet-controls">
+                                <button class="btn btn-primary btn-small" onclick="addNewWallet()"><i class="fas fa-plus"></i> Add Wallet</button>
+                                <button class="btn btn-danger btn-small" onclick="deleteSelectedWallets()"><i class="fas fa-trash"></i> Delete Selected</button>
+                                <button class="btn btn-small" onclick="selectAllWallets()">Select All</button>
+                                <button class="btn btn-small" onclick="clearAllWallets()">Clear All</button>
+                            </div>
+                            <div class="wallet-grid" id="wallet-grid-settings">
+                                <!-- Wallets will be populated by JavaScript -->
+                            </div>
+                            <div class="wallet-summary">
+                                <span id="selected-wallet-count-settings">0 wallets selected</span>
+                                <span id="wallet-parallel-info-settings" style="display: none;">• All selected wallets run in parallel</span>
+                            </div>
+                        </div>
+
+                        <!-- Advanced Settings Tab -->
+                        <!-- <div class="tab-content" id="advanced-tab">
+                            <h3 class="tab-title">Advanced Settings</h3>
+                            <div class="form-section">
+                                <h4>🔍 Detection Settings</h4>
+                                <div class="form-group">
+                                    <label for="config-poll-interval-ms">Polling Interval (ms):</label>
+                                    <input type="number" id="config-poll-interval-ms" value="10" min="1" max="1000" class="form-input">
+                                    <small>JeetBot detection polling speed</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-use-websocket">Use WebSocket Detection:</label>
+                                    <select id="config-use-websocket" class="form-select">
+                                        <option value="true">Enabled (Recommended)</option>
+                                        <option value="false">Disabled</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="config-parallel-detection">Parallel Detection:</label>
+                                    <select id="config-parallel-detection" class="form-select">
+                                        <option value="true">Enabled (Faster)</option>
+                                        <option value="false">Disabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="form-actions">
+                            <button type="button" onclick="closeModal('config-modal')" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">💾 Save Configuration</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fsh-confirm-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚠️ FSH Warning</h3>
+            </div>
+            <div class="modal-body">
+                <p><strong>Are you sure you want to execute FSH?</strong></p>
+                <p>This action cannot be undone and will execute the FSH operation immediately.</p>
+            </div>
+            <div class="form-actions">
+                <button type="button" onclick="closeModal('fsh-confirm-modal')" class="btn btn-secondary">❌
+                    Cancel</button>
+                <button type="button" onclick="executeFSH()" class="btn btn-danger">✅ I Agree, Execute FSH</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Wallet Modal -->
+    <div id="add-wallet-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>➕ Add New Wallet</h3>
+                <button class="modal-close" onclick="closeModal('add-wallet-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-wallet-form" onsubmit="event.preventDefault(); submitAddWallet();">
+                    <div class="form-group">
+                        <label for="new-wallet-name">Wallet Name:</label>
+                        <input type="text" id="new-wallet-name" placeholder="Enter wallet name" class="form-input"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-wallet-key">Private Key:</label>
+                        <input type="password" id="new-wallet-key" placeholder="Enter private key (without 0x)"
+                            class="form-input" required
+                            oninput="detectWalletAddress('new-wallet-key', 'new-wallet-address', 'new-wallet-status')">
+                        <div id="new-wallet-status" class="address-detection-status" style="display: none;"></div>
+                        <div id="new-wallet-address" class="detected-address" style="display: none;">
+                            <label>🎯 Detected Address:</label>
+                            <span class="address-display"></span>
+                        </div>
+                        <small>⚠️ Keep your private key secure. Never share it with anyone.</small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline"
+                            onclick="closeModal('add-wallet-modal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Wallet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-wallet-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Edit Wallet</h3>
+                <button class="modal-close" onclick="closeModal('edit-wallet-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-wallet-form" onsubmit="event.preventDefault(); submitEditWallet();">
+                    <input type="hidden" id="edit-wallet-id">
+                    <div class="form-group">
+                        <label for="edit-wallet-name">Wallet Name:</label>
+                        <input type="text" id="edit-wallet-name" placeholder="Enter wallet name" class="form-input"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <span id="edit-wallet-address" class="wallet-address-display"></span>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline"
+                            onclick="closeModal('edit-wallet-modal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Master Password Modal -->
+    <div id="master-password-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔒 Master Password</h3>
+                <button class="modal-close" onclick="closeModal('master-password-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="master-password-form" onsubmit="event.preventDefault(); verifyMasterPassword();">
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="master-password">Enter Master Password:</label>
+                            <input type="password" id="master-password" class="form-input" autocomplete="current-password">
+                            <small>Enter your master password to access wallet private keys</small>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" onclick="closeModal('master-password-modal')" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">🔓 Unlock</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Master Password Modal -->
+    <div id="create-master-password-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔒 Create Master Password</h3>
+                <button class="modal-close" onclick="closeModal('create-master-password-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="secure-notice">
+                    <div class="notice-icon">🔐</div>
+                    <div class="notice-text">
+                        <h4>Secure Your Wallets</h4>
+                        <p>Create a strong master password to encrypt all your wallet private keys. This password will be required whenever you need to use your wallets for transactions.</p>
+                    </div>
+                </div>
+                <form id="create-master-password-form" onsubmit="event.preventDefault(); setupMasterPassword();">
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="new-master-password">New Master Password:</label>
+                            <input type="password" id="new-master-password" class="form-input" autocomplete="new-password">
+                            <div class="password-strength" id="password-strength-meter">
+                                <div class="strength-bar" id="strength-bar"></div>
+                            </div>
+                            <small id="password-strength-text">Enter a strong password with at least 12 characters</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-master-password">Confirm Master Password:</label>
+                            <input type="password" id="confirm-master-password" class="form-input" autocomplete="new-password">
+                            <small id="password-match-text"></small>
+                        </div>
+                    </div>
+                    <div class="password-requirements">
+                        <h4>Password Requirements:</h4>
+                        <ul>
+                            <li id="req-length">❌ At least 12 characters long</li>
+                            <li id="req-uppercase">❌ Contains uppercase letters</li>
+                            <li id="req-lowercase">❌ Contains lowercase letters</li>
+                            <li id="req-numbers">❌ Contains numbers</li>
+                            <li id="req-special">❌ Contains special characters</li>
+                        </ul>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" onclick="closeModal('create-master-password-modal')" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" id="create-password-submit" class="btn btn-primary" disabled>🔒 Create Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Wallet Confirmation Modal -->
+    <div id="delete-wallet-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚠️ Delete Wallet</h3>
+                <button class="modal-close" onclick="closeModal('delete-wallet-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="warning-message">
+                    <div class="warning-icon">⚠️</div>
+                    <div class="warning-text">
+                        <h4>Are you sure?</h4>
+                        <p>You are about to delete wallet <span id="delete-wallet-name" class="highlighted-text"></span>. This action cannot be undone.</p>
+                        <p>If you haven't backed up the private key elsewhere, you may lose access to funds in this wallet.</p>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" onclick="closeModal('delete-wallet-modal')" class="btn btn-secondary">Cancel</button>
+                    <button type="button" onclick="deleteWallet()" class="btn btn-danger">Yes, Delete Wallet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Add Wallet Modal -->    
+    <div id="add-wallet-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>👛 Add New Wallet</h3>
+                <button class="modal-close" onclick="closeModal('add-wallet-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="add-wallet-form" onsubmit="event.preventDefault(); addNewWallet();">
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="wallet-name">Wallet Name (Optional):</label>
+                            <input type="text" id="wallet-name" placeholder="My Trading Wallet" class="form-input">
+                            <small>A friendly name to identify this wallet</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="wallet-private-key">Private Key:</label>
+                            <div class="private-key-input-container">
+                                <input type="password" id="wallet-private-key" placeholder="Enter private key (with or without 0x prefix)" class="form-input">
+                                <button type="button" class="toggle-visibility" onclick="togglePrivateKeyVisibility()">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <small>Your private key will be encrypted and stored securely</small>
+                        </div>
+                        <div id="wallet-address-preview" class="address-preview" style="display: none;">
+                            <div class="preview-label">Derived Address:</div>
+                            <div id="derived-address" class="derived-address"></div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" onclick="closeModal('add-wallet-modal')" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">💾 Add Wallet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Wallet Modal -->
+    <div id="edit-wallet-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Edit Wallet</h3>
+                <button class="modal-close" onclick="closeModal('edit-wallet-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-wallet-form" onsubmit="event.preventDefault(); updateWallet();">
+                    <input type="hidden" id="edit-wallet-id">
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="edit-wallet-name">Wallet Name:</label>
+                            <input type="text" id="edit-wallet-name" placeholder="My Trading Wallet" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-wallet-address">Address:</label>
+                            <input type="text" id="edit-wallet-address" readonly class="form-input">
+                            <small>Address cannot be changed directly</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Wallet Status:</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="edit-wallet-enabled" checked>
+                                <label for="edit-wallet-enabled"></label>
+                                <span class="toggle-label">Enabled</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-danger" onclick="confirmDeleteWallet()">🗑️ Delete</button>
+                        <button type="button" onclick="closeModal('edit-wallet-modal')" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">💾 Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Documentation Modal -->
+    <div id="documentation-modal" class="modal">
+        <div class="modal-content documentation-content">
+            <div class="modal-header">
+                <h3>📚 TRUSTBOT User Guide</h3>
+                <button class="modal-close" onclick="closeModal('documentation-modal')">&times;</button>
+            </div>
+            <div class="doc-search-container">
+                <input type="text" id="doc-search" placeholder="Search documentation...">
+                <div class="doc-search-results"></div>
+            </div>
+            <div class="modal-body documentation-body">
+                <div class="doc-navigation">
+                    <button class="doc-nav-btn active" data-section="overview">Overview</button>
+                    <button class="doc-nav-btn" data-section="bots">Trading Bots</button>
+                    <button class="doc-nav-btn" data-section="setup">Setup</button>
+                    <button class="doc-nav-btn" data-section="architecture">Architecture</button>
+                    <button class="doc-nav-btn" data-section="security">Security</button>
+                    <button class="doc-nav-btn" data-section="terminology">Terminology</button>
+                    <button class="doc-nav-btn" data-section="examples">Examples</button>
+                </div>
+                <div class="doc-content">
+                    <div id="overview-section" class="doc-section active">
+                        <div id="overview-content"></div>
+                    </div>
+                    <div id="bots-section" class="doc-section">
+                        <div id="bots-content"></div>
+                    </div>
+                    <div id="setup-section" class="doc-section">
+                        <div id="setup-content"></div>
+                    </div>
+                    <div id="architecture-section" class="doc-section">
+                        <div id="architecture-content"></div>
+                    </div>
+                    <div id="security-section" class="doc-section">
+                        <div id="security-content"></div>
+                    </div>
+                    <div id="terminology-section" class="doc-section">
+                        <div id="terminology-content"></div>
+                    </div>
+                    <div id="examples-section" class="doc-section">
+                        <div id="examples-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Token Handling Scripts -->
+    <script src="token-persistence.js"></script>
+    <script src="token-selection.js"></script>
+    <script src="bid-token-selection.js"></script>
+    <script src="bid-handler.js"></script>
+
+    <!-- Gas Helper Script -->
+    <script src="gas-helper.js"></script>
+
+    <script src="renderer.js"></script>
+    <script src="token-list.js"></script>
+    <script src="wallet-management.js"></script>
+    <script src="config-tabs.js"></script>
+    <script src="sidebar-toggle.js"></script>
+    <script src="documentation.js"></script>
+</body>
+
+</html>

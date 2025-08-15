@@ -1,0 +1,140 @@
+/* NUCLEAR NAVIGATION OVERRIDE - MAXIMUM SPECIFICITY FOR LEFT SIDEBAR ONLY */
+/* This file loads LAST to ensure it overrides all other navigation styling */
+
+/* MAIN NAVIGATION BUTTONS - ULTRA-SPECIFIC SELECTORS */
+.sidebar .bot-nav .nav-btn,
+.sidebar .bot-nav .nav-btn.bid-mode-allowed,
+.sidebar .bot-nav .nav-btn:not(.bid-mode-allowed),
+.sidebar .nav-btn {
+    background: rgba(139, 157, 195, 0.15) !important;
+    border: 1px solid rgba(139, 157, 195, 0.4) !important;
+    color: #cccccc !important;
+    border-radius: 6px !important;
+    transition: all 0.3s ease !important;
+}
+
+/* HOVER STATE - FORCE OVERRIDE */
+.sidebar .bot-nav .nav-btn:hover,
+.sidebar .bot-nav .nav-btn.bid-mode-allowed:hover,
+.sidebar .bot-nav .nav-btn:not(.bid-mode-allowed):hover,
+.sidebar .nav-btn:hover {
+    background: rgba(139, 157, 195, 0.2) !important;
+    border-color: #8b9dc3 !important;
+    color: #ffffff !important;
+    transform: translateX(5px) !important;
+}
+
+/* ACTIVE STATE - FORCE OVERRIDE */
+.sidebar .bot-nav .nav-btn.active,
+.sidebar .bot-nav .nav-btn.bid-mode-allowed.active,
+.sidebar .bot-nav .nav-btn:not(.bid-mode-allowed).active,
+.sidebar .nav-btn.active {
+    background: rgba(139, 157, 195, 0.3) !important;
+    border-color: #8b9dc3 !important;
+    color: #8b9dc3 !important;
+}
+
+/* COLLAPSED STATE - ULTRA-SPECIFIC OVERRIDE */
+.left-collapsed .sidebar .bot-nav .nav-btn,
+.left-collapsed .sidebar .bot-nav .nav-btn.bid-mode-allowed,
+.left-collapsed .sidebar .bot-nav .nav-btn:not(.bid-mode-allowed),
+.left-collapsed .sidebar .nav-btn {
+    background: rgba(139, 157, 195, 0.1) !important;
+    border: 1px solid rgba(139, 157, 195, 0.3) !important;
+    color: #cccccc !important;
+}
+
+/* COLLAPSED HOVER STATE */
+.left-collapsed .sidebar .bot-nav .nav-btn:hover,
+.left-collapsed .sidebar .bot-nav .nav-btn.bid-mode-allowed:hover,
+.left-collapsed .sidebar .bot-nav .nav-btn:not(.bid-mode-allowed):hover,
+.left-collapsed .sidebar .nav-btn:hover {
+    background: rgba(139, 157, 195, 0.2) !important;
+    border-color: #8b9dc3 !important;
+    color: #ffffff !important;
+}
+
+/* COLLAPSED ACTIVE STATE */
+.left-collapsed .sidebar .bot-nav .nav-btn.active,
+.left-collapsed .sidebar .bot-nav .nav-btn.bid-mode-allowed.active,
+.left-collapsed .sidebar .bot-nav .nav-btn:not(.bid-mode-allowed).active,
+.left-collapsed .sidebar .nav-btn.active {
+    background: rgba(139, 157, 195, 0.3) !important;
+    border-color: #8b9dc3 !important;
+    color: #8b9dc3 !important;
+}
+
+/* TEXT ELEMENTS - FORCE OVERRIDE */
+.sidebar .bot-nav .nav-btn .text,
+.sidebar .bot-nav .nav-btn.bid-mode-allowed .text,
+.sidebar .bot-nav .nav-btn:not(.bid-mode-allowed) .text,
+.sidebar .nav-btn .text {
+    color: inherit !important;
+}
+
+/* Hide Transfer button (transferbot) */
+#transferbot {
+    display: none !important;
+}
+
+/* Hide REBUY (pure rebuy mode) checkbox and options */
+#jeet-mode-rebuy-new {
+    display: none !important;
+}
+
+/* Hide the parent label for the REBUY checkbox */
+label:has(#jeet-mode-rebuy-new) {
+    display: none !important;
+}
+
+/* Hide REBUY new options section */
+#jeet-rebuy-new-options {
+    display: none !important;
+}
+
+/* Hide REBUY new explanation */
+#jeet-rebuy-new-explanation {
+    display: none !important;
+}
+
+/* ICON ELEMENTS - MAINTAIN CONSISTENCY */
+.sidebar .bot-nav .nav-btn .icon,
+.sidebar .bot-nav .nav-btn .emoji-fallback,
+.sidebar .bot-nav .nav-btn .emoji-icon,
+.sidebar .nav-btn .icon,
+.sidebar .nav-btn .emoji-fallback,
+.sidebar .nav-btn .emoji-icon {
+    opacity: 0.9 !important;
+}
+
+/* SPECIFIC BUTTON OVERRIDES IF NEEDED */
+.sidebar .bot-nav .nav-btn[data-bot="buybot"],
+.sidebar .bot-nav .nav-btn[data-bot="sellbot"],
+.sidebar .bot-nav .nav-btn[data-bot="farmbot"],
+.sidebar .bot-nav .nav-btn[data-bot="mmbot"],
+.sidebar .bot-nav .nav-btn[data-bot="jeetbot"],
+.sidebar .bot-nav .nav-btn[data-bot="detect"],
+.sidebar .bot-nav .nav-btn[data-bot="ticker-search"],
+.sidebar .bot-nav .nav-btn[data-bot="ticker-fetch"],
+.sidebar .bot-nav .nav-btn[data-bot="ticker-export"],
+.sidebar .bot-nav .nav-btn[data-bot="ticker-runall"],
+.sidebar .bot-nav .nav-btn[data-bot="transferbot"],
+.sidebar .bot-nav .nav-btn[data-bot="wallettoken"],
+.sidebar .bot-nav .nav-btn[data-bot="bid-tokens"],
+.sidebar .bot-nav .nav-btn[data-bot="contactbot"],
+.sidebar .bot-nav .nav-btn[data-bot="documentation"] {
+    background: rgba(139, 157, 195, 0.1) !important;
+    border: 1px solid rgba(139, 157, 195, 0.3) !important;
+    color: #cccccc !important;
+}
+
+/* BID-MODE SPECIFIC OVERRIDES */
+.sidebar.bid-mode-active .bot-nav .nav-btn.bid-mode-allowed,
+.sidebar.bid-mode-active .nav-btn.bid-mode-allowed {
+    background: rgba(26, 26, 46, 0.8) !important; /* UNIFIED - Darker professional shade for bid-mode-active */
+    border-color: rgba(139, 157, 195, 0.4) !important;
+}
+
+/* ENSURE NO INTERFERENCE WITH OTHER UI ELEMENTS */
+/* This file only targets .sidebar .bot-nav .nav-btn and related elements */
+/* It will NOT affect other nav-btn elements outside the sidebar */

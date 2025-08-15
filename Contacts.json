@@ -1,0 +1,12 @@
+{
+  "lastUpdated": "2025-06-25T06:11:29.101Z",
+  "contacts": {
+    "test": {
+      "address": "0x30AE582D7db562c2E748942AD26DD76209A9973b",
+      "description": "Test wallet for trading",
+      "addedAt": "2025-06-25T06:04:18.763Z",
+      "lastUsed": null,
+      "usageCount": 0
+    }
+  }
+}

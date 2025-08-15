@@ -1,0 +1,1700 @@
+[
+  {
+    "symbol": "DARE",
+    "tokenAddress": "0x07321eAe7b7018A241c97C3E31f072098C3D5bc6",
+    "lpAddress": "0xC0F1ec856C4bE383655F6d756B3b0B48D9713b27",
+    "mcapInVirtual": 358158.0411899863
+  },
+  {
+    "symbol": "LEGEND",
+    "tokenAddress": "0xaAA9A3bC81FE7951fE0c3755837b40749ce0c894",
+    "lpAddress": "0x9FD6C27BCce733b996ef2E431b4a012c9bf5DA28",
+    "mcapInVirtual": 529200.8790089207
+  },
+  {
+    "symbol": "WACH",
+    "tokenAddress": "0xCC9AD02796deC5f4f0710df80C1f011AF85eb9E1",
+    "lpAddress": "0xeaDED6365E815609c53C1dAB5C035bC783B51F85",
+    "mcapInVirtual": 4486957.173454618
+  },
+  {
+    "symbol": "XKNOWN",
+    "tokenAddress": "0x719FB42a90C8b450663c27F218650949Fc38aC34",
+    "lpAddress": "0xc8e1C21Fe534A9300cef7EF4c0522CaD31665572",
+    "mcapInVirtual": 154447.77294206942
+  },
+  {
+    "symbol": "REI",
+    "tokenAddress": "0xDf0E063a72BF51768402ca7F7fE39CB4A4c6Ff43",
+    "lpAddress": "0x7f65a990fceaA15631f83D34EE5C10Eceed9f5E3",
+    "mcapInVirtual": 103091.85146269236
+  },
+  {
+    "symbol": "SOVRA",
+    "tokenAddress": "0x0C63A8C18dECa4F0687616e1774918546727833f",
+    "lpAddress": "0x4ABC5e8c4FEFCa5741be026f24150071aE2a7B15",
+    "mcapInVirtual": 127558.98345312155
+  },
+  {
+    "symbol": "SANG",
+    "tokenAddress": "0x4FF4d349CAa028BD069bbE85fA05253f96176741",
+    "lpAddress": "0xA8F9fF9837E74160Dc0C22c3f8a986e25b7A764B",
+    "mcapInVirtual": 170045.93368171022
+  },
+  {
+    "symbol": "ROOM",
+    "tokenAddress": "0x6555255b8dEd3c538Cb398d9E36769f45D7d3ea7",
+    "lpAddress": "0xB4c4e80abE1C807B8f30ac72c9420dD6acEcE8d5",
+    "mcapInVirtual": 723929.0326543718
+  },
+  {
+    "symbol": "CENTRY",
+    "tokenAddress": "0x80Ded22d9c6487181Ed74D0222Add805815e8dF4",
+    "lpAddress": "0xbCCFb65960F9648F4DAD7Be579590050DfeE385f",
+    "mcapInVirtual": 354755.1562668758
+  },
+  {
+    "symbol": "PILOT",
+    "tokenAddress": "0xd78d85F92D8562E764dBf91d461ab7348ff1c341",
+    "lpAddress": "0x8d0E9EE4976Ea7b724592Db3EB4248b79F24dB93",
+    "mcapInVirtual": 214218.72611310598
+  },
+  {
+    "symbol": "LUCIEN",
+    "tokenAddress": "0x444600d9fA140E9506D0cBC436Bffad3D5C3Febc",
+    "lpAddress": "0xC237a591e4142D93771F0020a147F73952D50737",
+    "mcapInVirtual": 1640467.5695366315
+  },
+  {
+    "symbol": "ELYTRA",
+    "tokenAddress": "0xCb119Fe73Cd3B4eB6bBf4C5ad0D6c788e3f80D54",
+    "lpAddress": "0xA177F9bD460AfB2bc36654D362B28BdD886102cb",
+    "mcapInVirtual": 213474.8116684018
+  },
+  {
+    "symbol": "AGENTIK",
+    "tokenAddress": "0x6f0b30c20a7f97D9A048b2e53ef6bdf511B59d3d",
+    "lpAddress": "0x8d7C37Ae54Ca62505125569F6A402879eb41ad16",
+    "mcapInVirtual": 89593.85100604196
+  },
+  {
+    "symbol": "MAFIA",
+    "tokenAddress": "0xD53DEB03D6De5F355C0B8de57B8F37179Ff60b81",
+    "lpAddress": "0x5fDF300e660CFFbfbA55915EEE30F665C8B7BcfE",
+    "mcapInVirtual": 105339.80944407653
+  },
+  {
+    "symbol": "PRIMO",
+    "tokenAddress": "0x0E15db17e1B2ed310c7201B0203D89b63f18eB53",
+    "lpAddress": "0x2bb923Ea6368835d0eE3f289b16148C7Bb4B21e0",
+    "mcapInVirtual": 249628.67869869448
+  },
+  {
+    "symbol": "BAIBY",
+    "tokenAddress": "0xc2704323A9f6b41B81a735CddD2CcB6273DA1197",
+    "lpAddress": "0xC4E0Cf614f7e738098b96A7eF7d2C59c02534eb6",
+    "mcapInVirtual": 224577.32796015008
+  },
+  {
+    "symbol": "MOXIE",
+    "tokenAddress": "0x2e285de4c868D225949DBdaf82Cd5E28497c52Bf",
+    "lpAddress": "0xC86CaFd6f64A2b5FAD1A483EdE0B773e8D1B3A47",
+    "mcapInVirtual": 540257.6285269276
+  },
+  {
+    "symbol": "DUCK",
+    "tokenAddress": "0x67446a5746b5F1Ce62D78f40f8C83dBa03AE3e15",
+    "lpAddress": "0xAfbACF2b65d890c37a90EF1d9728690AF4838ac1",
+    "mcapInVirtual": 197242.73514083645
+  },
+  {
+    "symbol": "NEMESIS",
+    "tokenAddress": "0x6D5d854063114C18daDc54fe052D75c1C4f34B46",
+    "lpAddress": "0x2C74170A3F7E6052A5341DA35139646c5f965dCC",
+    "mcapInVirtual": 441861.4199143791
+  },
+  {
+    "symbol": "MONO",
+    "tokenAddress": "0x1429FdA708EcCC3Bff2705F60dA4F17c5108d71b",
+    "lpAddress": "0x3361547180FD787E379e5c10b20Eb020540656b3",
+    "mcapInVirtual": 158393.05276819025
+  },
+  {
+    "symbol": "QUACK",
+    "tokenAddress": "0x36979060a142f97d7070a28D90B485f48E6CBD82",
+    "lpAddress": "0xd0068C8a026dfa0f18f2DB7022271163aE0A05A9",
+    "mcapInVirtual": 158136.90035314005
+  },
+  {
+    "symbol": "SS",
+    "tokenAddress": "0xa2d4Aec94BA0896d95ccC5451C9525b9ec0314De",
+    "lpAddress": "0xB9F7fb70030988A1b84Db0c0C8115B1637C003F2",
+    "mcapInVirtual": 103076.67398816932
+  },
+  {
+    "symbol": "ARTS",
+    "tokenAddress": "0x0A455245148FA54129d8266f5D8742DD0D05f0c6",
+    "lpAddress": "0xF05FfbF16cf44302E161A3078fc1Dd696d2280aE",
+    "mcapInVirtual": 183499.14247068868
+  },
+  {
+    "symbol": "0XMETA",
+    "tokenAddress": "0x19F6198ab8dA3ED783d6D83E63f57d560DA76C3C",
+    "lpAddress": "0x4985f774283678E7E2901EA1178e4F7b07b87a2e",
+    "mcapInVirtual": 156093.82194754636
+  },
+  {
+    "symbol": "OOPZ",
+    "tokenAddress": "0x8e665c3a3622D7C1bef8ED8FfD7317D3F6318e31",
+    "lpAddress": "0x4bDE3Ca2603BA4d3345F92Ee70Fea5Ba6DaB6a67",
+    "mcapInVirtual": 163235.72195431776
+  },
+  {
+    "symbol": "SIYA",
+    "tokenAddress": "0xbA91A189a713d3D0aaD89C8202fa6D98fD763820",
+    "lpAddress": "0x2F0abc43F1e4962934C4F93E1bbD843AcEf9874a",
+    "mcapInVirtual": 284871.1831796683
+  },
+  {
+    "symbol": "STA",
+    "tokenAddress": "0xa663bCE14c020b0F98bce41CC8B2Fb870C2bE351",
+    "lpAddress": "0xB71C761045F17F09370a7d7B37B80B75bBA407Aa",
+    "mcapInVirtual": 53095.91149492249
+  },
+  {
+    "symbol": "MOZAIQ",
+    "tokenAddress": "0xd4fF52fCe68876bF8D73a1e1bbA24e13D2CDAB43",
+    "lpAddress": "0xDAd76047BeCFfC0Ac47d4e06e38059a7d618A273",
+    "mcapInVirtual": 57344.511628144006
+  },
+  {
+    "symbol": "ERM",
+    "tokenAddress": "0x31F2bd5087B75e78C6ED69c097049E6350710243",
+    "lpAddress": "0xe17DA986E9E05bd907eeF048190511bA8b7D3D1B",
+    "mcapInVirtual": 344576.8618513049
+  },
+  {
+    "symbol": "ASYNC",
+    "tokenAddress": "0x02cb6968877A3a40A5D918af0AeCc3481bFc0434",
+    "lpAddress": "0xc60da16077cE201911A571ded824c3B7Eef1E35E",
+    "mcapInVirtual": 204886.4044484315
+  },
+  {
+    "symbol": "GOODX",
+    "tokenAddress": "0xfcc46B7fb7386388E779E7dD839cFAEd08B0bE91",
+    "lpAddress": "0xC7b13Aa467d66B4411c63180C64dc1F0D8818531",
+    "mcapInVirtual": 453131.93430233706
+  },
+  {
+    "symbol": "AIKAT",
+    "tokenAddress": "0xEa9820f1bdF0B226fa92FEe776212503Fb80b8c5",
+    "lpAddress": "0x841dEA28B7Ef4D1c8487D14D737c9f1E9AfA61E8",
+    "mcapInVirtual": 119129.00312598913
+  },
+  {
+    "symbol": "JARVIS",
+    "tokenAddress": "0x1E562BF73369D1d5B7E547b8580039E1f05cCc56",
+    "lpAddress": "0xb00C5f0f9AA2f95057d7b9A18AD7D2d18F6ff298",
+    "mcapInVirtual": 128142.49540927084
+  },
+  {
+    "symbol": "VGM",
+    "tokenAddress": "0x1Ca71f95B222B98C36a25f09E593b81d250B1F2E",
+    "lpAddress": "0xEC30fBeF77870b26620b062700D3522E1F20d0D9",
+    "mcapInVirtual": 147012.53656422193
+  },
+  {
+    "symbol": "CHAT4PT",
+    "tokenAddress": "0x44Aa51452b267C81ED99f0ef2bdc7c8ba47ee1a2",
+    "lpAddress": "0xfa1fE324a29A2a33c5865fe1A51CC5E218Ad5BE7",
+    "mcapInVirtual": 97671.52688641963
+  },
+  {
+    "symbol": "VDNT",
+    "tokenAddress": "0x623435EadF56A7f66726756b1B1A531349EE36A1",
+    "lpAddress": "0xE28731087CAE5E7224Cfcf06385Be759A7ae41f6",
+    "mcapInVirtual": 301650.346595709
+  },
+  {
+    "symbol": "SOLACE",
+    "tokenAddress": "0x7d6fcB3327D7E17095fA8B0E3513AC7A3564f5E1",
+    "lpAddress": "0x912567c105A172777e56411DD0AA4Acc10e628a9",
+    "mcapInVirtual": 1345216.939500015
+  },
+  {
+    "symbol": "ART",
+    "tokenAddress": "0x1D426e4a4889bFC0C6366640797Ab5AD3d65c0e2",
+    "lpAddress": "0xF94b945d612Be691D32d193568705066d8c8ED4d",
+    "mcapInVirtual": 74405.05937851407
+  },
+  {
+    "symbol": "BOOKIE",
+    "tokenAddress": "0x5D54725b48D2C8bAdf5F6046c71c3FfB73e26228",
+    "lpAddress": "0x9Aa02bE4019117cA28E0a64e63AE5aF7502A3f78",
+    "mcapInVirtual": 161305.34930250363
+  },
+  {
+    "symbol": "MAGNUS",
+    "tokenAddress": "0x93893878aF23F5c817FE338A6Dc7858D5d608BF7",
+    "lpAddress": "0xbf9d1c8D72665EE9053d8aEbfb53f02Eb6971C3F",
+    "mcapInVirtual": 67334.86605738991
+  },
+  {
+    "symbol": "STAKE",
+    "tokenAddress": "0xA9C8bDDcb113068713193D030abB86C7e8D1F5bB",
+    "lpAddress": "0x266649d1bD5F9F8c0e307B5d91BeA701Ccca616b",
+    "mcapInVirtual": 76375.24246939101
+  },
+  {
+    "symbol": "AIN",
+    "tokenAddress": "0xE47dD5197c5b5194cbE10b0333eD45570fB63eB0",
+    "lpAddress": "0x294799C95eab673d44C37E96CE350Ff9E66E6A70",
+    "mcapInVirtual": 113563.75102644449
+  },
+  {
+    "symbol": "MELLO",
+    "tokenAddress": "0x91B518dFBefe614AA14F38A6Bc02C7D22d6210cd",
+    "lpAddress": "0xbB892E7f6353528815CAd194e49EACd4bc6E6f90",
+    "mcapInVirtual": 108617.38731640224
+  },
+  {
+    "symbol": "NOTHING",
+    "tokenAddress": "0x410DbC28C81F26c9d026d2D91f27930Eef4d98b9",
+    "lpAddress": "0x07b0f733AC8a5aedCF62d5d31B9cb19792708C46",
+    "mcapInVirtual": 99341.75878460104
+  },
+  {
+    "symbol": "XOE",
+    "tokenAddress": "0xB455C23dEC25Fcf98E46e6A87Bf3De67134c6E7f",
+    "lpAddress": "0x84E2041617a464d58871a0E2100aDE30A32d4C9C",
+    "mcapInVirtual": 234251.39206911228
+  },
+  {
+    "symbol": "ROBOT",
+    "tokenAddress": "0x708c2B2eEb9578dFe4020895139E88F7654647Ff",
+    "lpAddress": "0xA2EBBCf1D9E291c0b9F46660f5FC2b3d25550330",
+    "mcapInVirtual": 642382.068614248
+  },
+  {
+    "symbol": "MNY",
+    "tokenAddress": "0x94E2d8aC549259A41984faB668f24D77aB6c8416",
+    "lpAddress": "0xD8FEaF37F07b5E3969169b8F421c795da03FA2dd",
+    "mcapInVirtual": 118006.78261361526
+  },
+  {
+    "symbol": "CAP",
+    "tokenAddress": "0xbfa733702305280F066D470afDFA784fA70e2649",
+    "lpAddress": "0xC19fb7AF58B67a072Ce23362c2fb1d61ebE6d4CA",
+    "mcapInVirtual": 84564.81026313324
+  },
+  {
+    "symbol": "NAINCY",
+    "tokenAddress": "0x0b1D66d2B66Eeca25Bc489062fDc362e3c214F81",
+    "lpAddress": "0x159f65C61463fb6f864D6c0CEB9251d32c836990",
+    "mcapInVirtual": 100901.00632940009
+  },
+  {
+    "symbol": "VIRGEN",
+    "tokenAddress": "0xbf8566956b4e2D8BEB90c4c19dbb8c67A9290C36",
+    "lpAddress": "0x6bAE74B0C3D94B279e04a370cD238D1AE67d2F78",
+    "mcapInVirtual": 2895791.936080732
+  },
+  {
+    "symbol": "MAMO",
+    "tokenAddress": "0x7300B37DfdfAb110d83290A29DfB31B1740219fE",
+    "lpAddress": "0xB7F51D070D4e05DbBc3A3697Aef5405E60e013F6",
+    "mcapInVirtual": 10188117.121226639
+  },
+  {
+    "symbol": "BIZ",
+    "tokenAddress": "0x8ac984F596BAc8197859434EcBab3e4595D7bb06",
+    "lpAddress": "0x3Dc5b23B6Dc86a6dA853259ee325c9147e1e2aD5",
+    "mcapInVirtual": 1328907.3448608685
+  },
+  {
+    "symbol": "MANEKI",
+    "tokenAddress": "0xe6ab1Cc1307b496748753E017f3dBB4D4378Ca3f",
+    "lpAddress": "0xD71a1325Ba0E88049482f65877BFcA5e22677ccB",
+    "mcapInVirtual": 224627.30816720496
+  },
+  {
+    "symbol": "ARBUS",
+    "tokenAddress": "0xBDC27118Ca76B375C6887b0ff068aFb03DfC21A0",
+    "lpAddress": "0x0dE3Ce0C23cEB3108CAb1472153fa5e2Eb674F46",
+    "mcapInVirtual": 1376138.6799121338
+  },
+  {
+    "symbol": "XLLM2",
+    "tokenAddress": "0xE4c94C578F53B58bdb580F15fC438Ff10C7343a8",
+    "lpAddress": "0x16A8397715156d362965D5127278B6Ba69330670",
+    "mcapInVirtual": 73278.50228027593
+  },
+  {
+    "symbol": "SUPER",
+    "tokenAddress": "0xC797Fc5Ca8eF5502aaa0307B9bfC45E877d6Caf5",
+    "lpAddress": "0xd08cE2533507CBE5b3b381081cf072575f3DFAC7",
+    "mcapInVirtual": 194712.68710963367
+  },
+  {
+    "symbol": "LING",
+    "tokenAddress": "0x3b6C04A43EB04F069FCabf755De0600a84104d49",
+    "lpAddress": "0x2b3449337703Ae77216c807F3BAe9a507a47AB75",
+    "mcapInVirtual": 67474.98920183274
+  },
+  {
+    "symbol": "AXR",
+    "tokenAddress": "0x58Db197E91Bc8Cf1587F75850683e4bd0730e6BF",
+    "lpAddress": "0x6D5dF1d155d79279ABD65A98815F7853C2b3a005",
+    "mcapInVirtual": 12680712.903224867
+  },
+  {
+    "symbol": "GPTWAI",
+    "tokenAddress": "0x034CCE0E39eDd8e6c8c1bB24d95CC17DeB7DC306",
+    "lpAddress": "0xcFbC02F3480fe2E9C7e1bAB9Da26d93d182B9826",
+    "mcapInVirtual": 206780.06147300135
+  },
+  {
+    "symbol": "ROAST",
+    "tokenAddress": "0x06fe6D0EC562e19cFC491C187F0A02cE8D5083E4",
+    "lpAddress": "0x4680Da938e5236D607462283C187FE8876c58960",
+    "mcapInVirtual": 172335.4357646375
+  },
+  {
+    "symbol": "WHIM",
+    "tokenAddress": "0x39a1CCE09D7354Ac2DB86c6b02924360a10E4793",
+    "lpAddress": "0xd2DAdbF085BE206b9B5579Fe545BAE174b6b587B",
+    "mcapInVirtual": 332418.5364441762
+  },
+  {
+    "symbol": "GLORIA",
+    "tokenAddress": "0x3B313f5615Bbd6b200C71f84eC2f677B94DF8674",
+    "lpAddress": "0x929401b2F3E9Ad2c84EeeE0a9F34486c53310D4C",
+    "mcapInVirtual": 568025.6868270012
+  },
+  {
+    "symbol": "MAYA",
+    "tokenAddress": "0x072915A43Ac255cdE1Fa568218E5b6b10d0CB10F",
+    "lpAddress": "0x01D3169C611aD081607Cc3A4A168e1e4a6a3497E",
+    "mcapInVirtual": 175341.77135282944
+  },
+  {
+    "symbol": "RWAI",
+    "tokenAddress": "0x9a574ea719B5E69df7C783D15C9514A26F3FaF53",
+    "lpAddress": "0x834792A20684ebfcF94513a40631f477495ce856",
+    "mcapInVirtual": 214803.90359262069
+  },
+  {
+    "symbol": "LIGHT",
+    "tokenAddress": "0xb8b7DfacEc9AbbcB0093f1344C41cb7263C4795A",
+    "lpAddress": "0x22D44448b06AE14C9f5cf9094621754c64c57c52",
+    "mcapInVirtual": 68381.6087815662
+  },
+  {
+    "symbol": "AISPACE",
+    "tokenAddress": "0x6C8c8e945C2CcB997B88259b2890Ba95f740dEbE",
+    "lpAddress": "0x753d63b651c462eE82Ebdb7A3bB0Bb686f4D5AC1",
+    "mcapInVirtual": 88074.4953210765
+  },
+  {
+    "symbol": "NYKO",
+    "tokenAddress": "0x129966d7D25775b57E3C5b13b2E1c2045FBc4926",
+    "lpAddress": "0xBf2351085f543FF623441c4330d145F94F513542",
+    "mcapInVirtual": 404450.4409852856
+  },
+  {
+    "symbol": "SHOW",
+    "tokenAddress": "0x096746e984e57ae9a2922a08Fc969BbE76963a72",
+    "lpAddress": "0x71bE568537579ea61d59Ff911611eeC93c43Ea89",
+    "mcapInVirtual": 693584.3019131982
+  },
+  {
+    "symbol": "TRIVI",
+    "tokenAddress": "0x0E6214f42992683A9177ce65D022f163D7bbd1D2",
+    "lpAddress": "0xb175e3bE477EE4A8558759889BA02FF0307c200b",
+    "mcapInVirtual": 133529.56956946844
+  },
+  {
+    "symbol": "BIOS",
+    "tokenAddress": "0x73Cb479f2ccf77BAd90BcDA91e3987358437240A",
+    "lpAddress": "0xC98223367DdCd80ca3f7368362Fa3ceC20B3264d",
+    "mcapInVirtual": 1831167.3917371756
+  },
+  {
+    "symbol": "WINT",
+    "tokenAddress": "0xdf2Fd7Dd75143a5010F145440d49748275e362a3",
+    "lpAddress": "0xa563eaaB67A3178aCD1D47A34F38370e4C4911C4",
+    "mcapInVirtual": 406561.40252452897
+  },
+  {
+    "symbol": "PTAI",
+    "tokenAddress": "0x61BebCe04b9bD9bc333127B7058bB5458b3421E6",
+    "lpAddress": "0xF2590Eb2726E8B5fbAEED4E488b04a68DAbB203e",
+    "mcapInVirtual": 127864.71045913255
+  },
+  {
+    "symbol": "TIAN",
+    "tokenAddress": "0x795ABCB2A9901F6EC510e18D40de08B84628c354",
+    "lpAddress": "0x7C78ae6ed2b800bc7855ab3EbB04A1a27901C6f8",
+    "mcapInVirtual": 464289.9866453799
+  },
+  {
+    "symbol": "WBUG",
+    "tokenAddress": "0x83f123d89C1B09Ec810E04f40537CF28BF360519",
+    "lpAddress": "0xED6b5332730eA1eEe8f7c4dd9953DBC2ce02335e",
+    "mcapInVirtual": 130453.87388918854
+  },
+  {
+    "symbol": "VIBES",
+    "tokenAddress": "0x33479A07983561AB5E27aD435399fc88159Eea8b",
+    "lpAddress": "0x4Fa38754C1C6D1B21d29e5a1b475F8C1CB0ac66F",
+    "mcapInVirtual": 604194.6546921951
+  },
+  {
+    "symbol": "HOLLY",
+    "tokenAddress": "0x567cb27139Bcc6C3617636CB4F882564a91D6E10",
+    "lpAddress": "0xbe5830E1E192150445fF224C0Ec8113d04F1085d",
+    "mcapInVirtual": 507770.1528591332
+  },
+  {
+    "symbol": "WAKEAI",
+    "tokenAddress": "0xabd3718656dBb5547d6B426c18b03848D18981Ea",
+    "lpAddress": "0x2A5Fb99E87E1A7E25480B6E2672557863de494f9",
+    "mcapInVirtual": 444383.910336249
+  },
+  {
+    "symbol": "SUEDE",
+    "tokenAddress": "0x40461291347e1eCbb09499F3371D3f17f10d7159",
+    "lpAddress": "0x4eaBEF20A411F88120C5bc46042e63C1C3225b92",
+    "mcapInVirtual": 1491592.563610484
+  },
+  {
+    "symbol": "FITRI",
+    "tokenAddress": "0x3fEf43aD3b310dff554D6eF1127ff37D69490f14",
+    "lpAddress": "0xcC9dB8C74791CC6025f016AdD463588f5E9196C6",
+    "mcapInVirtual": 135129.5085311776
+  },
+  {
+    "symbol": "DESSAI",
+    "tokenAddress": "0xB56B5269C03421765c28AA61037536Ea5690741c",
+    "lpAddress": "0x2eC65817E3d99Dd5EE25A5fA32E8BEa5f8eA6abd",
+    "mcapInVirtual": 392221.6587674266
+  },
+  {
+    "symbol": "NOODS",
+    "tokenAddress": "0x43e837F554Bf72177538D1bFB770cDE911d0b9Ee",
+    "lpAddress": "0xc2C6b04287D0969a7C0721800EcA7Fccc83602D5",
+    "mcapInVirtual": 803669.3043158483
+  },
+  {
+    "symbol": "SMITH",
+    "tokenAddress": "0x991ab5d07F28232EC1677e2c13239fB9b4B9CcB7",
+    "lpAddress": "0x9F2B57A82AE0F07591e5dbbC8b4e6AcC70A77503",
+    "mcapInVirtual": 112632.71941918162
+  },
+  {
+    "symbol": "PA",
+    "tokenAddress": "0x7a3aC87185ef1d6DB8D64013962cDF94281E3917",
+    "lpAddress": "0x0Ef305F13F22D640864e65B59b33FD976c4aa1dF",
+    "mcapInVirtual": 92626.85241299456
+  },
+  {
+    "symbol": "SWARM",
+    "tokenAddress": "0xea87169699dabd028a78d4B91544b4298086BAF6",
+    "lpAddress": "0xd420eD70750Fc9E0046E3b719F3e665a50941F6E",
+    "mcapInVirtual": 3996452.899059266
+  },
+  {
+    "symbol": "MBB",
+    "tokenAddress": "0x8a85ACeE3Fd2906d2C4Ca2De72Cdb60eF807b42a",
+    "lpAddress": "0x641fcee12BA38eB002E1495861EBCfb129294884",
+    "mcapInVirtual": 218096.86977567815
+  },
+  {
+    "symbol": "FUZZ",
+    "tokenAddress": "0xab9AFF6f259787300bBB16DD1fa0c622426Aa169",
+    "lpAddress": "0xD8D268919a5Cd51348f49b61671AD8209Ecf859b",
+    "mcapInVirtual": 485967.44773454126
+  },
+  {
+    "symbol": "WECO",
+    "tokenAddress": "0x99ba92234E0f0f7c2A16Cb087e7307ade19Cab1C",
+    "lpAddress": "0x437601fd624c04Bc0153Fb89ec2cB5856E672409",
+    "mcapInVirtual": 56421.82884522361
+  },
+  {
+    "symbol": "AIDOG",
+    "tokenAddress": "0x80394Ae69F14444605032a7f2D74c8AB7d16A51d",
+    "lpAddress": "0xDaAe8AfdEb4d31e4F6A0cDB9d490D4188d48C0A9",
+    "mcapInVirtual": 14103183.738660116
+  },
+  {
+    "symbol": "HANA",
+    "tokenAddress": "0x1cfc22860Fe46A622e3C2D1c9b036412467Ef4C9",
+    "lpAddress": "0x7B1b0E65E10AD90794Abf28db9F0a85edB8e6C8C",
+    "mcapInVirtual": 511985.9474616514
+  },
+  {
+    "symbol": "NKMIND",
+    "tokenAddress": "0xE031B0cD88Ca5d41D13Db188E4bfC6C0cFa3e5a2",
+    "lpAddress": "0x461AB62Cd027b5bdc68e2691970B04479cB545Af",
+    "mcapInVirtual": 55505.46677953357
+  },
+  {
+    "symbol": "BRICK",
+    "tokenAddress": "0xCd8e7362D67F47a853dc79E3F0A0a56cdC94C7C9",
+    "lpAddress": "0x82aA62e9597bE070E8DE1577cD9765E690FcE9AA",
+    "mcapInVirtual": 65689.65645723054
+  },
+  {
+    "symbol": "ARC",
+    "tokenAddress": "0x5A4342f4268a731F4459cD0be22d4744A86d635D",
+    "lpAddress": "0xb68f6d542BEe0e2a3A0Df0dE4A2d7D76fFFf924a",
+    "mcapInVirtual": 55746.84923258868
+  },
+  {
+    "symbol": "GEAI",
+    "tokenAddress": "0x4D6D977aacbAc1BdD603c7A759986F74A5DFaEF8",
+    "lpAddress": "0x60a0BBb7146899E846E891E065b8abF2Dba6E434",
+    "mcapInVirtual": 117821.6226006423
+  },
+  {
+    "symbol": "EVAL",
+    "tokenAddress": "0xdd78523217390bb0d49C7601e7e54C36d71622F0",
+    "lpAddress": "0x117BE5B9cC70EBCd99788094aad71c1C6dFCe54C",
+    "mcapInVirtual": 509463.67313399445
+  },
+  {
+    "symbol": "LYRA",
+    "tokenAddress": "0x99956f143dCCa77cdDf4B4b2a0fA4d491703244d",
+    "lpAddress": "0xB58Da63cC5758E3ca5581a25Fc3AA167cA9E3bc2",
+    "mcapInVirtual": 813688.8873918632
+  },
+  {
+    "symbol": "NEST",
+    "tokenAddress": "0x7614F61feD79e0FF47Aa0831D18d046Cb3ee0cE6",
+    "lpAddress": "0x130FbEeBcc53fe6Ea16fF58b8E81E3116C169fd5",
+    "mcapInVirtual": 722447.0669541333
+  },
+  {
+    "symbol": "RCAT",
+    "tokenAddress": "0x6AF73D4579c70A24D52e4F4b43EeCB2A75019F94",
+    "lpAddress": "0x98f3957F0D077d0fDc02CA694BA32aEA38151F47",
+    "mcapInVirtual": 145676.37165631956
+  },
+  {
+    "symbol": "COPE",
+    "tokenAddress": "0xf05f89D80Ab218Dcc092b5Af6dc4cb23c4D49c48",
+    "lpAddress": "0x587C00954B5811f2F9b4e8031384afd0dB727475",
+    "mcapInVirtual": 184083.6012480116
+  },
+  {
+    "symbol": "XAVI",
+    "tokenAddress": "0xACf80A4e55F5f28e1e7d261a221cA495DB5bcbB3",
+    "lpAddress": "0x5D8Ecf65E96E71BBFCEBad3214a03Eadd1e913eB",
+    "mcapInVirtual": 564315.4103055797
+  },
+  {
+    "symbol": "AETHER",
+    "tokenAddress": "0x5b5FA96a6a7520cdAcDAe1C75B76aD01963a89E9",
+    "lpAddress": "0xb6Cb2F51330fa710e77b10302793FA95f19A857C",
+    "mcapInVirtual": 217168216872826000
+  },
+  {
+    "symbol": "ETHY",
+    "tokenAddress": "0xC44141a684f6AA4E36cD9264ab55550B03C88643",
+    "lpAddress": "0x47006DCFC5AA14B577D3D2a0e39F72046bF4C054",
+    "mcapInVirtual": 508306.4777950645
+  },
+  {
+    "symbol": "JESSE",
+    "tokenAddress": "0x905E03d14D276805F108e1Cd28F13d42c578a840",
+    "lpAddress": "0x0B4bd10325f005cbED0255CBA1034ef3Ad7D0E3c",
+    "mcapInVirtual": 118769133814071650
+  },
+  {
+    "symbol": "POLIS",
+    "tokenAddress": "0x73Cde00aEB52Ed16A74C6e9D9e22514999c91d80",
+    "lpAddress": "0x7A52DC1457EA6f433eA1265cB554D97d5Dd47C6A",
+    "mcapInVirtual": 192860980708982720
+  },
+  {
+    "symbol": "NOSANA",
+    "tokenAddress": "0x2c4BCf691c24c0C01f20F43D6E77b8d55CB2E1f3",
+    "lpAddress": "0x086cB7829b9890A3C2C18B082Ff02F44f26BCD09",
+    "mcapInVirtual": 45631740905025490
+  },
+  {
+    "symbol": "VIRTU",
+    "tokenAddress": "0x4AeF236da0298224c2a5D8737429451b226f0E51",
+    "lpAddress": "0x3b9aAD206c115A78e6C731734080737165dA2f3D",
+    "mcapInVirtual": 130970490123370780
+  },
+  {
+    "symbol": "BENJI",
+    "tokenAddress": "0x85D60D41CCE59F7e1B07898FeCD7Dd44CE230212",
+    "lpAddress": "0xA6f6150d51C3aA3C6acA569f2fFFAfe79aAfbf7E",
+    "mcapInVirtual": 41870297685394640
+  },
+  {
+    "symbol": "STEVE",
+    "tokenAddress": "0x4d967d43B9Eb47f600719EBb0a31540AA5B4eDf6",
+    "lpAddress": "0x2Fc653F03D71552816Dc33df9022a9050CD7Dc3c",
+    "mcapInVirtual": 112387660908028400
+  },
+  {
+    "symbol": "SAI",
+    "tokenAddress": "0xcfF4429d8a323dd6B64B79a4460BEc6D531FcFA8",
+    "lpAddress": "0x47ba2b65168ce479850f4C313089dB066Ed27EdE",
+    "mcapInVirtual": 51971.9237487253
+  },
+  {
+    "symbol": "AGIXBT",
+    "tokenAddress": "0x81496F85AbaF8bd2e13D90379fdE86C533D8670D",
+    "lpAddress": "0xdb7a2D387F33D2Af138654403A773b085f41cb5e",
+    "mcapInVirtual": 98971.98711556545
+  },
+  {
+    "symbol": "VCTRAI",
+    "tokenAddress": "0x436b0Fe70C84402a531Fd0989ceeCF5cAa80244c",
+    "lpAddress": "0x5fED808DAa79eF261Eb6900faf3155f69e242C5D",
+    "mcapInVirtual": 259374.71729824206
+  },
+  {
+    "symbol": "SAMUR",
+    "tokenAddress": "0x057A8e580CA5aF933E6004C6711353fdeCc307F9",
+    "lpAddress": "0x7866F790202Fe997FE36560813887541605Bdac3",
+    "mcapInVirtual": 26237068.372079793
+  },
+  {
+    "symbol": "MONK",
+    "tokenAddress": "0x06ABb84958029468574B28b6e7792A770CcaA2F6",
+    "lpAddress": "0x781F810347e354Bb940B161a91809bdFE9A6EbB9",
+    "mcapInVirtual": 463696.6434795255
+  },
+  {
+    "symbol": "KEIRA",
+    "tokenAddress": "0x710eEc215b3bB653d42fC6e70E0531eA13F51A7A",
+    "lpAddress": "0x918e33aC7aaE680AC8523Ef3825e289c1D325CC9",
+    "mcapInVirtual": 89940.14674411251
+  },
+  {
+    "symbol": "EMILIA",
+    "tokenAddress": "0xe4A7b54c0A30Da69c04Dc54b89868C185Ff382bC",
+    "lpAddress": "0x19B8C5F74b6f37C3FF630a6E81eb0EdFDc563f5d",
+    "mcapInVirtual": 180311.1946266027
+  },
+  {
+    "symbol": "BYTE",
+    "tokenAddress": "0x2D90785E30A9df6ccE329c0171CB8Ba0f4a5c17b",
+    "lpAddress": "0xBC2f889b48301DEA827C2e77AB78f8F1Be8A77fB",
+    "mcapInVirtual": 4739632.569486343
+  },
+  {
+    "symbol": "DTRXBT",
+    "tokenAddress": "0x84A9AAE8FCc085DBE11524F570716D89b772f430",
+    "lpAddress": "0x8B1fAFbB9Bc8D546Cb9C990474EE46eeB61AD1EF",
+    "mcapInVirtual": 518497.4271976077
+  },
+  {
+    "symbol": "TRUMP.AI",
+    "tokenAddress": "0xfD43544c8e14F8feFA59FaCb71bc4aACD8160289",
+    "lpAddress": "0x47748675174dD108b3dCF31DDE256408D979e3c8",
+    "mcapInVirtual": 116702.62954854922
+  },
+  {
+    "symbol": "AIV",
+    "tokenAddress": "0x0d91EbB16291873A0c67158f578ec249F4321b49",
+    "lpAddress": "0x9614b1eA284824d61BAd91FAc2cB4165aE28b446",
+    "mcapInVirtual": 1868919.823374831
+  },
+  {
+    "symbol": "YOYO",
+    "tokenAddress": "0x5Fc190DEe34Cd5202CC571eC5C8EFD60a02Bd06d",
+    "lpAddress": "0x06e0D69281f428f5396B7cdA435bF44B0cF2B583",
+    "mcapInVirtual": 480811.9662527439
+  },
+  {
+    "symbol": "PRSNA",
+    "tokenAddress": "0x9F43d83950Ee387443d1F1765065d461E7EF42F3",
+    "lpAddress": "0x1d99C3393ea57BDD12D9754456bf435Ea719AF31",
+    "mcapInVirtual": 136190.3909809748
+  },
+  {
+    "symbol": "TIBBIR",
+    "tokenAddress": "0xA4A2E2ca3fBfE21aed83471D28b6f65A233C6e00",
+    "lpAddress": "0x0c3b466104545efa096b8f944c1e524E1d0D4888",
+    "mcapInVirtual": 72742320.4887971
+  },
+  {
+    "symbol": "KEVAI",
+    "tokenAddress": "0xF1E2eac1d39A1306965e504877E06b601E7EC31d",
+    "lpAddress": "0x486DaE9ACd594BD8E98F2b17c9251BCf13cA83a6",
+    "mcapInVirtual": 129217.57137505912
+  },
+  {
+    "symbol": "SYMP",
+    "tokenAddress": "0x504A26cf29674bC77A9341e73f88CCEcc864034c",
+    "lpAddress": "0xF22482a194b7Df297599a8d05c418C4F36CbE560",
+    "mcapInVirtual": 3833198.8120764606
+  },
+  {
+    "symbol": "JAIHOZ",
+    "tokenAddress": "0xe2816b27a5613B0Aaf5D6dafa80584156e2FB1B6",
+    "lpAddress": "0x834C9F4A421c6bbD00B8853507F620D67856F777",
+    "mcapInVirtual": 452212.83455561334
+  },
+  {
+    "symbol": "MAICRO",
+    "tokenAddress": "0xE74731ba9d1Da6Fd3C8c60Ff363732bebAc5273E",
+    "lpAddress": "0xd059DCE47dD853e71bd456a93A55FFEFD7AcA251",
+    "mcapInVirtual": 2038995.8386221048
+  },
+  {
+    "symbol": "AURA",
+    "tokenAddress": "0xdCaA5E062b2be18E52eA6ED7ba232538621dDC10",
+    "lpAddress": "0x49B346e9b19320E91Cf67cd48b9abC3300cAB138",
+    "mcapInVirtual": 373285.25644290267
+  },
+  {
+    "symbol": "AVRK",
+    "tokenAddress": "0xcaacD56d3d9b41D9D1272457e77F8ae510fdB688",
+    "lpAddress": "0x1aDab2d2574476Fc4F26F6DB7fBeD2261605F7a2",
+    "mcapInVirtual": 373242.00304122746
+  },
+  {
+    "symbol": "ACTUAL",
+    "tokenAddress": "0x6948de89F535ed4A3b07122Be0fE1Ae65d527c03",
+    "lpAddress": "0x69C1555e894D8E85d71b929687142148e123223B",
+    "mcapInVirtual": 51241.47023112805
+  },
+  {
+    "symbol": "BRAIN",
+    "tokenAddress": "0xCE1eAB31756A48915B7E7bb79C589835aAc6242d",
+    "lpAddress": "0xFBabdFB96900A6413455a4603324fA066F7f8a74",
+    "mcapInVirtual": 6441263.132449492
+  },
+  {
+    "symbol": "LZSEILOR",
+    "tokenAddress": "0x9bDE70Bad05b7D84dAc03024daE15aAce8C9CCa2",
+    "lpAddress": "0x7D170Cb921B47e74C6DE6D2bb8EB463a5C9DF3C5",
+    "mcapInVirtual": 213427.83274188524
+  },
+  {
+    "symbol": "SOVRN",
+    "tokenAddress": "0xCa4C2E10037ac1AF9f501eCB11A710776c87d2d5",
+    "lpAddress": "0x4170c14B1207C4409488Be2216e4D308bDB38549",
+    "mcapInVirtual": 5067014.859242475
+  },
+  {
+    "symbol": "HAI",
+    "tokenAddress": "0xeB70ce81f69Ec4b7e425E438e9f5FB78d95b50Ec",
+    "lpAddress": "0x27cebee16eF84950441f43b4947605de21b3d75e",
+    "mcapInVirtual": 156187.86020646244
+  },
+  {
+    "symbol": "BRAZA",
+    "tokenAddress": "0xBbf81dDC9fb90Cf9146B495ce0546a3460Fd1769",
+    "lpAddress": "0x1b7B707e4C35a82bcE51990d1265ef62BBb5F541",
+    "mcapInVirtual": 66137.81314540957
+  },
+  {
+    "symbol": "CV3AI",
+    "tokenAddress": "0x7f2C169E3243dA4e03acD95a45fbaa96Aaeb2803",
+    "lpAddress": "0x7741621582FEef03fC0CAf5633c97F3b8C614265",
+    "mcapInVirtual": 230781.84480441076
+  },
+  {
+    "symbol": "$HOUND",
+    "tokenAddress": "0xCCdf2cBabFa37878125Ab2d20BFcb9328B7aB3cF",
+    "lpAddress": "0x8d20C12E690db6beD5970f1D31872BF387fae743",
+    "mcapInVirtual": 51052.57065121508
+  },
+  {
+    "symbol": "LESTER",
+    "tokenAddress": "0x27d7959CF26135d8019D0f1E4a2280a8A355c4f5",
+    "lpAddress": "0xA03952F2Ca09f26FCa521C96d610d2Dee385fbFc",
+    "mcapInVirtual": 70338.01270469934
+  },
+  {
+    "symbol": "REKT",
+    "tokenAddress": "0xB3e3c89B8D9c88B1fe96856E382959eE6291ebbA",
+    "lpAddress": "0xb51d276418fCF23733877Fb0629617667C78C831",
+    "mcapInVirtual": 83726119.09847865
+  },
+  {
+    "symbol": "VOLTX",
+    "tokenAddress": "0x3F12D4607f9DF527C3bccBD16a70636a69c8FcF5",
+    "lpAddress": "0x733BFcE923cD3E326917B6d52B9012665548beCe",
+    "mcapInVirtual": 140570.18176138352
+  },
+  {
+    "symbol": "DTSI",
+    "tokenAddress": "0x4152e26FE66547415579E6205Aa6DFfacbA920Af",
+    "lpAddress": "0xba27a8A5dA46832b51F32Ade0A5a4A17737173a5",
+    "mcapInVirtual": 53887.991444346306
+  },
+  {
+    "symbol": "ADM",
+    "tokenAddress": "0x55fF51DA774b8ce0ed1ABAeD1CB76236bc6b2f16",
+    "lpAddress": "0x039F7c7E22c1C3Bba5e871029ca72d5DDeAd295B",
+    "mcapInVirtual": 2040819.2202670728
+  },
+  {
+    "symbol": "LEO",
+    "tokenAddress": "0xC8dB98437beD9943f11C5b31B645B07c0EfC17E0",
+    "lpAddress": "0xd3dF296442DE56F6b3a6565Cd765073C444dCEb6",
+    "mcapInVirtual": 178592.13343065378
+  },
+  {
+    "symbol": "EXMPLR",
+    "tokenAddress": "0xc95E16f99267D6112eaDAA46140Bea095c8c7bA5",
+    "lpAddress": "0x671fDf03b0998AC67Cd65d4f44CFA6F27B67abD8",
+    "mcapInVirtual": 76256.77726452105
+  },
+  {
+    "symbol": "SAGE ",
+    "tokenAddress": "0x8feeF9f0fFa554e51220A3391e7bb7560526a72A",
+    "lpAddress": "0x3160040975F3d76B64B77a35197f93f23E62b5C7",
+    "mcapInVirtual": 463854.6017306784
+  },
+  {
+    "symbol": "CROW",
+    "tokenAddress": "0x2EfB2110F352fC98Cd39dC041887C41766dBb301",
+    "lpAddress": "0xaD1b3f484ca3cf16ba88a822A1ACEcE467370441",
+    "mcapInVirtual": 157260.33131534173
+  },
+  {
+    "symbol": "CPA",
+    "tokenAddress": "0xd9DA0A693ea8057dCd97f02Df6c98951acF92EF7",
+    "lpAddress": "0xB60dA3B856Ea9D55828e8d08c10dA118856ade2c",
+    "mcapInVirtual": 91226.42098096183
+  },
+  {
+    "symbol": "FRED",
+    "tokenAddress": "0x3f9BEB72028F52111065c9e9F8684B91Ad19dE9d",
+    "lpAddress": "0x08DDD877a6FB75a3aD6F1e73995191a1FaF2C783",
+    "mcapInVirtual": 66592.14990974247
+  },
+  {
+    "symbol": "WIRE",
+    "tokenAddress": "0x0b3AE50BaBE7FFa4E1A50569ceE6bDEFd4ccAeE0",
+    "lpAddress": "0x8ffd336d457ADA04a2d5112F8f0C1F1A84577F2f",
+    "mcapInVirtual": 158868.89396244084
+  },
+  {
+    "symbol": "AYAZ",
+    "tokenAddress": "0x838bf1B44640665A34035CE954E929C8Fbff594A",
+    "lpAddress": "0xf79FA65619A65B819611BfDc1030660433d5dAed",
+    "mcapInVirtual": 245604.06750569528
+  },
+  {
+    "symbol": "JAVLIS",
+    "tokenAddress": "0x440D06b2aC83Ff743d9e149Be582A4b2b2c6adEc",
+    "lpAddress": "0x02F9a658c739E5BE1D38eFFF9D6dD2D80d765384",
+    "mcapInVirtual": 100963.39551344496
+  },
+  {
+    "symbol": "LUMI",
+    "tokenAddress": "0x077A32FdEF94dbB0Bdcf917450a9cAcF68ed236f",
+    "lpAddress": "0xEc5B59E25BfB7CBf8012Ec886D3c858dfb40B4B3",
+    "mcapInVirtual": 444119.02748339274
+  },
+  {
+    "symbol": "ATA",
+    "tokenAddress": "0xb18c609796848C723eAcaDC0BE5b71Ceb2289a48",
+    "lpAddress": "0xA0cB3Bc537aD05c1Ba37B31e087457CBd347B540",
+    "mcapInVirtual": 227643.9970118965
+  },
+  {
+    "symbol": "EFI",
+    "tokenAddress": "0x1371ef6153a681E4D2c8D9E20DeaB629aa06a8Dd",
+    "lpAddress": "0x8Bc8ECBb70A39e34b88F78fbEd0b6882B5C6298e",
+    "mcapInVirtual": 88455.79825692695
+  },
+  {
+    "symbol": "H1DR4",
+    "tokenAddress": "0x83AbFC4bEEC2ecf12995005d751a42df691c09c1",
+    "lpAddress": "0x90303be26C23d5C6f1ad264c193eb8AecFEe5c95",
+    "mcapInVirtual": 336608.282193363
+  },
+  {
+    "symbol": "SANTA",
+    "tokenAddress": "0x815269D17C10f0F3dF7249370E0c1B9efe781aa8",
+    "lpAddress": "0xc5D0305435B1389EdAe6babd9260b1a5c19f1606",
+    "mcapInVirtual": 1221022.580827505
+  },
+  {
+    "symbol": "SHEKEL",
+    "tokenAddress": "0x5F6a682A58854C7fBE228712aEEFfcCDe0008Ac0",
+    "lpAddress": "0xdEd72b40970af70720aDBc5127092f3152392273",
+    "mcapInVirtual": 3021756.2506318437
+  },
+  {
+    "symbol": "$PORT",
+    "tokenAddress": "0x4225658360C731a2b4c34555E45fea3b4b0181D5",
+    "lpAddress": "0xf22521fD2fe43aA2a405fbdC1A02361eCa978eb2",
+    "mcapInVirtual": 51665.23525279412
+  },
+  {
+    "symbol": "DGENAI",
+    "tokenAddress": "0x54eaf6Bb665565bb8897F9d7aD5B3818dEd143B4",
+    "lpAddress": "0x692c41D7885770C2E2bfe5286a3b38dc2f834192",
+    "mcapInVirtual": 83280.51931345585
+  },
+  {
+    "symbol": "GEKKO",
+    "tokenAddress": "0xf7b0dd0B642a6ccc2fc4d8FfE2BfFb0caC8C43C8",
+    "lpAddress": "0xf9E91661C101196146cB2Bf62f803d8eA6880A2E",
+    "mcapInVirtual": 424526.7394942665
+  },
+  {
+    "symbol": "TAOCAT",
+    "tokenAddress": "0x7A5f5CcD46EBd7aC30615836D988ca3BD57412b3",
+    "lpAddress": "0x4FC190E4DC19c8fcA5e05534d664C0aC3Fa1AaC5",
+    "mcapInVirtual": 609758.5681793382
+  },
+  {
+    "symbol": "J3FF",
+    "tokenAddress": "0x7C3AF051bfA356b8EaEe35C273a21aD9223EE994",
+    "lpAddress": "0x9Cb669752130C4c66E89c1dAcf2Eb1AF9Ef50F05",
+    "mcapInVirtual": 342966.3056140145
+  },
+  {
+    "symbol": "DORA",
+    "tokenAddress": "0x1E2093AB84768948C6176DB5aD98C909ce97F368",
+    "lpAddress": "0x36545F9123a356Faa3e0F3728F1e0c416814580a",
+    "mcapInVirtual": 422197.17977755034
+  },
+  {
+    "symbol": "KASU",
+    "tokenAddress": "0x784c5e60F13D201542BAd099d4e1f84d53f2B6C0",
+    "lpAddress": "0x3AAF50ED8c9F7Cf5f5E936647e2202D8DB93D6e1",
+    "mcapInVirtual": 68537.71749203825
+  },
+  {
+    "symbol": "1000X",
+    "tokenAddress": "0x352b850b733ab8baB50aED1Dab5D22E3186ce984",
+    "lpAddress": "0xC4BB445227c34Ceb0A0FF970a3e501BBEee8b68e",
+    "mcapInVirtual": 1343109.656020967
+  },
+  {
+    "symbol": "AIYP",
+    "tokenAddress": "0x919E43a2CcE006710090E64BDE9E01b38Fd7f32f",
+    "lpAddress": "0x8fe8145564FB355De820a04d1D5cdd84c360ed14",
+    "mcapInVirtual": 1182591.3233641218
+  },
+  {
+    "symbol": "H4CK",
+    "tokenAddress": "0x625Bb9Bb04BdcA51871ed6D07e2DD9034E914631",
+    "lpAddress": "0xd77AC3869977890BB4F41243206C2e15645d6b69",
+    "mcapInVirtual": 244469.63266138412
+  },
+  {
+    "symbol": "STIX",
+    "tokenAddress": "0xFD1013c72CBB0FFB920D347C5836bF88965D0D5e",
+    "lpAddress": "0x2400E1E764556E19e28bC9e3c685e4104bF152f8",
+    "mcapInVirtual": 16408228668660.285
+  },
+  {
+    "symbol": "AIXCB",
+    "tokenAddress": "0x76C71F1703Fbf19FFdcF3051E1e684Cb9934510f",
+    "lpAddress": "0x849736a0bd70ce72A0802A09FCE8DA9e2718583F",
+    "mcapInVirtual": 3831484.936809958
+  },
+  {
+    "symbol": "AVA",
+    "tokenAddress": "0x80CA9EdCE4583B8043351A1046F18244b24eF869",
+    "lpAddress": "0xEb0669D2622b840efF37E155eddd2AB3260C7940",
+    "mcapInVirtual": 195740.96703324973
+  },
+  {
+    "symbol": "$BRO",
+    "tokenAddress": "0xc796E499CC8f599A2a8280825d8BdA92F7a895e0",
+    "lpAddress": "0x932a65f4E1F12c969F0e0636097e094d69a89aC3",
+    "mcapInVirtual": 1805423.3841406924
+  },
+  {
+    "symbol": "BERT",
+    "tokenAddress": "0xDFc09CF4563A65b14dd08A93bE4AD454be985c8C",
+    "lpAddress": "0x87b3db30088bad5EE4a225C5A8477Dd95e2D91f3",
+    "mcapInVirtual": 55110.92307460382
+  },
+  {
+    "symbol": "AIBLKS",
+    "tokenAddress": "0x21a60b9a1a61411B51feA68A658C0D2551b98627",
+    "lpAddress": "0x789B4CEE49EA041920c0ae87cc261F24fC9f9E4D",
+    "mcapInVirtual": 55305.13863426978
+  },
+  {
+    "symbol": "$UP",
+    "tokenAddress": "0x9e271eC4D66F2b400Ad92De8a10e5c9C1914259C",
+    "lpAddress": "0xb1956bfC47665CAC7F186595b06B971c03A74aa2",
+    "mcapInVirtual": 145184.13336820193
+  },
+  {
+    "symbol": "$YUGO",
+    "tokenAddress": "0x21bB297a414e209A55a02e235234E1865eE3c373",
+    "lpAddress": "0xb08AD7551f042BbbaD9E8D2d22dF94A5e4390595",
+    "mcapInVirtual": 10000394370197.182
+  },
+  {
+    "symbol": "RORONX",
+    "tokenAddress": "0x40860F3cfb1ebF87079dA9dF6462D6056C5bd361",
+    "lpAddress": "0xe420fa6938DbedD0337CAeF90DB65D2B490E4b5d",
+    "mcapInVirtual": 55420.60024291978
+  },
+  {
+    "symbol": "SQDGN",
+    "tokenAddress": "0x4674F73545F1db4036250ff8C33A39ad1678D864",
+    "lpAddress": "0xAc534fc720feC7cd6b008765cd255074e0742152",
+    "mcapInVirtual": 4419994.126008055
+  },
+  {
+    "symbol": "DOBI",
+    "tokenAddress": "0x931eF8053E997b1Bab68d1E900a061305c0Ff4FB",
+    "lpAddress": "0xB8c614c8b5e18e7Dd3bFd94E0a3279C8D19B2c5e",
+    "mcapInVirtual": 111237.43747043972
+  },
+  {
+    "symbol": "NOMAI",
+    "tokenAddress": "0x4d70f1058b73198F12a76C193AEf5Db5dD75BabD",
+    "lpAddress": "0x53a4dD1eb0e48DC079bF44B4853b18ec5d89A315",
+    "mcapInVirtual": 729081.066525887
+  },
+  {
+    "symbol": "ACOLYT",
+    "tokenAddress": "0x79dacb99A8698052a9898E81Fdf883c29efb93cb",
+    "lpAddress": "0xfb2be279dCAFE6b5364e4C49A0A39aedf9c38ac7",
+    "mcapInVirtual": 4160951.6855838513
+  },
+  {
+    "symbol": "COINYE",
+    "tokenAddress": "0x0028e1E60167b48a938B785AA5292917E7eacA8b",
+    "lpAddress": "0x3c33d4cB91a89efaF8Dd57b0724d080F60440209",
+    "mcapInVirtual": 215627.9636783124
+  },
+  {
+    "symbol": "COCO",
+    "tokenAddress": "0x87EF669504f6679A17eD8eD344Cd44e1dC9352a7",
+    "lpAddress": "0x72bba1180196096E50AAa9f17383E64a2597fAE1",
+    "mcapInVirtual": 18995234129788.35
+  },
+  {
+    "symbol": "LOKY",
+    "tokenAddress": "0x1A3e429D2D22149Cc61e0f539B112a227c844aa3",
+    "lpAddress": "0xcD6efB9c75c79449f5A0D689c5528154D162762e",
+    "mcapInVirtual": 1736508.9988172052
+  },
+  {
+    "symbol": "ROCKET",
+    "tokenAddress": "0x0bF852Ebb243b963652b71103a2B97cf446F22C3",
+    "lpAddress": "0x1Ec9F9371118C2221a7B2e9e68fd0111EFFCdAeC",
+    "mcapInVirtual": 805042.2911375468
+  },
+  {
+    "symbol": "PH",
+    "tokenAddress": "0x6136494DB8A33707b2da36c2608994982EFA04C2",
+    "lpAddress": "0xdd47ea2268df00424927430a43BdD6d8a5720Ef1",
+    "mcapInVirtual": 518380.27791927406
+  },
+  {
+    "symbol": "LMNL",
+    "tokenAddress": "0xB7b4E8406673528E7dc3D787f3A42eb1Ebc01Cf6",
+    "lpAddress": "0xa26386286184Ff08162E7013431cce3aCb4912Db",
+    "mcapInVirtual": 137118.26945528726
+  },
+  {
+    "symbol": "SERAPH",
+    "tokenAddress": "0x4f81837C2f4A189A0B69370027cc2627d93785B4",
+    "lpAddress": "0xd549f81a8Cb75B1783edF0ac6C3fc4b26272BfB4",
+    "mcapInVirtual": 623994.0594771722
+  },
+  {
+    "symbol": "VISION",
+    "tokenAddress": "0x50d7A818E5e339ebE13b17E130B5B608fAC354DC",
+    "lpAddress": "0x4b595190691aeD7c0bC360056e7b5e4044DbE2bc",
+    "mcapInVirtual": 107706.10406188699
+  },
+  {
+    "symbol": "CERTAI",
+    "tokenAddress": "0xf5f2a79eECcF6e7F4C570c803F529930e29cc96B",
+    "lpAddress": "0xC46b07A9044b9c26A59807C0834FcCe8584a2637",
+    "mcapInVirtual": 868617.6384771845
+  },
+  {
+    "symbol": "CALLS",
+    "tokenAddress": "0xac743B05f5E590D9Db6a4192E02457838e4Af61e",
+    "lpAddress": "0x4263C4c282af1bF4aC52E6Aa2D6297b4943b0374",
+    "mcapInVirtual": 98089.8089969673
+  },
+  {
+    "symbol": "CORA",
+    "tokenAddress": "0x81cB4FDD3Edc6f5470b636D7e5914C3173110ca5",
+    "lpAddress": "0x01d5Bf76DDaE666c720048cc88dDE9fD030f4552",
+    "mcapInVirtual": 58682.12242334523
+  },
+  {
+    "symbol": "TOM",
+    "tokenAddress": "0xFC583AC655d34317D3bEa16445d1C1eCB1339331",
+    "lpAddress": "0x35304C91c01AB6973fF17f583c8d1471b2760b28",
+    "mcapInVirtual": 44492027347271.77
+  },
+  {
+    "symbol": "TEST",
+    "tokenAddress": "0xFc5e63F5d8A800C2737a88cc360907d199E145d0",
+    "lpAddress": "0x6A00d5Fb91A76a7bc1e5Af644434681e9C9778e7",
+    "mcapInVirtual": 22799638978418.445
+  },
+  {
+    "symbol": "POD",
+    "tokenAddress": "0x8e3bFf1Abf376f7a5D036cC3D85766394744dd04",
+    "lpAddress": "0xB036D38073CE3cAcbd26AB9000d3653dbb296Abe",
+    "mcapInVirtual": 101733.01765679724
+  },
+  {
+    "symbol": "TRUST",
+    "tokenAddress": "0xC841b4eaD3F70bE99472FFdB88E5c3C7aF6A481a",
+    "lpAddress": "0xd8c97c1202a2Dd1A0174a8F35dbCcb403Ccbb3F3",
+    "mcapInVirtual": 3218502.8958465676
+  },
+  {
+    "symbol": "G3",
+    "tokenAddress": "0xCF67815ccE72E682Eb4429eCa46843bed81Ca739",
+    "lpAddress": "0xA754F8b0e4b9B8F8e78ea4b1Ca252cC33a6D9606",
+    "mcapInVirtual": 1232447.3400110002
+  },
+  {
+    "symbol": "NFTXBT",
+    "tokenAddress": "0x08c81699F9a357a9F0d04A09b353576ca328d60D",
+    "lpAddress": "0xeecf7F2899470e48d0Bc440Ca2B280900429654A",
+    "mcapInVirtual": 331213.4638248479
+  },
+  {
+    "symbol": "BARD",
+    "tokenAddress": "0x3CaCf02a0e69d935b91C4447615C72e7B9DaDee0",
+    "lpAddress": "0xe926Daa9889b60F6350ED8Ca304a04d68BdC90e3",
+    "mcapInVirtual": 63267609811581.01
+  },
+  {
+    "symbol": "BCREAT",
+    "tokenAddress": "0xBb135D7EABBBA716a5Ea94F48175565eEC204838",
+    "lpAddress": "0x445302B7b2690f5d4807aBf66cBf9ceEE7D2A9b5",
+    "mcapInVirtual": 5019165.93382073
+  },
+  {
+    "symbol": "$MFER",
+    "tokenAddress": "0xE3086852A4B125803C815a158249ae468A3254Ca",
+    "lpAddress": "0xCaaBCB34b48D29631C2B2c1D947D669fD8117a51",
+    "mcapInVirtual": 113440410901.44763
+  },
+  {
+    "symbol": "KOLS",
+    "tokenAddress": "0x8d60dc144657aBD1e1EB6D448bfB8ECdFa7CaE8E",
+    "lpAddress": "0xb6cFfCB74C0867e126CC3d2c1E3bF290AfF705D5",
+    "mcapInVirtual": 154914.2212242469
+  },
+  {
+    "symbol": "VAIN",
+    "tokenAddress": "0x6C7ebB64E258F5712EEeC83CEaf41c3dcbb534B1",
+    "lpAddress": "0x80F9c726aa1c7E2be1Da941B4cd62F9Fc5e30429",
+    "mcapInVirtual": 70059.84049101679
+  },
+  {
+    "symbol": "MUSIC",
+    "tokenAddress": "0xc655C331d1Aa7f96c252F1f40CE13D80eAc53504",
+    "lpAddress": "0xCeF84D17513edE0Ab951F7BE9829E638a20BfbA4",
+    "mcapInVirtual": 1289977.4853417417
+  },
+  {
+    "symbol": "DEGENC",
+    "tokenAddress": "0x99298C6bE0e8ec9E56B7A2bE5850aBE1Fc109D94",
+    "lpAddress": "0xd2732189bCDcF500c392e21F916166F06D502D53",
+    "mcapInVirtual": 1264620.1378567792
+  },
+  {
+    "symbol": "ECHO",
+    "tokenAddress": "0x39fEd555fF57CB1154bFA6B1a2492BB914cE2D9B",
+    "lpAddress": "0x75cf1180CEb1cbEf7508A4a4A0DE940E2dB4f087",
+    "mcapInVirtual": 280404.90913274634
+  },
+  {
+    "symbol": "POLY",
+    "tokenAddress": "0x2676E4e0E2eB58D9Bdb5078358ff8A3a964CEdf5",
+    "lpAddress": "0xDe40586745a4e21efC0e8E0073cDd431aE88876a",
+    "mcapInVirtual": 955907.5529308184
+  },
+  {
+    "symbol": "NIKITA",
+    "tokenAddress": "0x698B49063C14D2753D23064fF891A876cfFa6fb5",
+    "lpAddress": "0xb9d782F2cFB755d47E2A5fa1350100c2CE3287eE",
+    "mcapInVirtual": 67337.79048541149
+  },
+  {
+    "symbol": "PAWSY",
+    "tokenAddress": "0x29e39327b5B1E500B87FC0fcAe3856CD8F96eD2a",
+    "lpAddress": "0x96FC64caE162C1Cb288791280c3Eff2255c330a8",
+    "mcapInVirtual": 50452.32275972004
+  },
+  {
+    "symbol": "TOSHI",
+    "tokenAddress": "0xAC1Bd2486aAf3B5C0fc3Fd868558b082a531B2B4",
+    "lpAddress": "0x368ea6F645DeB6D1a8692fE93C550D2834150865",
+    "mcapInVirtual": 2181099096751.0452
+  },
+  {
+    "symbol": "SPLOOT",
+    "tokenAddress": "0x3058e9b4Bfe397b81e2b91dA79CFF685d662049f",
+    "lpAddress": "0x4a12584234a5Ab0F242265cE6E7e98fC6059744f",
+    "mcapInVirtual": 594363.2822258271
+  },
+  {
+    "symbol": "RAIN",
+    "tokenAddress": "0x1ACa6687a9665Fb84DEb7E3801E8e7EcbA6ec6dE",
+    "lpAddress": "0x3FE11EE69cc0235fcB1Ad7Aa2AE4460F638d2006",
+    "mcapInVirtual": 82945.12888424528
+  },
+  {
+    "symbol": "GM",
+    "tokenAddress": "0x5D9c2457a10d455e0AD8e28e40CC28EACF27A06a",
+    "lpAddress": "0xe8872CdBB8AbA4d860eEdA093AE5075d0d1079C8",
+    "mcapInVirtual": 31878594447059.004
+  },
+  {
+    "symbol": "AIINU",
+    "tokenAddress": "0x8853F0c059C27527d33D02378E5E4F6d5afB574a",
+    "lpAddress": "0xd2d670C91d14d9AbcCA7749f65e3181b2124e12d",
+    "mcapInVirtual": 536473953105.1991
+  },
+  {
+    "symbol": "ZEBRO",
+    "tokenAddress": "0x792d0447Bf8b33158ca6e02D49755F2EAB65061b",
+    "lpAddress": "0x13c9F65639cFEDEFB1425EdBEe3527119a754b48",
+    "mcapInVirtual": 77336.94120774635
+  },
+  {
+    "symbol": "KEYCAT",
+    "tokenAddress": "0x9a26F5433671751C3276a065f57e5a02D2817973",
+    "lpAddress": "0x3b9DdaD7459fDFcFDb7117D53301182dD46b7042",
+    "mcapInVirtual": 295181385268.949
+  },
+  {
+    "symbol": "KOGIN",
+    "tokenAddress": "0x2941D526E22406c5d6F273E281899Cfc042a7332",
+    "lpAddress": "0xb11B1113eFC5CD2F554cf9824304060905699228",
+    "mcapInVirtual": 55640.67121218545
+  },
+  {
+    "symbol": "ATHENA",
+    "tokenAddress": "0x1a43287cBfCc5f35082e6E2Aa98e5B474FE7Bd4e",
+    "lpAddress": "0x8E6A3D89fb87Af555E994E609D19D2BdBC555e5c",
+    "mcapInVirtual": 992984.7298879642
+  },
+  {
+    "symbol": "WOKIE",
+    "tokenAddress": "0xBFEFd7A0eDa8a0feB06d0F52CF431AFd0F9b2Dd0",
+    "lpAddress": "0x6dB6986E1E7F0926bdD066dc8337Fb1E6463Fd34",
+    "mcapInVirtual": 55103.43909882466
+  },
+  {
+    "symbol": "WEBSIM",
+    "tokenAddress": "0xdaF3c78F165D26F821D3D39D6598a96E962b1508",
+    "lpAddress": "0xc478FE6b9C768a50a007687c03768CbacE6c39D4",
+    "mcapInVirtual": 116608.88565890338
+  },
+  {
+    "symbol": "WAI",
+    "tokenAddress": "0x6112b8714221bBd96AE0A0032A683E38B475d06C",
+    "lpAddress": "0xebf20fc41834CB9f279D6566F937B64cce7a5F1b",
+    "mcapInVirtual": 1071894.5822194528
+  },
+  {
+    "symbol": "VIRTU ",
+    "tokenAddress": "0x41e0fe1317Bd6E8944B037cd59b22D428c1434c2",
+    "lpAddress": "0xd9436bDAaf364181F1a39bB4C5e0a307C7353a01",
+    "mcapInVirtual": 181018.11591726696
+  },
+  {
+    "symbol": "GUAN",
+    "tokenAddress": "0xcc0adB6C436eB1f65B2f27733Bf926691b94c5f1",
+    "lpAddress": "0xff5BBda63e87210eDd0aB9Bc424086589d92E0aF",
+    "mcapInVirtual": 289809.6248612622
+  },
+  {
+    "symbol": "SAM",
+    "tokenAddress": "0xd0174292C4d6dfa7c4Ee20F371f3b6D401782cd5",
+    "lpAddress": "0xD72a82022134BA0d417c8D733139057e9bB9Ea3F",
+    "mcapInVirtual": 11467949.303680701
+  },
+  {
+    "symbol": "SAINT",
+    "tokenAddress": "0x7588880d9c78E81FAde7b7e8DC0781E95995a792",
+    "lpAddress": "0x93D65A935e7C0f1aa153780e0Db3AD08b9448C89",
+    "mcapInVirtual": 407681.3059157241
+  },
+  {
+    "symbol": "AIRENE",
+    "tokenAddress": "0x2eac9B08A4D86F347B9E856fB3EC082e61c76545",
+    "lpAddress": "0xdB1311761c3413c8e38bcc4C9Cf581283eb615eD",
+    "mcapInVirtual": 236067.75321008606
+  },
+  {
+    "symbol": "SISAI",
+    "tokenAddress": "0x5770350AAcf14aC444401Cb23520C26Cdcc818FC",
+    "lpAddress": "0xe15653e619B2B7196be1E747d09b52C88683D539",
+    "mcapInVirtual": 63542.66182239107
+  },
+  {
+    "symbol": "AIXBT",
+    "tokenAddress": "0x4F9Fd6Be4a90f2620860d680c0d4d5Fb53d1A825",
+    "lpAddress": "0x7464850CC1cFb54A2223229b77B1BCA2f888D946",
+    "mcapInVirtual": 82711815.76375648
+  },
+  {
+    "symbol": "VADER",
+    "tokenAddress": "0x731814e491571A2e9eE3c5b1F7f3b962eE8f4870",
+    "lpAddress": "0xA1ddDB82501E8fe2d92Ad0E8Ba331313f501de72",
+    "mcapInVirtual": 26846111.23226768
+  },
+  {
+    "symbol": "ALIEN",
+    "tokenAddress": "0xEe525a0AA76283f7fcaFBD5f9670e4290aeafd59",
+    "lpAddress": "0x89C3Ba1B621C4fe7eE68b6A9bf8a7C1fa76c4Bb6",
+    "mcapInVirtual": 38641123278702.27
+  },
+  {
+    "symbol": "365",
+    "tokenAddress": "0xb7f98FC88Ee269642092275b49e3Cc8Ca006852A",
+    "lpAddress": "0xB07e4B86152caeb23C5340392150C9724e18cd3b",
+    "mcapInVirtual": 82878304580176.19
+  },
+  {
+    "symbol": "RAONI",
+    "tokenAddress": "0xCC1c421767a6D9A9eFA99e81259f4b41d9EB8D40",
+    "lpAddress": "0x91Ae5bC07b0A8b75B0A34B47486184eD4DF2B3db",
+    "mcapInVirtual": 89957.71382095656
+  },
+  {
+    "symbol": "MAGATRUMPONBASE",
+    "tokenAddress": "0x62bf1d4ce8dFAb9ACc0E563983b7616E957F7B05",
+    "lpAddress": "0x8e4d29Df4bB7Ad1BCD286C7e3E8147871fB6bFc3",
+    "mcapInVirtual": 38953187606397.16
+  },
+  {
+    "symbol": "SEKOIA",
+    "tokenAddress": "0x1185cB5122Edad199BdBC0cbd7a0457E448f23c7",
+    "lpAddress": "0x9e046C706F9EA6cE8f9287d30a15438c07F42D64",
+    "mcapInVirtual": 1637530.9610353857
+  },
+  {
+    "symbol": "GLUTEU",
+    "tokenAddress": "0x06A63c498eF95AD1fA4FfF841955e512b4B2198a",
+    "lpAddress": "0xc8d41177c5a81390E955D06BE99520079B91ac9A",
+    "mcapInVirtual": 567621.2853727533
+  },
+  {
+    "symbol": "STELLA",
+    "tokenAddress": "0x9D407865d43d563bd67CD513D10d6f64610069dD",
+    "lpAddress": "0xDe6433cdE4fB704bc89e11Cf919057172a0Fb80E",
+    "mcapInVirtual": 83905053808648.05
+  },
+  {
+    "symbol": "MISATO",
+    "tokenAddress": "0x98f4779FcCb177A6D856dd1DfD78cd15B7cd2af5",
+    "lpAddress": "0x863E3A73C604D5038D41e2512272a73585f70017",
+    "mcapInVirtual": 387421.533901835
+  },
+  {
+    "symbol": "SYMMA",
+    "tokenAddress": "0x658C7c48c311CD8A14A8D4b2845AA846391aB402",
+    "lpAddress": "0x33c93c0BcAb88270F96Aec7651f6c03d3b7b8A73",
+    "mcapInVirtual": 86880.26126653825
+  },
+  {
+    "symbol": "VU",
+    "tokenAddress": "0x511ef9Ad5E645E533D15DF605B4628e3D0d0Ff53",
+    "lpAddress": "0xFa65a76655F3C0641B79e89dE3f51459c3727823",
+    "mcapInVirtual": 1939028.5744876703
+  },
+  {
+    "symbol": "CYI",
+    "tokenAddress": "0x49c86046903807d0a3193a221c1A3e1b1B6C9Ba3",
+    "lpAddress": "0x9d89c0cB73143927761534143747e26c47a1589F",
+    "mcapInVirtual": 610168.0584198876
+  },
+  {
+    "symbol": "STOIC",
+    "tokenAddress": "0x9b9981cb52E3f82FDDB6baD487603532E74a3235",
+    "lpAddress": "0x44f7d3c14987d0a96E68DBB850DFfE0485a51E99",
+    "mcapInVirtual": 138625.67468115446
+  },
+  {
+    "symbol": "LUNA",
+    "tokenAddress": "0x55cD6469F597452B5A7536e2CD98fDE4c1247ee4",
+    "lpAddress": "0xa8e64FB120CE8796594670BAE72279C8aA1e5359",
+    "mcapInVirtual": 10866867.135994678
+  },
+  {
+    "symbol": "ZACH",
+    "tokenAddress": "0x5654e6693f3E42041FcB5409b1AcF94073f5eB28",
+    "lpAddress": "0xd4D3839C2e03F2e40C4Ca6A64293e65D6d21B045",
+    "mcapInVirtual": 199245429114953.56
+  },
+  {
+    "symbol": "CHLOE",
+    "tokenAddress": "0xaA217128Adb6ee7Fb711d7d77Fa80F4012Afc758",
+    "lpAddress": "0xE0D9FBc2E6c150Bbfd8EAbD8df8F672A4b0f674C",
+    "mcapInVirtual": 53682.0341295605
+  },
+  {
+    "symbol": "CONVO",
+    "tokenAddress": "0xab964f7b7b6391bd6c4e8512eF00d01f255d9c0D",
+    "lpAddress": "0x3268d7eFA254E648Ffe968664E47Ca226E27CD04",
+    "mcapInVirtual": 2877845.4577535186
+  },
+  {
+    "symbol": "TSK",
+    "tokenAddress": "0xEe8099a19C27dcb05ead0b3D1c23bBF32D340f67",
+    "lpAddress": "0xC472A62AB49b9650F65AE79750568D446BD4e8aA",
+    "mcapInVirtual": 78252.64379530388
+  },
+  {
+    "symbol": "MONEY",
+    "tokenAddress": "0x08ecc147BA8331DF2848011dD816935f98E271Ee",
+    "lpAddress": "0x1c8abe211C183a00D115D99154b7f62B47a34f52",
+    "mcapInVirtual": 539000
+  },
+  {
+    "symbol": "BARVIS",
+    "tokenAddress": "0x9BbB482C3D472826054DBE427C9e36eAc137FAFB",
+    "lpAddress": "0xfa7409933cb080C0c4Ab091ba811e1AE140EaE52",
+    "mcapInVirtual": 242470.04439767907
+  },
+  {
+    "symbol": "FETCHR",
+    "tokenAddress": "0x7980ea8E4068C94Ee92c18D8F2749F6Cf6F94D03",
+    "lpAddress": "0x9f15C65B3Cb880AeC83fcEEb3B152E516595CFCF",
+    "mcapInVirtual": 65420.66681229852
+  },
+  {
+    "symbol": "EVA",
+    "tokenAddress": "0xf6DA29A60E17081d80DA142448dE4438b74d20f9",
+    "lpAddress": "0x24502e96EcE2Ae1922B926262e1417BF1746BB72",
+    "mcapInVirtual": 1106000
+  },
+  {
+    "symbol": "SPRDD",
+    "tokenAddress": "0xAC0E8f7e3dF7239f5D0f0AE55cf85962d007Cc5F",
+    "lpAddress": "0x4b1baD970FB7060d940f4C10f52b1f9a48d5E87D",
+    "mcapInVirtual": 499000
+  },
+  {
+    "symbol": "BUIDL",
+    "tokenAddress": "0x4b73c08ea7BA32593e8CA02c6910C6447E6F6642",
+    "lpAddress": "0xE3315b12FDc13944565Cc856095edBE0e82fdF5c",
+    "mcapInVirtual": 450000
+  },
+  {
+    "symbol": "LILY",
+    "tokenAddress": "0xbf8ad72176bE24F2FFE80a1c6ad0faBe71799FCB",
+    "lpAddress": "0xCe78A0f17B9cC018C5F445Fb98418ecd77154919",
+    "mcapInVirtual": 320000
+  },
+  {
+    "symbol": "KBT",
+    "tokenAddress": "0x3a2459C39f50406f40D28Db8d823433df0352b11",
+    "lpAddress": "0x36eF540727D3283DC70743a587FdD6DcA53A179A",
+    "mcapInVirtual": 191804.54480260386
+  },
+  {
+    "symbol": "DYNA",
+    "tokenAddress": "0xFF89b7cdAC2C74eF228e7667c2fEdEB57DA39c81",
+    "lpAddress": "0xbaee98f68797251DD835dB3d079204bAfbc1940f",
+    "mcapInVirtual": 231000
+  },
+  {
+    "symbol": "PREDI",
+    "tokenAddress": "0xaeA742f80922f7C94B8FD91686c9dFbDFE90d9E6",
+    "lpAddress": "0xe10604aD5BFCA65F17A25747133A40eE3EA608a7",
+    "mcapInVirtual": 185000
+  },
+  {
+    "symbol": "DESS",
+    "tokenAddress": "0xD901b38bdD0CD7a8800575cD505D65428A48bA38",
+    "lpAddress": "0x8fC870c5A91D8D2eA61BD7B44b59892914519104",
+    "mcapInVirtual": 910000
+  },
+  {
+    "symbol": "AIAPE",
+    "tokenAddress": "0xE7960463e36279861494Cdc18c89BF4a9B19760F",
+    "lpAddress": "0x8A221E09e272a50613dE59e51193B0D9145cC2d1",
+    "mcapInVirtual": 209559.25046851425
+  },
+  {
+    "symbol": "SRV",
+    "tokenAddress": "0x6196f2cB9dD5c7E5927A2bEEa7849C175fbeA344",
+    "lpAddress": "0x17dd4D31F2be68FABd4d986a8A3Eeb3bf70e3f0a",
+    "mcapInVirtual": 65624.88572332852
+  },
+  {
+    "symbol": "REALMINT",
+    "tokenAddress": "0x8F199c414e704314F96297Be7c551f44082d2184",
+    "lpAddress": "0xC220BC27FDFafb74dE9b211759f563b2D545b0d4",
+    "mcapInVirtual": 116386.44923090264
+  },
+  {
+    "symbol": "SKILL",
+    "tokenAddress": "0xA2B9699F31Cd916CEf2C8f4c0a0ef1952d300CD5",
+    "lpAddress": "0x42C13D37aEBa1adDCB08c9a8b403e3aF7fa2dB87",
+    "mcapInVirtual": 90209.71772202701
+  },
+  {
+    "symbol": "CRDAO",
+    "tokenAddress": "0x64844b1FbA888f5284d12258bb034B0f7c3c8542",
+    "lpAddress": "0xb549771D1aae2Bdbc6491e9da254d360CE78f32B",
+    "mcapInVirtual": 363000
+  },
+  {
+    "symbol": "GUARD",
+    "tokenAddress": "0xb50AFD03B207BB5fED906ceaCD9389E454A00A66",
+    "lpAddress": "0xfd35Cb576988A36584A957F088Aa1dB2E5214FC7",
+    "mcapInVirtual": 278444.99451035797
+  },
+  {
+    "symbol": "AIBRK",
+    "tokenAddress": "0xD0924FA4C6BA194294a414d0fB826739deD98b24",
+    "lpAddress": "0xc45c4415062447870cF469c4BBdD26a9e1094ebe",
+    "mcapInVirtual": 558000
+  },
+  {
+    "symbol": "BUY",
+    "tokenAddress": "0xDdfEf7373b795A62569E3A58AE52ED4bEa5e1275",
+    "lpAddress": "0x179ab9616D75CDCb4D8817aD6581Bd3A25066009",
+    "mcapInVirtual": 122000
+  },
+  {
+    "symbol": "ZAIA",
+    "tokenAddress": "0x4fE0dEc6790f5F380b671142ad229219C16afE0e",
+    "lpAddress": "0x57EAf9b645E1c1425F3CEE3cE27C743A7cAfE029",
+    "mcapInVirtual": 741740.7323299624
+  },
+  {
+    "symbol": "ADV",
+    "tokenAddress": "0x3A6d6c9489D67c491BDe002EeCb8f5fb46309d83",
+    "lpAddress": "0x63f532bE943113821C1EB03E1B48147f799a0D52",
+    "mcapInVirtual": 104788.53344120814
+  },
+  {
+    "symbol": "VPAY",
+    "tokenAddress": "0x98aC5B33A4Ef1151f138941c979211599c2fF953",
+    "lpAddress": "0xDEb75B16307E4c3Ddb6f6731C303E15CC16A8E82",
+    "mcapInVirtual": 524000.00000000006
+  },
+  {
+    "symbol": "FLYTE",
+    "tokenAddress": "0x34c4a0056faD621C723433A473140Aadc8998A8b",
+    "lpAddress": "0xE340aeD7Abf679b379b0d89C4514a7bDF5AD5455",
+    "mcapInVirtual": 896169.1773120944
+  },
+  {
+    "symbol": "PLSTK",
+    "tokenAddress": "0xbB63EB73EC6465Cf8fE7Cc5e3C60fD95576b7810",
+    "lpAddress": "0xF567d80A3F1D9A2AA5aD6c92d8CA078C17CA60a1",
+    "mcapInVirtual": 101000
+  },
+  {
+    "symbol": "ARVOS",
+    "tokenAddress": "0x1868C380E1D7883126dFe6C5ab2908FB2F944974",
+    "lpAddress": "0xF5A85420e4ffC5b464321264d253dd05F9b45a55",
+    "mcapInVirtual": 152155.60981377284
+  },
+  {
+    "symbol": "$TRUE",
+    "tokenAddress": "0xbe488530F9e00609D283A6EB2b8E6C9f02E63314",
+    "lpAddress": "0x8F7ec544D9E2eB0c3A8a25a98b07FD7DdB6E869a",
+    "mcapInVirtual": 119966.9618018644
+  },
+  {
+    "symbol": "AWAI",
+    "tokenAddress": "0x5081dE08282c67e5F5d01073a85E8f992A41d780",
+    "lpAddress": "0x3a9d68999992639A38A7b70B7B554a25e47BE306",
+    "mcapInVirtual": 849000
+  },
+  {
+    "symbol": "CANZA",
+    "tokenAddress": "0x0CE5D39cB8db5E192cda1cc3dC883f7Be940f3c7",
+    "lpAddress": "0xF3852E31205Cc9DAD630Ed6B33Ed660633aeC6Cb",
+    "mcapInVirtual": 152154.82300046532
+  },
+  {
+    "symbol": "QUANT",
+    "tokenAddress": "0xC2Fe3206B74d943cEADC187dA6c5DbD1f63E2765",
+    "lpAddress": "0x463D423526b336D856BA859AED4f746D14228949",
+    "mcapInVirtual": 379956.9114357507
+  },
+  {
+    "symbol": "DEEP",
+    "tokenAddress": "0x963737A1f2E3DAeb7a26bBC8b1caeB68Da162308",
+    "lpAddress": "0x1FC9E0a47DC85d5C3FE91D742D1b5F2C4955cb7B",
+    "mcapInVirtual": 341954.1505936302
+  },
+  {
+    "symbol": "SIGNAL",
+    "tokenAddress": "0x023E80343E204289d1d2a4144afE96fD9BCE0bA0",
+    "lpAddress": "0x7351D9930f4B23A1c1d758533E1c018282384358",
+    "mcapInVirtual": 54721.390194994114
+  },
+  {
+    "symbol": "SAFE",
+    "tokenAddress": "0x89e5e589eC5D454F9B31727736746349A62c24cD",
+    "lpAddress": "0x14d9e487d2f157b3821Ac9cb94A750Dcf0628d67",
+    "mcapInVirtual": 54183.716245549884
+  },
+  {
+    "symbol": "SGD",
+    "tokenAddress": "0x060f62a2d1ebd45014d07919A9b240A6F7d2f0A1",
+    "lpAddress": "0x81236fD94026360E4E6488D37388bBDF6BFbC9C9",
+    "mcapInVirtual": 81000
+  },
+  {
+    "symbol": "CHARX",
+    "tokenAddress": "0xA6B41feB7eDb6fB87A893C7245116e0Ec4273975",
+    "lpAddress": "0x316a2C963cdd87CEEDB6384735966Df506C76544",
+    "mcapInVirtual": 106000
+  },
+  {
+    "symbol": "TENNA",
+    "tokenAddress": "0xC54FFa55a3fD03381aa86cF178B60DfAF827b61c",
+    "lpAddress": "0x2F08ca642b3DdCc16Cf1A7DacAE9180d34b62b3D",
+    "mcapInVirtual": 233617.74516324347
+  },
+  {
+    "symbol": "JACK",
+    "tokenAddress": "0x8f7d0C6AE30C50c6dfC00612eC5Bff2C3685261c",
+    "lpAddress": "0x1f45FAb969a1d3c25C60A0C1A404129784C1c8E5",
+    "mcapInVirtual": 322600.99543724
+  },
+  {
+    "symbol": "EMATE",
+    "tokenAddress": "0x74bF9813655d427BFEA800F8Af0e52A59FF24223",
+    "lpAddress": "0x9AD68d5DB6241C51F816C0a0BB6c7A8A1cF7E859",
+    "mcapInVirtual": 241124.21852405052
+  },
+  {
+    "symbol": "RING",
+    "tokenAddress": "0xdddF73c5535EEC1D6Aa7f41880cbE69A64066eb1",
+    "lpAddress": "0x72847B97Deb4DA5A08aCEFE0f01524B9786017d5",
+    "mcapInVirtual": 7226000
+  },
+  {
+    "symbol": "FACY",
+    "tokenAddress": "0xFAC77f01957ed1B3DD1cbEa992199B8f85B6E886",
+    "lpAddress": "0xD87Ea5F46615e1175c909610766E853Faa5f94Be",
+    "mcapInVirtual": 1888271.0765483507
+  },
+  {
+    "symbol": "INU",
+    "tokenAddress": "0xA0ec3d7dc6E94736513bC2A35CA34E49b7681b51",
+    "lpAddress": "0x00499A020536f6dFd4C8E0F0f198cd89597931FA",
+    "mcapInVirtual": 119918.67830929968
+  }
+]

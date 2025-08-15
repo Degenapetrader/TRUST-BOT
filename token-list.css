@@ -1,0 +1,613 @@
+/* Token List Component Styles */
+
+/* Mode-based visibility rules */
+body.virtuals-mode #bid-ticker-selection {
+    display: none !important;
+}
+
+body.bid-mode-active #normal-ticker-selection,
+body.bid-mode-active .ticker-selection-panel:not(#bid-ticker-selection) {
+    display: none !important;
+}
+
+body.bid-mode-active .token-selection-layout:not(#bid-ticker-selection .token-selection-layout) {
+    display: none !important;
+}
+
+body.bid-mode-active #bid-ticker-selection {
+    display: block !important;
+}
+
+.token-list-container {
+    background: rgba(26, 26, 46, 0.4);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 80px - 300px - 52px - 10px); /* Subtract header, console, console header, margin */
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    margin-top: 10px;
+}
+
+.token-list-header {
+    background: rgba(26, 26, 46, 0.8) !important; /* UNIFIED - Darker professional shade */
+    padding: 12px 4px 12px 4px; /* Reduced left/right padding to move closer to edges */
+    border-bottom: 1px solid rgba(139, 157, 195, 0.2) !important;
+    display: flex;
+    justify-content: flex-start; /* Move search bar to left edge */
+    align-items: center;
+    margin: 0;
+}
+
+/* .token-list-title removed - no longer used since label was removed */
+
+.token-list-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 0 2px; /* Move much closer to left edge - minimal padding */
+}
+
+.token-search-container {
+    position: relative;
+    margin-bottom: 15px;
+    padding: 0 2px; /* Move much closer to left edge - minimal padding */
+    margin-left: -2px; /* Pull closer to left edge by overriding parent padding */
+}
+
+.search-input-group {
+    display: flex;
+    align-items: stretch; /* Changed from center to stretch for equal heights */
+    position: relative;
+    width: 100%;
+    max-width: 225px; /* Reduced by 25% from 300px to make search bar narrower */
+    height: 38px; /* Fixed container height */
+}
+
+/* Ensure the sort icon container is positioned for dropdown */
+.search-input-group .token-sort-icon {
+    position: relative;
+}
+
+.search-input-group .token-search {
+    flex: 1;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: none !important;
+    background-color: rgba(139, 157, 195, 0.15) !important; /* LIGHTER - Subtle accent background */
+    border: 1px solid rgba(139, 157, 195, 0.4) !important;
+    color: #ffffff !important;
+    height: 100% !important; /* Take full height of container */
+    padding: 0 12px; /* Consistent padding */
+    box-sizing: border-box;
+    margin: 0;
+    line-height: normal;
+}
+
+.search-input-group .token-search:focus {
+    border-color: #8b9dc3 !important;
+    box-shadow: 0 0 0 2px rgba(139, 157, 195, 0.3) !important;
+    background-color: rgba(139, 157, 195, 0.2) !important; /* Slightly more prominent when focused */
+}
+
+.search-input-group .token-sort-icon {
+    background: rgba(139, 157, 195, 0.15) !important; /* LIGHTER - Match search input */
+    border: 1px solid rgba(139, 157, 195, 0.4) !important;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    color: #8b9dc3 !important;
+    cursor: pointer;
+    padding: 0 12px; /* Consistent padding with search input */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    min-width: 40px;
+    height: 100% !important; /* Take full height of container */
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.search-input-group .token-sort-icon:hover {
+    background: rgba(139, 157, 195, 0.25) !important; /* Slightly more prominent on hover */
+    border-color: #8b9dc3 !important;
+}
+
+.search-input-group .token-sort-icon i {
+    font-size: 24px !important; /* Make arrow significantly bigger vertically */
+}
+
+.token-search {
+    padding: 0 12px;
+    border: 1px solid rgba(139, 157, 195, 0.4) !important;
+    border-radius: 6px;
+    background-color: rgba(139, 157, 195, 0.15) !important; /* LIGHTER - Consistent with input group */
+    color: #ffffff !important;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    width: 250px;
+    height: 38px; /* Consistent height */
+    box-sizing: border-box;
+}
+
+.token-search:focus {
+    border-color: #8b9dc3 !important;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(139, 157, 195, 0.3) !important;
+    background-color: rgba(139, 157, 195, 0.2) !important;
+}
+
+.token-sort-dropdown {
+    position: absolute;
+    top: calc(100% + 2px);
+    right: 0;
+    background: rgba(26, 26, 46, 0.95) !important; /* UNIFIED - Darker professional shade */
+    border: 1px solid rgba(139, 157, 195, 0.4) !important;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10000; /* Higher z-index to ensure visibility */
+    min-width: 150px;
+    display: none;
+}
+
+.token-sort-dropdown.show {
+    display: block !important;
+}
+
+.token-sort-dropdown.active {
+    display: block !important;
+}
+
+.token-sort-option {
+    padding: 8px 15px;
+    color: #cccccc !important;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.token-sort-option:hover {
+    background: rgba(139, 157, 195, 0.2) !important;
+    color: #ffffff !important;
+}
+
+.token-list-wrapper {
+    overflow-y: auto;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.token-list {
+    list-style: none;
+    padding: 0 0 20px 0; /* Added bottom padding to ensure last item is fully visible */
+    margin: 0;
+    overflow-y: auto;
+    max-height: none;
+}
+
+.token-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(40, 50, 60, 0.6);
+    transition: all 0.2s ease;
+    background-color: rgba(26, 26, 46, 0.3) !important;
+    position: relative;
+    overflow: visible; /* Allow the plus button to overflow */
+}
+
+.token-item:hover {
+    /* No transform to keep content in place */
+    transform: none;
+    padding-right: 45px; /* Make space for the button */
+    /* Removed background-color and border-left to prevent hover color changes */
+    /* Removed box-shadow to keep clean appearance */
+    background-color: rgba(139, 157, 195, 0.1) !important;
+}
+
+.token-info {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    min-width: 100px; /* Prevent shrinking on hover */
+    overflow: visible;
+}
+
+.token-symbol {
+    font-weight: 600;
+    color: #8b9dc3 !important;
+    letter-spacing: 0.5px;
+}
+
+.token-name {
+    font-size: 0.75rem;
+    color: #cccccc;
+    margin-top: 2px;
+}
+
+.token-address {
+    font-family: 'Courier New', monospace;
+    color: #cccccc;
+    flex-grow: 1;
+    margin: 0 10px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.token-blockchain {
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    background-color: rgba(139, 157, 195, 0.2) !important;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.token-copy-btn {
+    background: none;
+    border: none;
+    color: #8b9dc3 !important;
+    cursor: pointer;
+    padding: 5px 8px;
+    margin-left: 5px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.token-copy-btn:hover {
+    background-color: rgba(139, 157, 195, 0.1) !important;
+    color: #fff !important;
+}
+
+.token-add-btn {
+    background-color: #0a4d2e;
+    border: none;
+    color: #4eff00;
+    cursor: pointer;
+    width: 40px;
+    height: 100%;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+.token-item:hover .token-add-btn {
+    opacity: 1;
+}
+
+.token-add-btn:hover {
+    background-color: rgba(78, 255, 0, 0.2);
+    color: #fff;
+}
+
+.token-add-btn i {
+    font-size: 16px;
+}
+
+/* Dark theme scrollbar */
+.token-list-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.token-list-wrapper::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.token-list-wrapper::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 3px;
+}
+
+.token-list-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* BID Mode Styles */
+.bid-mode .token-list-container {
+    background: rgba(15, 20, 25, 0.95);
+    border-color: rgba(139, 157, 195, 0.4);
+}
+
+.bid-mode .token-list-header {
+    background-color: rgba(26, 26, 46, 0.8);
+}
+
+.bid-mode .token-symbol {
+    color: #8b9dc3;
+}
+
+.bid-mode .token-search:focus,
+.bid-mode .token-sort-select:focus {
+    border-color: rgba(139, 157, 195, 0.4);
+    box-shadow: 0 0 0 2px rgba(139, 157, 195, 0.2);
+}
+
+/* Token notification styles */
+.token-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease-out;
+    max-width: 300px;
+    opacity: 0.95;
+}
+
+.token-notification-success {
+    background-color: rgba(40, 167, 69, 0.9);
+    border-left: 4px solid #28a745;
+}
+
+.token-notification-error {
+    background-color: rgba(220, 53, 69, 0.9);
+    border-left: 4px solid #dc3545;
+}
+
+.token-notification-warning {
+    background-color: rgba(255, 193, 7, 0.9);
+    border-left: 4px solid #ffc107;
+    color: #212529;
+}
+
+.token-notification-info {
+    background-color: rgba(13, 110, 253, 0.9);
+    border-left: 4px solid #0d6efd;
+}
+
+.token-notification-hide {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 0.95;
+        transform: translateY(0);
+    }
+}
+
+.bid-mode .token-blockchain {
+    background-color: rgba(139, 157, 195, 0.2);
+}
+
+.bid-mode .token-copy-btn {
+    color: #8b9dc3;
+}
+
+.bid-mode .token-copy-btn:hover {
+    background-color: rgba(139, 157, 195, 0.1);
+    color: #fff;
+}
+
+.bid-mode .token-item:hover {
+    background-color: rgba(139, 157, 195, 0.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .token-list-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .token-list-controls {
+        width: 100%;
+    }
+    
+    .token-search {
+        flex: 1;
+    }
+    
+    .token-list-item {
+        grid-template-columns: 70px 1fr 50px;
+    }
+}
+
+/* BID mode specific styling */
+body.bid-mode .token-list-container {
+    border-color: rgba(139, 157, 195, 0.4);
+}
+
+body.bid-mode .token-list-header {
+    background-color: rgba(26, 26, 46, 0.8);
+}
+
+body.bid-mode .token-symbol {
+    color: #8b9dc3;
+}
+
+body.bid-mode .token-blockchain {
+    color: #8b9dc3;
+}
+
+.selected-tokens-display-right {
+    display: flex;
+    flex-direction: row; /* Keep horizontal flow for tokens */
+    flex-wrap: wrap; /* Allow tokens to wrap to new lines vertically */
+    align-items: flex-start; /* Align wrapped rows to top */
+    align-content: flex-start; /* Align wrapped content to top */
+    width: 200px !important; /* Expanded from 180px to use more available space */
+    max-width: 200px !important; /* Match width to prevent expansion */
+    min-width: 120px;
+    overflow-y: auto; /* Vertical scroll when content exceeds height */
+    overflow-x: hidden; /* No horizontal scroll */
+    min-height: 34px; /* Match search input and dropdown arrow height when resting */
+    max-height: 80px; /* Allow expansion up to reasonable limit, then scroll */
+    padding: 5px 8px;
+    background: rgba(15, 20, 25, 0.4);
+    border-radius: 6px;
+    border: 1px solid rgba(139, 157, 195, 0.3);
+    margin-left: 8px; /* Reduced margin to save space */
+}
+
+.selected-tokens-display-right:before {
+    content: 'Tokens: ';
+    color: #8a8a8a;
+    font-size: 0.65rem;
+    margin-right: 4px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.selected-tokens-display-right::-webkit-scrollbar {
+    height: 2px; /* Restored from working version */
+    width: 2px; /* Also set width for consistency */
+}
+
+.selected-tokens-display-right::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05); /* Restored from working version */
+    border-radius: 1px;
+}
+
+.selected-tokens-display-right::-webkit-scrollbar-thumb {
+    background: rgba(139, 157, 195, 0.3); /* Restored from working version */
+    border-radius: 1px;
+    border: none;
+}
+
+.selected-tokens-display-right::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 157, 195, 0.5); /* Restored from working version */
+}
+
+.selected-tokens-display-right .selected-token-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 6px 1px 6px; /* Reduced padding for smaller size */
+    margin-right: 3px; /* Reduced margin for tighter spacing */
+    background: linear-gradient(135deg, #8b9dc3 0%, #7a8db0 100%) !important; /* UNIFIED PALETTE - FORCED */
+    color: #ffffff !important; /* Clean white text - FORCED */
+    border-radius: 4px; /* Sharper corners - reduced from 12px */
+    font-size: 0.65rem; /* Smaller font size */
+    font-weight: 500; /* Less bold */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    position: relative;
+    max-width: 100px; /* Smaller max width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px solid rgba(139, 157, 195, 0.3) !important; /* UNIFIED BORDER - FORCED */
+}
+
+.selected-tokens-display-right .selected-token-chip:hover {
+    background: linear-gradient(135deg, #7a8db0 0%, #8b9dc3 100%); /* Subtle hover effect */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.selected-tokens-display-right .selected-token-chip .chip-text {
+    display: inline-block;
+    max-width: 60px; /* Smaller text area */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    flex: 1;
+}
+
+.selected-tokens-display-right .selected-token-chip .token-remove-btn {
+    background: none;
+    border: none;
+    color: #bdc3c7; /* Muted remove button color */
+    font-size: 0.7rem; /* Smaller remove button */
+    cursor: pointer;
+    padding: 0 2px;
+    margin-left: 3px;
+    line-height: 1;
+    opacity: 0.7;
+}
+
+.selected-tokens-display-right .selected-token-chip .token-remove-btn:hover {
+    color: #e74c3c; /* Red on hover */
+    opacity: 1;
+}
+
+.search-input-group .token-sort-icon {
+    background: rgba(15, 20, 25, 0.8);
+    border: 1px solid #333333;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    color: #8b9dc3;
+    cursor: pointer;
+    padding: 8.5px 12px; /* In-between padding for perfect balance */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    min-width: 40px;
+    height: 34px; /* In-between height - not too big, not too small */
+    margin-left: 0; /* Remove the original margin */
+}
+
+/* EMERGENCY OVERRIDE - FORCE ALL TOKEN LIST CONTAINERS TO USE HARMONIZED BORDERS */
+section.token-list-container,
+#token-list-container,
+.token-list-container,
+div.token-list-container,
+section#token-list-container {
+    border: 1px solid rgba(139, 157, 195, 0.3) !important;
+    border-top: 1px solid rgba(139, 157, 195, 0.3) !important;
+    border-bottom: 1px solid rgba(139, 157, 195, 0.3) !important;
+    border-left: 1px solid rgba(139, 157, 195, 0.3) !important;
+    border-right: 1px solid rgba(139, 157, 195, 0.3) !important;
+}
+
+/* FORCE OVERRIDE ANY GREEN COLORS IN TOKEN AREA */
+section.token-list-container *,
+#token-list-container *,
+.token-list-container * {
+    border-color: rgba(139, 157, 195, 0.3) !important;
+}
+
+/* SPECIFIC OVERRIDE FOR SECTION ELEMENTS */
+section {
+    border-color: rgba(139, 157, 195, 0.3) !important;
+}
+
+/* FORCE UNIFIED COLORS - HIGHEST SPECIFICITY */
+#selected-tokens-display-right .selected-token-chip,
+.selected-tokens-display-right .selected-token-chip,
+div[id="selected-tokens-display-right"] .selected-token-chip,
+div[class*="selected-tokens-display-right"] .selected-token-chip {
+    background: linear-gradient(135deg, #8b9dc3 0%, #7a8db0 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(139, 157, 195, 0.3) !important;
+}
+
+/* FORCE UNIFIED COLORS FOR ALL TOKEN CHIPS EVERYWHERE */
+.selected-token-chip,
+span.selected-token-chip,
+div.selected-token-chip {
+    background: linear-gradient(135deg, #8b9dc3 0%, #7a8db0 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(139, 157, 195, 0.3) !important;
+}

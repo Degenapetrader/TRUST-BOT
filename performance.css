@@ -1,0 +1,57 @@
+/* Performance optimizations for UI rendering */
+
+/* Enable hardware acceleration for animations and transitions */
+.wallet-item,
+.selected-wallet-chip,
+.bot-nav-button,
+.wallet-item.selected,
+.modal,
+.form-actions button,
+.console,
+.dropdown-menu,
+button {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform, opacity;
+}
+
+/* Optimize transitions to use only opacity and transform for better performance */
+.modal {
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out !important;
+}
+
+/* Reduce repaints with stacking contexts */
+.wallet-grid,
+.console-section,
+.bot-form {
+    contain: content;
+}
+
+/* Optimize scrolling performance */
+.console,
+.wallet-grid,
+.bot-nav,
+body {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* Prevent layout thrashing during animations */
+.wallet-item,
+.bot-nav-button {
+    contain: layout style;
+}
+
+/* Reduce repaints for hover effects */
+button:hover,
+.bot-nav-button:hover,
+.wallet-item:hover {
+    transition: background-color 0.15s ease-out;
+}
+
+/* Optimize fixed elements */
+.header {
+    transform: translateZ(0);
+    will-change: transform;
+}

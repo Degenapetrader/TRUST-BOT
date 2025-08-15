@@ -1,0 +1,7 @@
+provider: github
+owner: Degenapetrader
+repo: TRUST-BOT
+publisherName: null
+updaterCacheDirName: trust-bot-updater
+allowDowngrade: true
+verifySignature: false

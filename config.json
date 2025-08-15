@@ -1,0 +1,15 @@
+{
+  "settings": {
+    "theme": "dark",
+    "showNotifications": true,
+    "autoUpdateTokens": true,
+    "logLevel": "info"
+  },
+  "security": {
+    "isEncrypted": false,
+    "encryptedTest": null,
+    "lastAccess": "2025-08-15T03:55:53.377Z"
+  },
+  "wallets": [],
+  "bridging": {}
+}
