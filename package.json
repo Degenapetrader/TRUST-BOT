@@ -152,8 +152,8 @@
       "sol.json",
       "*.md",
       "*.yml",
-      "!config.json",
-      "!wallets.json"
+      "config.json",
+      "wallets.json"
     ],
     "asarUnpack": [
       "main.js",
