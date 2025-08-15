@@ -2045,6 +2045,20 @@ ipcMain.handle('saveWalletsConfig', async (event, walletsData) => {
   }
 });
 
+// Handle getting wallets configuration for header balance display
+ipcMain.handle('get-wallets-config', async (event) => {
+  try {
+    const walletsData = readWalletsDB();
+    if (!walletsData) {
+      throw new Error('Failed to read wallets configuration');
+    }
+    return walletsData;
+  } catch (error) {
+    console.error('❌ MAIN: Error getting wallets configuration:', error);
+    throw error;
+  }
+});
+
 
 
 // Prevent multiple instances

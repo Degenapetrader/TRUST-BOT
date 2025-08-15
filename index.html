@@ -21,6 +21,8 @@
     <script defer src="tx-console-enhancer.js"></script>
     <!-- Custom Dropdown Component -->
     <script defer src="custom-dropdown.js"></script>
+    <!-- Header Balance Display -->
+    <script defer src="header-balance.js"></script>
 </head>
 
 <body>
@@ -40,6 +42,19 @@
                 </div>
                 <div class="selected-tokens-display" id="selected-tokens-display">
                     <!-- Selected tokens will be displayed here -->
+                </div>
+                <div class="wallet-balance-display" id="wallet-balance-display">
+                    <div class="wallet-name-section">
+                        <span class="wallet-name" id="wallet-name">Wallet</span>
+                    </div>
+                    <div class="balance-item">
+                        <span class="balance-label">ETH:</span>
+                        <span class="balance-value" id="eth-balance">0.000</span>
+                    </div>
+                    <div class="balance-item">
+                        <span class="balance-label">VIRTUAL:</span>
+                        <span class="balance-value" id="virtual-balance">0.000</span>
+                    </div>
                 </div>
                 <div class="header-controls" style="right: 5px;">
                     <button class="btn btn-outline" onclick="showConfig()">Settings</button>

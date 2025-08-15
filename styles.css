@@ -299,6 +299,73 @@ body {
     background: #555;
 }
 
+/* Wallet Balance Display */
+.wallet-balance-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    right: 260px;
+    background: rgba(26, 26, 46, 0.9);
+    border-radius: 8px;
+    border: 1px solid rgba(139, 157, 195, 0.3);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.85rem;
+    min-width: 250px;
+}
+
+.wallet-name-section {
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+    border-right: 1px solid rgba(139, 157, 195, 0.3);
+}
+
+.wallet-name {
+    color: #8b9dc3;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.balance-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.balance-label {
+    color: #8a8a8a;
+    font-weight: 500;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.balance-value {
+    color: #d9e2ff;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+    min-width: 60px;
+    text-align: right;
+}
+
+.balance-value.loading {
+    color: #8a8a8a;
+    opacity: 0.7;
+}
+
+.balance-value.error {
+    color: #ff6b6b;
+}
+
 .selected-wallet-chip {
     display: inline-flex;
     align-items: center;
