@@ -39,10 +39,10 @@ export class MMCommandParser {
     }
     
     // Step 4: Parse intervals and loops
-    const { loops, remainingArgs: afterLoops } = ArgumentParser.parseLoops(finalArgs);
+    const { loops, remainingArgs: afterLoops } = ArgumentParser.parseLoops(finalArgs, 'mmbot');
     
     // Parse I-X format
-    let checkInterval = 60; // Default 60 seconds
+    let checkInterval = 30; // Default 30 seconds (I-0.5)
     let intervalArgs = [...afterLoops];
     const intervalIndex = intervalArgs.findIndex(arg => arg.startsWith('I-') || arg.startsWith('i-'));
     if (intervalIndex !== -1) {

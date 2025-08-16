@@ -69,9 +69,9 @@ export class ArgumentParser {
    */
   static parseLoops(args, botType = 'other') {
     // Set default based on bot type
-    // Farmbot defaults to infinite loops for continuous farming
-    // Other bots default to 1 execution unless explicitly specified
-    let loops = botType === 'farmbot' ? Infinity : 1;
+    // Farmbot and mmbot default to infinite loops for continuous operation
+    // Other bots default to 0 execution unless explicitly specified
+    let loops = (botType === 'farmbot' || botType === 'mmbot') ? Infinity : 0;
     const remainingArgs = [];
     const errors = [];
     
@@ -85,9 +85,9 @@ export class ArgumentParser {
           errors.push('Loop count cannot be negative. Use L-0 for infinite or L-5 for 5 loops');
         } else if (loops === 0) {
           // L-0 behavior depends on bot type
-          // Farmbot: L-0 means infinite loops
+          // Farmbot and mmbot: L-0 means infinite loops
           // Other bots: L-0 means 1 loop (same as default)
-          loops = botType === 'farmbot' ? Infinity : 1;
+          loops = (botType === 'farmbot' || botType === 'mmbot') ? Infinity : 1;
         }
       } else {
         remainingArgs.push(arg);

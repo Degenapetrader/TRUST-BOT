@@ -1904,10 +1904,10 @@ function getJeetBotArgs() {
             } else if (intervalValue === '0.5') {
                 rebuyInterval = '0.008';
         } else {
-                rebuyInterval = '0.032'; // Default to 2s
+                rebuyInterval = '0.1'; // Default to 6.25s
             }
         } else {
-            rebuyInterval = '0.032'; // Default
+            rebuyInterval = '0.1'; // Default
         }
     }
 

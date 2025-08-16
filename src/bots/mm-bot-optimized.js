@@ -528,7 +528,7 @@ export class MMBot {
         }
         
         // Enforce alternating logic for finite loops
-        if (config.loops !== null && this.nextAction) {
+        if (config.loops > 0 && this.nextAction) {
           if (this.nextAction === 'buy' && priceAction.action === 'sell') {
             console.log(`🔄 Waiting for buy signal (alternating logic)`);
             priceAction.action = 'hold';

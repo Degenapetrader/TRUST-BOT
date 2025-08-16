@@ -123,7 +123,7 @@ function writeWalletsDB(data) {
     // Preserve the existing config section if it exists and is more complete
     const finalData = {
       ...data,
-      config: existingData.config || data.config || {}
+      config: data.config || existingData.config || {}
     };
     
     fs.writeFileSync(WALLETS_DB_PATH, JSON.stringify(finalData, null, 2));
