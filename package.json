@@ -1,6 +1,6 @@
 {
   "name": "trustbot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Desktop Trading Bot Interface for Virtuals Token Trading on Base Blockchain",
   "license": "AGPL-3.0",
   "main": "secureBootstrap.js",

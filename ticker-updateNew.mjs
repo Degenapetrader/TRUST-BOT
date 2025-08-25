@@ -1,5 +1,10 @@
 import fs from 'fs/promises';
 import fetch from 'node-fetch';
+import path from 'path';
+
+// Determine app data directory - will be userData when called from main.js
+const appDataDir = process.cwd();
+console.log(`Using app data directory for token database: ${appDataDir}`);
 
 // Function to load existing data from file
 async function loadExistingData(filename) {
@@ -22,8 +27,9 @@ async function fetchNewTokensOnly() {
     const baseUrl = 'https://api.virtuals.io/api/virtuals';
     const chains = ['BASE'];
     const outputFiles = {
-        'BASE': 'base.json'
+        'BASE': path.join(appDataDir, 'base.json')
     };
+    console.log(`Token database path: ${outputFiles['BASE']}`);
 
     for (const chain of chains) {
         let existingTokens = new Set();

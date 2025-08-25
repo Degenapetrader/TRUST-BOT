@@ -1881,5 +1881,12 @@
     "lpAddress": "0xF3852E31205Cc9DAD630Ed6B33Ed660633aeC6Cb",
     "mcapInVirtual": 52308.527611216654,
     "label": "Genesis"
+  },
+  {
+    "symbol": "SHUMI",
+    "tokenAddress": "0xD85Bb30De78f9B760D86b527bb13Ea5A789AC3d1",
+    "lpAddress": "0x0f78AD94a68AB9376156d517cE98745405d8cD64",
+    "mcapInVirtual": 1727792.3482214638,
+    "label": "Genesis"
   }
 ]

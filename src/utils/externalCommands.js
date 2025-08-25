@@ -9,11 +9,15 @@ import { fileURLToPath } from 'url';
  * @returns {Promise<boolean>} True if search was executed, false if it failed
  */
 export async function runTickerSearchFallback(symbol) {
+  // Check if we're in development mode (has npm AND package.json in current directory)
+  const hasNpm = commandExists('npm');
+  const hasPackageJson = fs.existsSync(path.join(process.cwd(), 'package.json'));
+  const isDevMode = hasNpm && hasPackageJson && !process.resourcesPath;
+  
   try {
     console.log(`🔍 Running ticker search fallback for: ${symbol}`);
-    // Prefer npm when available (dev), otherwise execute the script directly (packaged)
-    const hasNpm = commandExists('npm');
-    if (hasNpm) {
+    
+    if (isDevMode) {
       console.log(`⚡ Command: npm run ticker:search ${symbol}`);
       const result = execSync(`npm run ticker:search ${symbol}`, {
         cwd: process.cwd(),
@@ -46,7 +50,7 @@ export async function runTickerSearchFallback(symbol) {
     console.log(`❌ Ticker search failed for ${symbol}: ${error.message}`);
     // In packaged mode, if ticker search fails, we should still return true
     // to allow the calling code to continue with other fallbacks (like Alchemy)
-    if (!commandExists('npm')) {
+    if (!isDevMode) {
       console.log(`⚠️ Packaged mode: Continuing without ticker search to allow Alchemy fallback`);
       return true; // Allow other fallbacks to work
     }

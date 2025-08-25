@@ -20,24 +20,38 @@ function loadBaseDatabase() {
   try {
     // Build candidate paths in order of preference
     const candidates = [];
-    // 1) Explicit current working directory
-    candidates.push(path.resolve(process.cwd(), BASE_DB_FILE));
-    // 2) userData directory (same dir as wallets.json if available)
-    try {
-      if (process.env.WALLETS_DB_PATH) {
-        const userDataDir = path.dirname(process.env.WALLETS_DB_PATH);
-        candidates.push(path.join(userDataDir, BASE_DB_FILE));
-      }
-    } catch {}
-    // 3) Electron resources paths (packaged)
-    try {
+    
+    // In packaged mode, prioritize writable locations over static resources
+    if (process.resourcesPath) {
+      // 1) userData directory (same dir as wallets.json) - WRITABLE
+      try {
+        if (process.env.WALLETS_DB_PATH) {
+          const userDataDir = path.dirname(process.env.WALLETS_DB_PATH);
+          candidates.push(path.join(userDataDir, BASE_DB_FILE));
+        }
+      } catch {}
+      
+      // 2) Current working directory - WRITABLE
+      candidates.push(path.resolve(process.cwd(), BASE_DB_FILE));
+      
+      // 3) Electron resources paths (packaged) - READ-ONLY fallback
       const resourcesPath = process.resourcesPath;
-      if (resourcesPath) {
-        candidates.push(path.join(resourcesPath, BASE_DB_FILE));
-        candidates.push(path.join(resourcesPath, 'app.asar.unpacked', BASE_DB_FILE));
-        candidates.push(path.join(resourcesPath, 'app.asar', BASE_DB_FILE));
-      }
-    } catch {}
+      candidates.push(path.join(resourcesPath, 'app.asar.unpacked', BASE_DB_FILE));
+      candidates.push(path.join(resourcesPath, BASE_DB_FILE));
+      candidates.push(path.join(resourcesPath, 'app.asar', BASE_DB_FILE));
+    } else {
+      // Development mode - prioritize project directory
+      // 1) Explicit current working directory
+      candidates.push(path.resolve(process.cwd(), BASE_DB_FILE));
+      // 2) userData directory (same dir as wallets.json if available)
+      try {
+        if (process.env.WALLETS_DB_PATH) {
+          const userDataDir = path.dirname(process.env.WALLETS_DB_PATH);
+          candidates.push(path.join(userDataDir, BASE_DB_FILE));
+        }
+      } catch {}
+    }
+    
     // 4) Relative to this module (dev/bundled fallbacks)
     candidates.push(path.join(__dirname, BASE_DB_FILE));
     candidates.push(path.join(__dirname, '..', BASE_DB_FILE));
@@ -150,7 +164,7 @@ export async function resolveToken(input) {
     // Re-read the database after ticker search to get updated data
     const updatedDb = loadBaseDatabase();
     // Try to find the token again in the updated database
-    const isAddress = input.startsWith('0x') && input.length === 42;
+    // Use the existing isAddress variable instead of redeclaring it
     let tokenInfo = null;
     
     if (isAddress) {

@@ -1082,10 +1082,10 @@ function runGenesisBidAndFindPool() {
 
 // Initialize app when ready
 app.whenReady().then(() => {
-  createWindow();
+  // Initialize wallets database first
+  initializeWalletsDB();
   
-  // Setup auto-updater
-  setupAutoUpdater();
+  createWindow();
   
   // Add IPC handlers for resource paths
   ipcMain.handle('is-packaged', () => {
