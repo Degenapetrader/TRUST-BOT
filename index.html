@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRUSTBOT</title>
-    <link rel="stylesheet" href="styles.css?v=1.0.2">
-    <link rel="stylesheet" href="wallet-token-styles.css?v=1.0.2">
-    <link rel="stylesheet" href="performance.css?v=1.0.2">
-    <link rel="stylesheet" href="hide-wallet-ui.css?v=1.0.2">
-    <link rel="stylesheet" href="hide-bid-mode.css?v=1.0.2">
-    <link rel="stylesheet" href="documentation.css?v=1.0.2">
-    <link rel="stylesheet" href="token-list.css?v=1.0.2">
-    <link rel="stylesheet" href="nav-override.css?v=1.0.2">
-    <link rel="stylesheet" href="custom-dropdown.css?v=1.0.2">
+    <link rel="stylesheet" href="styles.css?v=1.0.3">
+    <link rel="stylesheet" href="wallet-token-styles.css?v=1.0.3">
+    <link rel="stylesheet" href="performance.css?v=1.0.3">
+    <link rel="stylesheet" href="hide-wallet-ui.css?v=1.0.3">
+    <link rel="stylesheet" href="hide-bid-mode.css?v=1.0.3">
+    <link rel="stylesheet" href="documentation.css?v=1.0.3">
+    <link rel="stylesheet" href="token-list.css?v=1.0.3">
+    <link rel="stylesheet" href="nav-override.css?v=1.0.3">
+    <link rel="stylesheet" href="custom-dropdown.css?v=1.0.3">
     <link rel="stylesheet" href="assets/css/update-notification.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="wallet-width-fix.js"></script>
@@ -125,11 +125,11 @@
                         <span class="emoji-fallback">🚀</span>
                         <span class="text">JeetBot</span>
                     </button>
-                    <!-- <button class="nav-btn" data-bot="snipebot">
-                        <img src="assets/sniper.png" alt="SnipeBot Icon" class="icon">
-                        <span class="emoji-fallback">🎯</span>
-                        <span class="text">FastBuy Bot</span>
-                    </button> -->
+                    <button class="nav-btn" data-bot="snipebot">
+                        <img src="assets/advance.png" alt="Advance Order Icon" class="icon">
+                        <span class="emoji-fallback">⚡</span>
+                        <span class="text">Advance Order</span>
+                    </button>
                     
                     <!-- Ticker Tools -->
                     <button class="nav-btn" data-bot="detect">
@@ -1023,17 +1023,91 @@
                         </div>
                     </div>
 
-                    <!-- SnipeBot Form -->
+                    <!-- Advance Order Form -->
                     <div id="snipebot-form" class="bot-form">
-                        <div class="form-group1">
-                            <label for="snipe-target">Ticker or Contract Address</label>
-                            <input type="text" id="snipe-target" placeholder="e.g., TICKER or 0x..." class="form-input">
+                        <!-- Genesis/OG Tab Section -->
+                        <div class="advance-order-tabs">
+                            <button type="button" class="tab-btn active" id="genesis-tab" onclick="switchAdvanceOrderTab('genesis')">
+                                <strong>Genesis</strong>
+                                <div style="font-size: 11px; opacity: 0.8;">Genesis Agents</div>
+                            </button>
+                            <button type="button" class="tab-btn" id="og-tab" onclick="switchAdvanceOrderTab('og')">
+                                <strong>OG</strong>
+                                <div style="font-size: 11px; opacity: 0.8;">Sentient Agents</div>
+                            </button>
                         </div>
+
+                        
+
+                        <!-- Ticker/Contract Input (common to both tabs) -->
                         <div class="form-group1">
+                            <label for="snipe-target">Ticker</label>
+                            <input type="text" id="snipe-target" placeholder="e.g., TRUST" class="form-input">
+                            <small id="ticker-help-text" class="help-note">Genesis mode: Enter ticker for Genesis tokens.</small>
+                        </div>
+
+                        <!-- Trading Mode Selection -->
+                        <div class="form-group1" style="margin-top: 20px;">
+                            <label>Trading Mode</label>
+                            <div class="trading-mode-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px;">
+                                <label class="mode-option">
+                                    <input type="radio" name="trading-mode" value="attack" id="mode-attack" checked>
+                                    <div>
+                                        <strong>🚀 Fastbuy (Attack)</strong>
+                                        <div style="font-size: 11px; opacity: 0.8;">Buy immediately on launch</div>
+                                    </div>
+                                </label>
+                                <label class="mode-option">
+                                    <input type="radio" name="trading-mode" value="maxlimit" id="mode-maxlimit">
+                                    <div>
+                                        <strong>⚡ Max Limit Bot</strong>
+                                        <div style="font-size: 11px; opacity: 0.8;">Don't buy above market cap</div>
+                                    </div>
+                                </label>
+                                <label class="mode-option">
+                                    <input type="radio" name="trading-mode" value="limit" id="mode-limit">
+                                    <div>
+                                        <strong>📊 Limit Orders</strong>
+                                        <div style="font-size: 11px; opacity: 0.8;">Wait for price to drop</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Max Limit Bot Settings -->
+                        <div class="mode-settings" id="maxlimit-settings" style="display: none;">
+                            <label for="snipe-mcap-limit">Max Market Cap (Millions USD)</label>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <input type="range" id="mcap-slider" min="0.1" max="100" step="0.1" value="3" 
+                                       style="flex: 1;" oninput="document.getElementById('snipe-mcap-limit').value = this.value">
+                                <input type="number" id="snipe-mcap-limit" placeholder="3" class="form-input" 
+                                       style="width: 100px;" min="0.1" max="100" step="0.1" value="3"
+                                       oninput="document.getElementById('mcap-slider').value = this.value">
+                                <span style="color: var(--text-secondary); font-size: 12px;">M USD</span>
+                            </div>
+                            <small>Won't buy if market cap exceeds this threshold. Range: 100K to 100M</small>
+                        </div>
+
+                        <!-- Limit Orders Settings -->
+                        <div class="mode-settings" id="limit-settings" style="display: none;">
+                            <label for="snipe-limit-price">Target Market Cap (Millions USD)</label>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <input type="range" id="limit-slider" min="0.1" max="50" step="0.1" value="1.5" 
+                                       style="flex: 1;" oninput="document.getElementById('snipe-limit-price').value = this.value">
+                                <input type="number" id="snipe-limit-price" placeholder="1.5" class="form-input" 
+                                       style="width: 100px;" min="0.1" max="50" step="0.1" value="1.5"
+                                       oninput="document.getElementById('limit-slider').value = this.value">
+                                <span style="color: var(--text-secondary); font-size: 12px;">M USD</span>
+                            </div>
+                            <small>Buy when market cap drops to or below this level</small>
+                        </div>
+
+                        <!-- Amount Section (always visible) -->
+                        <div class="form-group1" style="margin-top: 20px;">
                             <label for="snipe-amount">Amount (VIRTUAL per wallet)</label>
-                            <div class="amount-input-group">
-                                <input type="number" id="snipe-amount" placeholder="100" class="form-input" min="0" step="0.01">
-                                <select id="snipe-amount-preset" class="form-select preset-select" onchange="(function(){const v=document.getElementById('snipe-amount-preset').value;if(v) document.getElementById('snipe-amount').value=v;})()">
+                            <div class="amount-input-group" style="display: flex; gap: 10px;">
+                                <input type="number" id="snipe-amount" placeholder="100" class="form-input" min="0" step="0.01" style="flex: 1;">
+                                <select id="snipe-amount-preset" class="form-select preset-select" style="min-width: 120px;" onchange="(function(){const v=document.getElementById('snipe-amount-preset').value;if(v) document.getElementById('snipe-amount').value=v;})()">
                                     <option value="">Presets</option>
                                     <option value="25">25 VIRTUAL</option>
                                     <option value="50">50 VIRTUAL</option>
@@ -1042,10 +1116,81 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-actions">
-                            <button class="btn btn-primary" onclick="runBot('snipebot')">🎯 Start FastBuy Bot</button>
+
+                        <!-- Take Profit Settings (collapsible dropdown) -->
+                        <div class="form-group1" style="margin-top: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <label>Take Profit (Optional)</label>
+                                <button type="button" onclick="clearTakeProfit()" 
+                                        style="padding: 4px 8px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-secondary); font-size: 11px; cursor: pointer; white-space: nowrap;"
+                                        onmouseover="this.style.background='var(--bg-hover)'" 
+                                        onmouseout="this.style.background='var(--bg-secondary)'">Clear</button>
+                            </div>
+                            <div id="tp-header" class="tp-dropdown-header" onclick="toggleTakeProfit()" style="
+                                cursor: pointer;
+                                padding: 12px 15px;
+                                border: 2px solid var(--border-color);
+                                border-radius: 8px;
+                                background: var(--bg-secondary);
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                transition: all 0.3s ease;
+                                user-select: none;
+                            ">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <span style="margin-right: 2px;">💰 TP</span>
+                                    <span id="tp-status" style="
+                                        font-size: 14px;
+                                        padding: 4px 12px;
+                                        border-radius: 14px;
+                                        background: #111827; /* almost black for max contrast */
+                                        color: #ffffff;
+                                        opacity: 1;
+                                        font-weight: 800;
+                                        letter-spacing: 0.2px;
+                                        box-shadow: 0 0 0 1px rgba(255,255,255,0.35);
+                                        text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+                                    ">Not Set</span>
+                                </div>
+                                <span id="tp-arrow" style="
+                                    font-size: 14px;
+                                    transition: transform 0.3s ease;
+                                ">▼</span>
+                            </div>
+                            
+                            <div id="tp-content" style="
+                                display: none;
+                                margin-top: 10px;
+                                padding: 15px;
+                                border: 1px solid var(--border-color);
+                                border-radius: 8px;
+                                background: var(--bg-primary);
+                            ">
+                                <div style="margin-bottom: 15px;">
+                                    <label for="snipe-tp-trigger" style="font-size: 14px; margin-bottom: 5px; display: block;">Trigger Market Cap (Millions USD)</label>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <input type="range" id="tp-slider" min="0" max="100" step="0.1" value="0" 
+                                               style="flex: 1;" oninput="updateTakeProfit()">
+                                        <input type="number" id="snipe-tp-trigger" placeholder="e.g., 10" class="form-input" 
+                                               style="width: 100px;" min="0" max="100" step="0.1"
+                                               oninput="updateTakeProfit()">
+                                        <span style="color: var(--text-secondary); font-size: 12px;">M USD</span>
+                                    </div>
+                                    <small class="help-note">Sell when market cap reaches this level. Leave empty to disable take profit.</small>
+                                </div>
+                                
+                                <div>
+                                    <label for="snipe-sell-amount" style="font-size: 14px; margin-bottom: 5px; display: block;">SELL AMOUNT</label>
+                                    <input type="text" id="snipe-sell-amount" placeholder="e.g., 50% or 10000" class="form-input" oninput="updateTakeProfit()">
+                                    <small class="help-note">Use percentage (50%) or fixed tokens (10000). 100% = 99.99%. Required if trigger is set.</small>
+                                </div>
+                            </div>
                         </div>
-                        
+
+                        <div class="form-actions">
+                            <button class="btn btn-primary" onclick="runBot('snipebot')">⚡ Execute Advance Order</button>
+                        </div>
                     </div>
 
                     <!-- TransferBot Form -->
@@ -1852,6 +1997,92 @@
     <script src="config-tabs.js"></script>
     <script src="sidebar-toggle.js"></script>
     <script src="documentation.js"></script>
+    
+    <!-- Take Profit Dropdown Functions -->
+    <script>
+        function toggleTakeProfit() {
+            const content = document.getElementById('tp-content');
+            const arrow = document.getElementById('tp-arrow');
+            const header = document.getElementById('tp-header');
+            
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.display = 'none';
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        function updateTakeProfit() {
+            const slider = document.getElementById('tp-slider');
+            const trigger = document.getElementById('snipe-tp-trigger');
+            const sellAmount = document.getElementById('snipe-sell-amount');
+            const status = document.getElementById('tp-status');
+            const header = document.getElementById('tp-header');
+            
+            // Sync slider and input
+            if (document.activeElement === slider) {
+                trigger.value = slider.value == 0 ? '' : slider.value;
+            } else if (document.activeElement === trigger) {
+                slider.value = trigger.value || 0;
+            }
+            
+            // Check if TP is configured
+            const hasTrigger = trigger.value && parseFloat(trigger.value) > 0;
+            const hasSellAmount = sellAmount.value && sellAmount.value.trim() !== '';
+            const isConfigured = hasTrigger && hasSellAmount;
+            
+            // Update visual indicators
+            if (isConfigured) {
+                status.textContent = `Set: ${trigger.value}M → ${sellAmount.value}`;
+                status.style.background = '#22c55e';
+                status.style.color = 'white';
+                status.style.opacity = '1';
+                header.style.borderColor = '#22c55e';
+                header.style.background = 'rgba(34, 197, 94, 0.1)';
+            } else if (hasTrigger || hasSellAmount) {
+                status.textContent = 'Incomplete';
+                status.style.background = '#f59e0b';
+                status.style.color = 'white';
+                status.style.opacity = '1';
+                header.style.borderColor = '#f59e0b';
+                header.style.background = 'rgba(245, 158, 11, 0.1)';
+            } else {
+                status.textContent = 'Not Set';
+                status.style.background = '#374151';
+                status.style.color = '#ffffff';
+                status.style.opacity = '1';
+                status.style.fontWeight = '700';
+                status.style.fontSize = '13px';
+                status.style.padding = '3px 10px';
+                status.style.letterSpacing = '0.2px';
+                status.style.boxShadow = '0 0 0 1px rgba(255,255,255,0.15)';
+                status.style.textShadow = '0 1px 2px rgba(0,0,0,0.6)';
+                header.style.borderColor = 'var(--border-color)';
+                header.style.background = 'var(--bg-secondary)';
+            }
+        }
+        
+        function clearTakeProfit() {
+            const slider = document.getElementById('tp-slider');
+            const trigger = document.getElementById('snipe-tp-trigger');
+            const sellAmount = document.getElementById('snipe-sell-amount');
+            
+            // Reset all fields
+            slider.value = 0;
+            trigger.value = '';
+            sellAmount.value = '';
+            
+            // Update the visual status
+            updateTakeProfit();
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTakeProfit();
+        });
+    </script>
 </body>
 
 </html>

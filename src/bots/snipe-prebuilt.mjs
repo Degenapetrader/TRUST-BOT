@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { ethers } from 'ethers';
-import { TokenResolver } from './src/bots/services/tokenResolver.js';
+import { TokenResolver } from './services/tokenResolver.js';
 import { performance } from 'node:perf_hooks';
 import fs from 'fs';
 import path from 'path';
@@ -51,7 +51,16 @@ const GENESIS_ABI = [
 
 // Load configuration
 function loadConfig() {
-  const configPath = path.join(__dirname, 'wallets.json');
+  // Use WALLETS_DB_PATH environment variable if set by launcher, otherwise fallback to local path
+  const configPath = process.env.WALLETS_DB_PATH || path.join(__dirname, 'wallets.json');
+  console.log(`📁 Loading config from: ${configPath}`);
+  
+  if (!fs.existsSync(configPath)) {
+    console.error(`❌ Config file not found at: ${configPath}`);
+    console.error(`   WALLETS_DB_PATH env var: ${process.env.WALLETS_DB_PATH || 'not set'}`);
+    process.exit(1);
+  }
+  
   const configData = fs.readFileSync(configPath, 'utf8');
   return JSON.parse(configData);
 }
@@ -61,33 +70,76 @@ function createWallets(config) {
   const wallets = [];
   const providers = [];
   
+  // Helper function to decode base64 URLs
+  const decodeUrl = (url) => {
+    try {
+      // Check if it's base64 encoded (no protocol prefix)
+      if (!url.startsWith('http') && !url.startsWith('ws')) {
+        return Buffer.from(url, 'base64').toString('utf-8');
+      }
+      return url;
+    } catch (error) {
+      console.warn(`Failed to decode URL: ${url}`);
+      return url;
+    }
+  };
+
   // Create providers (Alchemy + Infura + QuickNode when available)
   if (config.config.rpcUrl) {
-    const p = new ethers.JsonRpcProvider(config.config.rpcUrl, 8453, { name: 'Alchemy' });
+    const decodedUrl = decodeUrl(config.config.rpcUrl);
+    const p = new ethers.JsonRpcProvider(decodedUrl, 8453, { name: 'Alchemy' });
     p._label = 'Alchemy';
     providers.push(p);
   }
   if (config.config.rpcUrlInfura) {
-    const p = new ethers.JsonRpcProvider(config.config.rpcUrlInfura, 8453, { name: 'Infura' });
+    const decodedUrl = decodeUrl(config.config.rpcUrlInfura);
+    const p = new ethers.JsonRpcProvider(decodedUrl, 8453, { name: 'Infura' });
     p._label = 'Infura';
     providers.push(p);
   }
   if (config.config.rpcUrlQuickNode) {
-    const p = new ethers.JsonRpcProvider(config.config.rpcUrlQuickNode, 8453, { name: 'QuickNode' });
+    const decodedUrl = decodeUrl(config.config.rpcUrlQuickNode);
+    const p = new ethers.JsonRpcProvider(decodedUrl, 8453, { name: 'QuickNode' });
     p._label = 'QuickNode';
     providers.push(p);
   }
   
   // Create wallets with first provider
   const provider = providers[0];
-  config.wallets.forEach((walletConfig, index) => {
-    if (walletConfig.enabled && walletConfig.privateKey) {
-      const wallet = new ethers.Wallet(walletConfig.privateKey, provider);
-      wallet._index = index + 1;
-      wallet._name = walletConfig.name;
-      wallets.push(wallet);
+  
+  // First, try to load wallets from environment variables (injected by main process)
+  let walletsLoaded = 0;
+  for (let i = 1; i <= 50; i++) { // Check up to 50 wallets (B1-B50)
+    const envKey = `B${i}`;
+    const privateKey = process.env[envKey];
+    if (privateKey) {
+      try {
+        const wallet = new ethers.Wallet(privateKey, provider);
+        wallet._index = i;
+        wallet._name = `B${i}`;
+        wallets.push(wallet);
+        walletsLoaded++;
+      } catch (error) {
+        console.error(`❌ Invalid private key for ${envKey}: ${error.message}`);
+      }
     }
-  });
+  }
+  
+  console.log(`🔑 Loaded ${walletsLoaded} trading wallet keys from environment variables`);
+  
+  // Fallback: if no environment wallets found, try loading from config (for direct execution)
+  if (walletsLoaded === 0) {
+    config.wallets.forEach((walletConfig, index) => {
+      if (walletConfig.enabled && walletConfig.privateKey) {
+        const wallet = new ethers.Wallet(walletConfig.privateKey, provider);
+        wallet._index = index + 1;
+        wallet._name = walletConfig.name;
+        wallets.push(wallet);
+        walletsLoaded++;
+      }
+    });
+    console.log(`🔑 Loaded ${walletsLoaded} trading wallet keys from wallets.json (fallback)`);
+  }
   
   return { wallets, providers };
 }
@@ -269,7 +321,7 @@ async function detectAndPrepareSignedSwaps(genesisAddress, wsUrl, wallets, buyAm
           console.log(`📊 Total checks performed: ${checkCount}`);
           console.log(`⏱️  Detection timestamp (perf): ${detectionPerf.toFixed(3)} ms`);
           console.log(`[${localTs()}] Token detected`);
-          globalThis.__SNIPER_DETECTION_TS__ = detectionPerf;
+          globalThis.__ADVANCE_ORDER_DETECTION_TS__ = detectionPerf;
 
           // Prebuild + sign all swap txs in parallel immediately
           (async () => {
@@ -309,9 +361,9 @@ async function detectAndPrepareSignedSwaps(genesisAddress, wsUrl, wallets, buyAm
   });
 }
 
-// Main sniper function (prebuilt variant)
+// Main Advance Order function (prebuilt variant)
 async function snipePrebuilt(args) {
-  console.log('🎯 SNIPER BOT v1.1 - PREBUILT SIGNED TX EDITION');
+  console.log('🎯 ADVANCE ORDER v1.1 - PREBUILT SIGNED TX EDITION');
   console.log('===============================================');
   
   const config = loadConfig();
@@ -422,7 +474,7 @@ async function snipePrebuilt(args) {
     process.exit(1);
   }
 
-  console.log(`\n📋 SNIPER CONFIGURATION:`);
+  console.log(`\n📋 ADVANCE ORDER CONFIGURATION:`);
   console.log(`🎯 Genesis: ${genesisAddress}`);
   console.log(`👛 Wallets: ${selectedWallets.length} selected`);
   console.log(`💰 Amount: ${buyAmount} VIRTUAL per wallet`);
@@ -462,7 +514,23 @@ async function snipePrebuilt(args) {
   let tokenCA, detectionPerf, signedPackages;
   if (genesisAddress) {
   console.log(`\n🔍 PHASE 3: Starting ultra-fast token detection (WSS block-driven)...`);
-  const wsUrl = config.config.wsUrl || config.config.rpcUrl.replace('https', 'wss');
+  
+  // Helper function to decode base64 URLs (same as in createWallets)
+  const decodeUrl = (url) => {
+    try {
+      // Check if it's base64 encoded (no protocol prefix)
+      if (!url.startsWith('http') && !url.startsWith('ws')) {
+        return Buffer.from(url, 'base64').toString('utf-8');
+      }
+      return url;
+    } catch (error) {
+      console.warn(`Failed to decode URL: ${url}`);
+      return url;
+    }
+  };
+  
+  const rawWsUrl = config.config.wsUrl || config.config.rpcUrl.replace('https', 'wss');
+  const wsUrl = decodeUrl(rawWsUrl);
     ({ tokenCA, detectionPerf, signedPackages } = await detectAndPrepareSignedSwaps(
     genesisAddress,
     wsUrl,
@@ -709,11 +777,17 @@ async function snipePrebuilt(args) {
     }
   }
 
-  console.log(`🏁 SNIPER BOT COMPLETE!`);
+  console.log(`🏁 Advance Order Complete!`);
+  
+  // Auto-shutdown the bot after completion
+  setTimeout(() => {
+    console.log('🔄 Auto-shutting down bot...');
+    process.exit(0);
+  }, 2000); // 2 second delay to show completion message
 }
 
 function showUsage() {
-  console.log('\n🎯 SNIPER BOT (PREBUILT) USAGE:');
+  console.log('\n🎯 Advance Order USAGE:');
   console.log('==============================');
   console.log('');
   console.log('snipe-prebuilt <wallets> <genesis> [amount]');
@@ -739,7 +813,7 @@ async function main() {
 }
 
 process.on('SIGINT', () => {
-  console.log('\n\n👋 Sniper bot (prebuilt) stopped by user');
+  console.log('\n\n👋 Advance Order stopped by user');
   process.exit(0);
 });
 

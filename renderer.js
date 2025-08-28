@@ -335,13 +335,17 @@ const botConfigs = {
         title: '💥 FSH',
         description: 'Execute FSH operation'
     },
-    farmbot: {
-        title: '🔄 FarmBot Configuration',
-        description: 'Configure volume farming parameters (Multi-wallet)'
+    snipebot: {
+        title: '⚡ Advance Order Configuration',
+        description: 'Configure advanced trading parameters for token launches'
     },
     mmbot: {
         title: '📊 Market Making Bot Configuration',
         description: 'Configure market making parameters (Multi-wallet)'
+    },
+    farmbot: {
+        title: '🔄 FarmBot Configuration',
+        description: 'Configure volume farming parameters (Multi-wallet)'
     },
     jeetbot: {
         title: '🚀 JeetBot Configuration',
@@ -1012,7 +1016,8 @@ function setupIPCListeners() {
         } else {
             // Single execution
             if (code === 0) {
-                addConsoleMessage(`${botType} completed successfully`, 'success');
+                const successLabel = (botType === 'snipebot') ? 'Advance Order' : botType;
+                addConsoleMessage(`${successLabel} completed successfully`, 'success');
             } else {
                 addConsoleMessage(`${botType} failed with exit code ${code}`, 'error');
                 if (error) {
@@ -1294,6 +1299,15 @@ function selectBot(botType) {
 
     currentBot = botType;
     addConsoleMessage(`Selected ${botType.toUpperCase()}`, 'info');
+
+    // Update page title dynamically for SnipeBot
+    try {
+        if (botType === 'snipebot') {
+            document.title = 'Advance Order';
+        } else {
+            document.title = 'TRUSTBOT';
+        }
+    } catch {}
 }
 
 async function runBot(botType, customArgs = null) {
@@ -2353,7 +2367,7 @@ function addConsoleMessage(message, type = 'stdout') {
         // Extract ticker if available
         const tickerMatch = message.match(/for\s+([A-Za-z0-9]+)/i);
         const ticker = tickerMatch ? tickerMatch[1] : '';
-        processedMessage = `<span style="color: #56d364; font-weight: 600;">Starting Sniper Bot</span>${ticker ? ` <span style="color: #58a6ff; font-weight: 500;">for ${ticker}</span>` : ''}`;
+        processedMessage = `<span style="color: #56d364; font-weight: 600;">Initiating Advance Order</span>${ticker ? ` <span style="color: #58a6ff; font-weight: 500;">for ${ticker}</span>` : ''}`;
     }
     
     // SNIPER Bot: Token detected summary with Basescan address link
@@ -2469,6 +2483,8 @@ function addConsoleMessage(message, type = 'stdout') {
             processedMessage = `<span style="color: #56d364; font-weight: 500;">✅ COMPLETE</span> <span style="color: #a5a5a5; font-weight: 600;">Farmbot</span> <span style="color: #a5a5a5;">finished successfully</span>`;
         } else if (message.includes('mm bot')) {
             processedMessage = `<span style="color: #56d364; font-weight: 500;">✅ COMPLETE</span> <span style="color: #ffa500; font-weight: 600;">MM Bot</span> <span style="color: #a5a5a5;">finished successfully</span>`;
+        } else if (message.includes('Advance Order')) {
+            processedMessage = `<span style="color: #56d364; font-weight: 500;">✅ COMPLETE</span> <span style="color: #58a6ff; font-weight: 600;">Advance Order</span> <span style="color: #a5a5a5;">finished successfully</span>`;
         } else if (message.includes('Farm cycle completed successfully')) {
             processedMessage = `<span style="color: #56d364; font-weight: 500;">✓ CYCLE</span> <span style="color: #a5a5a5;">Farm cycle completed</span>`;
         }
@@ -2552,6 +2568,7 @@ function addConsoleMessage(message, type = 'stdout') {
         message.includes('farmbot completed successfully') ||
         message.includes('jeetbot completed successfully') ||
         message.includes('mm bot completed successfully') ||
+        message.includes('Advance Order completed successfully') ||
         message.includes('No bot is currently running') ||
         
         // Critical validation messages
@@ -4363,11 +4380,89 @@ function getJeetBotArgsForTicker(ticker) {
     return args;
 }
 
+// Advance Order Tab Switching
+function switchAdvanceOrderTab(tabType) {
+    const genesisTab = document.getElementById('genesis-tab');
+    const ogTab = document.getElementById('og-tab');
+    const helpText = document.getElementById('ticker-help-text');
+    
+    if (!genesisTab || !ogTab) return;
+
+    if (tabType === 'genesis') {
+        // Toggle classes
+        genesisTab.classList.add('active');
+        ogTab.classList.remove('active');
+        // Update help text
+        if (helpText) {
+            helpText.textContent = 'Genesis mode: Enter Genesis ticker.';
+        }
+    } else {
+        // Toggle classes
+        ogTab.classList.add('active');
+        genesisTab.classList.remove('active');
+        // Update help text
+        if (helpText) {
+            helpText.textContent = 'OG mode: Enter Sentient ticker';
+        }
+    }
+}
+
+// Trading Mode Selection Handler
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners for trading mode radio buttons
+    const modeRadios = document.querySelectorAll('input[name="trading-mode"]');
+    modeRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Hide all mode settings
+            document.querySelectorAll('.mode-settings').forEach(el => el.style.display = 'none');
+            
+            // Update mode option styling using CSS variables
+            document.querySelectorAll('.mode-option').forEach(el => {
+                el.style.borderColor = 'var(--border-color)';
+                // Use transparent background for unselected options to avoid blue tint
+                el.style.background = 'transparent';
+            });
+            
+            // Highlight selected mode
+            const selectedLabel = this.closest('.mode-option');
+            // Subtle, neutral highlight for selected option
+            selectedLabel.style.borderColor = 'var(--border-light-alpha-20)';
+            selectedLabel.style.background = 'var(--bg-dark-alpha-15)';
+            
+            // Show relevant settings
+            const mode = this.value;
+            if (mode === 'maxlimit') {
+                document.getElementById('maxlimit-settings').style.display = 'block';
+            } else if (mode === 'limit') {
+                document.getElementById('limit-settings').style.display = 'block';
+            }
+            // Note: Take profit is always visible, no need to show/hide
+        });
+    });
+
+    // Initialize styling on load so defaults don't show blue tint
+    (function initModeOptionStyling() {
+        // Reset all to neutral
+        document.querySelectorAll('.mode-option').forEach(el => {
+            el.style.borderColor = 'var(--border-color)';
+            el.style.background = 'transparent';
+        });
+        // Highlight currently selected mode, if any
+        const checked = document.querySelector('input[name="trading-mode"]:checked');
+        if (checked) {
+            const selectedLabel = checked.closest('.mode-option');
+            if (selectedLabel) {
+                selectedLabel.style.borderColor = 'var(--border-light-alpha-20)';
+                selectedLabel.style.background = 'var(--bg-dark-alpha-15)';
+            }
+        }
+    })();
+});
+
 // Utility Bot Argument Functions
 function getSnipeBotArgs() {
     const targetInput = document.getElementById('snipe-target')?.value?.trim() || '';
     const amountInput = document.getElementById('snipe-amount')?.value?.trim() || '';
-    const gasPrice = document.getElementById('gas-price')?.value?.trim();
 
     if (!targetInput) {
         addConsoleMessage('❌ Please enter a Ticker or Contract Address', 'error');
@@ -4390,23 +4485,170 @@ function getSnipeBotArgs() {
         .sort()
         .forEach(w => args.push(w));
 
-    // Normalize target: if not address and not already G- prefixed, prefix with G-
+    // Determine Genesis vs OG mode based on active tab
+    const isGenesisMode = document.getElementById('genesis-tab')?.classList.contains('active');
+    
+    // Normalize target based on Genesis/OG mode
     let normalizedTarget = targetInput;
     const looksLikeAddress = /^0x[0-9a-fA-F]{6,}$/.test(normalizedTarget);
-    if (!looksLikeAddress && !/^G-/i.test(normalizedTarget)) {
-        normalizedTarget = `G-${normalizedTarget}`;
+    
+    if (isGenesisMode) {
+        // Genesis mode: prefix ticker with G- if not an address and not already prefixed
+        if (!looksLikeAddress && !/^G-/i.test(normalizedTarget)) {
+            normalizedTarget = `G-${normalizedTarget}`;
+        }
+    } else {
+        // OG mode: use ticker/address as-is (no auto-prefix)
     }
 
     // Add target and amount
     args.push(normalizedTarget);
     args.push(amountInput);
 
-    // Add gas price if specified
-    if (gasPrice && gasPrice !== '0.02') {
-        args.push(`gas${gasPrice}`);
+    // Get selected trading mode
+    const selectedMode = document.querySelector('input[name="trading-mode"]:checked')?.value || 'attack';
+
+    // Add mode-specific arguments
+    switch (selectedMode) {
+        case 'attack':
+            // Fastbuy Attack mode - no additional args needed
+            break;
+            
+        case 'maxlimit':
+            // Max Limit Bot - add MCAP- threshold
+            const mcapLimit = document.getElementById('snipe-mcap-limit')?.value;
+            if (mcapLimit && parseFloat(mcapLimit) > 0) {
+                args.push(`MCAP-${mcapLimit}`);
+            }
+            break;
+            
+        case 'limit':
+            // Limit Orders - add LIMIT- threshold
+            const limitPrice = document.getElementById('snipe-limit-price')?.value;
+            if (limitPrice && parseFloat(limitPrice) > 0) {
+                args.push(`LIMIT-${limitPrice}`);
+            }
+            break;
+    }
+
+    // Take Profit validation - must be either both empty or both filled
+    const tpTrigger = document.getElementById('snipe-tp-trigger')?.value;
+    const sellAmount = document.getElementById('snipe-sell-amount')?.value?.trim();
+    
+    const hasTrigger = tpTrigger && parseFloat(tpTrigger) > 0;
+    const hasSellAmount = sellAmount && sellAmount.length > 0;
+    
+    // Check for incomplete Take Profit configuration
+    if (hasTrigger !== hasSellAmount) {
+        // Vibrate the Take Profit section
+        vibrateTakeProfitSection();
+        
+        if (hasTrigger && !hasSellAmount) {
+            addConsoleMessage('❌ Take Profit incomplete: SELL amount is required when trigger is set. Either complete both fields or clear both.', 'error');
+        } else if (!hasTrigger && hasSellAmount) {
+            addConsoleMessage('❌ Take Profit incomplete: Trigger Market Cap is required when SELL amount is set. Either complete both fields or clear both.', 'error');
+        }
+        return null;
+    }
+    
+    // If both fields are filled, process Take Profit
+    if (hasTrigger && hasSellAmount) {
+        args.push(`TP-${tpTrigger}`);
+        
+        // Handle percentage vs fixed amount
+        const pctMatch = sellAmount.match(/^\s*(\d+(?:\.\d+)?)\s*%\s*$/);
+        if (pctMatch) {
+            let pct = parseFloat(pctMatch[1]);
+            if (isNaN(pct) || pct < 0) {
+                addConsoleMessage('❌ Invalid SELL percentage. Example: 50%', 'error');
+                return null;
+            }
+            // Convert 100% to 99.99% to avoid rounding issues
+            if (pct >= 100) pct = 99.99;
+            args.push(`SELL-${pct}%`);
+        } else {
+            const qty = parseFloat(sellAmount);
+            if (isNaN(qty) || qty < 0) {
+                addConsoleMessage('❌ Invalid SELL amount. Use tokens (10000) or percentage (50%)', 'error');
+                return null;
+            }
+            args.push(`SELL-${qty}`);
+        }
     }
 
     return args;
+}
+
+// Function to vibrate the Take Profit section with visual feedback
+function vibrateTakeProfitSection() {
+    const tpContent = document.getElementById('tp-content');
+    const tpHeader = document.getElementById('tp-header');
+    
+    if (!tpContent || !tpHeader) return;
+    
+    // Ensure the Take Profit section is visible
+    if (tpContent.style.display === 'none') {
+        toggleTakeProfit(); // Open the section if it's closed
+    }
+    
+    // Add vibration CSS class
+    const vibrationClass = 'tp-validation-error';
+    
+    // Create CSS for vibration effect if it doesn't exist
+    if (!document.getElementById('tp-vibration-styles')) {
+        const style = document.createElement('style');
+        style.id = 'tp-vibration-styles';
+        style.textContent = `
+            .tp-validation-error {
+                animation: tp-shake 0.6s ease-in-out;
+                border-color: #f85149 !important;
+                box-shadow: 0 0 0 2px rgba(248, 81, 73, 0.2) !important;
+            }
+            
+            @keyframes tp-shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+                20%, 40%, 60%, 80% { transform: translateX(4px); }
+            }
+            
+            .tp-error-message {
+                background: rgba(248, 81, 73, 0.1);
+                border: 1px solid #f85149;
+                border-radius: 6px;
+                padding: 8px 12px;
+                margin-top: 8px;
+                color: #f85149;
+                font-size: 12px;
+                animation: tp-fade-in 0.3s ease-out;
+            }
+            
+            @keyframes tp-fade-in {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Apply vibration effect to the content area
+    tpContent.classList.add(vibrationClass);
+    
+    // Add error message if it doesn't exist
+    let errorMsg = tpContent.querySelector('.tp-error-message');
+    if (!errorMsg) {
+        errorMsg = document.createElement('div');
+        errorMsg.className = 'tp-error-message';
+        errorMsg.innerHTML = '⚠️ <strong>Incomplete Configuration:</strong> Either fill both fields or clear both fields to proceed.';
+        tpContent.appendChild(errorMsg);
+    }
+    
+    // Remove vibration class and error message after animation
+    setTimeout(() => {
+        tpContent.classList.remove(vibrationClass);
+        if (errorMsg) {
+            errorMsg.remove();
+        }
+    }, 4000); // Keep message visible for 4 seconds
 }
 
 function getStargateBridgeArgs() {

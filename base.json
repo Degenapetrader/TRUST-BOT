@@ -1888,5 +1888,40 @@
     "lpAddress": "0x0f78AD94a68AB9376156d517cE98745405d8cD64",
     "mcapInVirtual": 1727792.3482214638,
     "label": "Genesis"
+  },
+  {
+    "symbol": "KARMA",
+    "tokenAddress": "0x26923fD7FeF1D3153d15A793f98144C6b9919946",
+    "lpAddress": "0xFA68ee1b5B8Da05DCB67d146Cd3bE4D32fCF2129",
+    "mcapInVirtual": 260703.43239693905,
+    "label": "Sentient"
+  },
+  {
+    "symbol": "FIN",
+    "tokenAddress": "0xfB60b8266243D994eAa7499FCA71D4ffe76c08D7",
+    "lpAddress": "0x5d9c52e7aF21d4EeD21c49598C0228CB6202E7e0",
+    "mcapInVirtual": 157634.5368792664,
+    "label": "Sentient"
+  },
+  {
+    "symbol": "FYI",
+    "tokenAddress": "0x03daCa2C2e55B03fF1D0D81F099c8900Ed7f1DAB",
+    "lpAddress": "0xCAc90f13c55D5e5e113C91B453D45fA95452B522",
+    "mcapInVirtual": 857316.9491525424,
+    "label": "Sentient"
+  },
+  {
+    "symbol": "AEGON",
+    "tokenAddress": "0x78a5d1de296f351a4bC1316Fed9Db443381A80CD",
+    "lpAddress": "0x435D85e4a6A86C63E3ef50DC757aAF944F7d6339",
+    "mcapInVirtual": 1169286.633543578,
+    "label": "Sentient"
+  },
+  {
+    "symbol": "TURTLE",
+    "tokenAddress": "0xb87845865997e7E73598423670e22095fDE06E91",
+    "lpAddress": "0x8298654c07717b6cC776EFcCEF77F05929f205c6",
+    "mcapInVirtual": 204033.5323755512,
+    "label": "Genesis"
   }
 ]

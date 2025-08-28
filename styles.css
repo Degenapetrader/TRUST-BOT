@@ -1,3 +1,157 @@
+/* Advance Order Styling */
+.advance-order-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    border-radius: 6px 6px 0 0;
+    overflow: hidden;
+}
+
+.advance-order-tabs .tab-btn {
+    flex: 1;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.advance-order-tabs .tab-btn:hover {
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.advance-order-tabs .tab-btn.active {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    border-bottom: 2px solid var(--primary-color) !important;
+}
+
+.trading-mode-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.mode-option {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mode-option:hover {
+    border-color: var(--border-color);
+    background: transparent;
+}
+
+.mode-option input[type="radio"] {
+    margin-right: 10px;
+    accent-color: var(--text-secondary);
+}
+
+.mode-option strong {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--text-primary);
+}
+
+.mode-option div:last-child {
+    font-size: 11px;
+    opacity: 0.8;
+    color: var(--text-secondary);
+}
+
+.mode-settings {
+    margin-top: 15px;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 16px; /* Add space below to avoid overlap with next section */
+}
+
+.mode-settings label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-color); /* Match section title color */
+    font-weight: 600;            /* Match weight */
+    font-size: 15px;            /* Match size */
+    text-transform: uppercase;  /* Match uppercase style */
+    letter-spacing: 0.5px;      /* Match spacing */
+}
+
+.mode-settings input[type="range"],
+.form-group1 input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    outline: none;
+    accent-color: var(--text-secondary);
+}
+
+.mode-settings input[type="range"]::-webkit-slider-thumb,
+.form-group1 input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mode-settings input[type="range"]::-webkit-slider-thumb:hover,
+.form-group1 input[type="range"]::-webkit-slider-thumb:hover {
+    background: var(--text-light-dark);
+    transform: scale(1.1);
+}
+
+.mode-settings input[type="range"]::-moz-range-thumb,
+.form-group1 input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.mode-settings input[type="range"]::-moz-range-thumb:hover {
+    background: var(--text-light-dark);
+    transform: scale(1.1);
+}
+
+.mode-settings small {
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Unified helper text under inputs */
+.help-note {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    opacity: 0.9;
+}
+
 /* Component Loading Indicators */
 .component-loading {
     display: flex;
@@ -95,7 +249,7 @@ body {
     --accent-color: #8b9dc3;
     --accent-dark: #5c6bc0;
     --bg-dark: #16213e;
-    --bg-card: rgba(0, 164, 207, 0.1);
+    --bg-card: rgba(255, 255, 255, 0.04);
     --text-primary: #ffffff;
     --text-secondary: #cccccc;
     --border-color: rgba(255, 255, 255, 0.1);
@@ -2777,8 +2931,7 @@ body.console-fullscreen .console-container:not(.console-detailed) {
 }
 
 .form-actions .btn {
-    min-width: 140px;
-    max-width: 200px;
+    min-width: 220px;
     background-color: var(--surface-color);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
@@ -2788,6 +2941,7 @@ body.console-fullscreen .console-container:not(.console-detailed) {
     transition: all 0.2s ease;
     cursor: pointer;
     font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .form-actions .btn:hover {

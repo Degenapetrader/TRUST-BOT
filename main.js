@@ -533,7 +533,8 @@ function getNpmScriptForBot(botType) {
     'sellbot-fsh': 'sellbot',  // FSH will be handled via arguments
     'farmbot': 'farmbot',
     'jeetbot': 'jeetbot',
-    'snipebot': 'snipebot',
+    // Advanced Bot (formerly sniper): npm script is named 'sniperbot'
+    'snipebot': 'sniperbot',
     'mmbot': 'mmbot',
     'transferbot': 'transferbot',
     'stargate': 'stargate',
